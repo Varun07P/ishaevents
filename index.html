@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISHA EVENTS – We Create Attention That Moves People</title>
+  <meta name="description" content="India's leading activation agency. LED van campaigns, tricycle advertising, product launches, store openings and corporate events.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="footer.css">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --orange: #E8490F;
+      --orange-light: #FF6B2C;
+      --white: #F5F2EE;
+      --dark: #030508;
+      /* Footer Specific Vars */
+      --text-main: #222222;
+      --text-muted: #666666;
+      --bg-light: #FAFAFA;
+      --border: #EAEAEA;
+    }
+
+    html, body {
+      width: 100%; min-height: 100%;
+      background: var(--dark);
+      font-family: 'Barlow', sans-serif;
+      color: var(--white);
+      overflow-x: clip; /* Prevents overflow without creating scroll container, allowing position: sticky to stick perfectly */
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ════════ PRELOADER ════════ */
+    #preloader {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--dark);
+      transition: opacity .7s ease, visibility .7s ease;
+    }
+    .pre-content { display: flex; flex-direction: column; align-items: center; gap: 16px; z-index: 10; }
+    .pre-brand { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; letter-spacing: .3em; color: var(--white); }
+    .pre-brand b { color: var(--orange); }
+    .pre-track { width: 200px; height: 2px; background: rgba(255,255,255,.06); border-radius: 10px; overflow: hidden; }
+    .pre-fill { width: 0%; height: 100%; background: var(--orange); box-shadow: 0 0 8px var(--orange); transition: width .2s ease; }
+    .pre-pct { font-size: .65rem; letter-spacing: .15em; color: rgba(255,255,255,.3); }
+    .pre-panel { position: absolute; width: 100%; height: 50%; background: var(--dark); z-index: 5; transition: transform 1.1s cubic-bezier(.85,0,.15,1); }
+    .pre-panel.t { top: 0; }
+    .pre-panel.b { bottom: 0; }
+    body.go .pre-panel.t { transform: translateY(-100%); }
+    body.go .pre-panel.b { transform: translateY(100%); }
+    body.go #preloader { pointer-events: none; opacity: 0; visibility: hidden; }
+
+    /* ════════ HERO ════════ */
+    #hero {
+      position: relative;
+      width: 100%; height: calc(100vh - 68px); min-height: 700px;
+      margin-top: 68px;
+      overflow: hidden;
+    }
+
+    /* ── Background Image ── */
+    .hero-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      transform: scale(1.1); transition: transform 4s cubic-bezier(.16,1,.3,1);
+    }
+    body.go .hero-bg { transform: scale(1); }
+
+    /* Bottom fade for stats readability */
+    .hero-bottom-fade {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 180px;
+      background: linear-gradient(to top, rgba(3,5,8,.65) 0%, transparent 100%);
+      z-index: 2; pointer-events: none;
+    }
+
+
+
+    /* ════════ CENTER CONTENT ════════ */
+    .center-block {
+      position: absolute; inset: 0; z-index: 10;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 0 24px;
+      pointer-events: none;
+    }
+    .center-block > * { pointer-events: auto; }
+
+    .tag {
+      font-size: .75rem; font-weight: 700;
+      letter-spacing: .4em; text-indent: .4em; text-transform: uppercase;
+      color: var(--orange-light); margin-bottom: 10px;
+      opacity: 0; transform: translateY(18px);
+      transition: opacity .7s 1.3s ease, transform .7s 1.3s ease;
+    }
+    body.go .tag { opacity: 1; transform: translateY(0); }
+
+    /* ── Headlines ── */
+    .hl { margin-bottom: 18px; text-align: center; }
+    .lm { display: block; overflow: hidden; text-align: center; line-height: 1; }
+    .lm > span {
+      display: inline-block; transform: translateY(115%); opacity: 0;
+      transition: transform 1s cubic-bezier(.16,1,.3,1), opacity 1s ease;
+    }
+    body.go .lm > span { transform: translateY(0); opacity: 1; }
+
+    /* WE CREATE */
+    .h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700; letter-spacing: .03em;
+      color: var(--white);
+      text-shadow: 0 2px 10px rgba(0,0,0,.5);
+    }
+    body.go .h1 > span { transition-delay: 1.35s; }
+
+    /* ATTENTION */
+    .h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(4rem, 8vw, 7.5rem);
+      font-weight: 700; letter-spacing: .01em;
+      line-height: .9;
+      margin-top: -4px; margin-bottom: 2px;
+    }
+    .h2 > span {
+      background: linear-gradient(180deg,
+        #FFD580 0%,
+        #FFB03A 18%,
+        #FF8C1A 35%,
+        #FF5E00 55%,
+        #E83E00 75%,
+        #C02800 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.8));
+      position: relative;
+    }
+    body.go .h2 > span { transition-delay: 1.5s; }
+
+    /* THAT MOVES PEOPLE */
+    .h3 {
+      font-family: 'Barlow', sans-serif;
+      font-size: clamp(.7rem, 1.2vw, 1rem);
+      font-weight: 600; letter-spacing: .5em; text-indent: .5em;
+      color: var(--white);
+      text-shadow: 0 2px 10px rgba(0,0,0,.6);
+      margin-top: 4px;
+    }
+    body.go .h3 > span { transition-delay: 1.65s; }
+
+    /* ── Description ── */
+    .desc {
+      max-width: 480px; text-align: center;
+      font-size: .92rem; font-weight: 400;
+      line-height: 1.75; color: rgba(255,255,255,.75);
+      margin-bottom: 32px;
+      text-shadow: 0 1px 10px rgba(0,0,0,.5);
+      opacity: 0; transform: translateY(14px);
+      transition: opacity .8s 1.8s ease, transform .8s 1.8s ease;
+    }
+    body.go .desc { opacity: 1; transform: translateY(0); }
+    .desc em {
+      font-style: italic; font-weight: 700;
+      color: var(--orange-light);
+      text-decoration: underline;
+      text-decoration-color: rgba(232,73,15,.35);
+      text-underline-offset: 3px;
+    }
+
+    /* ── Buttons ── */
+    .btns {
+      display: flex; align-items: center; gap: 28px;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity .8s 1.95s ease, transform .8s 1.95s ease;
+    }
+    body.go .btns { opacity: 1; transform: translateY(0); }
+
+    .btn-exp {
+      font-family: 'Barlow', sans-serif; font-size: .72rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--white); background: transparent;
+      border: 1.5px solid var(--orange);
+      padding: 14px 34px; border-radius: 4px;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 12px;
+      transition: all .3s ease;
+    }
+    .btn-exp svg { color: var(--orange); transition: transform .3s, color .3s; }
+    .btn-exp:hover {
+      background: var(--orange); color: #fff;
+      box-shadow: 0 4px 30px rgba(232,73,15,.45);
+      transform: translateY(-2px);
+    }
+    .btn-exp:hover svg { transform: translateX(4px); color: #fff; }
+
+    .btn-reel {
+      font-family: 'Barlow', sans-serif; font-size: .72rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      background: none; border: none; color: var(--white);
+      cursor: pointer; display: flex; align-items: center; gap: 14px;
+      padding: 8px; transition: opacity .3s;
+    }
+    .play-c {
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,.35);
+      display: flex; align-items: center; justify-content: center;
+      padding-left: 3px;
+      transition: border-color .3s, background .3s, transform .25s, box-shadow .3s;
+    }
+    .play-c svg { color: var(--white); }
+    .btn-reel:hover .play-c {
+      border-color: #fff; background: rgba(255,255,255,.08);
+      transform: scale(1.08);
+      box-shadow: 0 0 20px rgba(255,255,255,.15);
+    }
+
+    /* ════════ BOTTOM SECTION ════════ */
+    .bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 10;
+      display: flex; flex-direction: column; align-items: center;
+      padding-bottom: 22px;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity .8s 2.1s ease, transform .8s 2.1s ease;
+    }
+    body.go .bottom { opacity: 1; transform: translateY(0); }
+
+    .stats {
+      display: flex; align-items: center; justify-content: center;
+      max-width: 820px; width: 100%;
+      margin-bottom: 16px; padding: 0 20px;
+    }
+    .st {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      text-align: center; position: relative; padding: 0 24px;
+    }
+    .st:not(:last-child)::after {
+      content: ''; position: absolute; top: 18%; right: 0;
+      width: 1px; height: 64%;
+      background: linear-gradient(to bottom, transparent, rgba(232,73,15,.2) 20%, rgba(232,73,15,.2) 80%, transparent);
+    }
+    .st-i { margin-bottom: 5px; color: rgba(255,255,255,.4); }
+    .st-i svg { width: 16px; height: 16px; }
+    .st-v {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2.4rem; line-height: 1; letter-spacing: .03em;
+      color: var(--orange);
+      filter: drop-shadow(0 0 8px rgba(232,73,15,.3));
+      margin-bottom: 1px;
+    }
+    .st-l {
+      font-size: .55rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+    }
+    .trust {
+      font-size: .6rem; font-weight: 600;
+      letter-spacing: .4em; text-indent: .4em; text-transform: uppercase;
+      color: rgba(255,255,255,.25);
+    }
+
+    /* ── Left: Scroll + page ── */
+    .side-l {
+      position: absolute; bottom: 30px; left: 52px; z-index: 10;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
+      opacity: 0; transition: opacity .7s 2.3s ease;
+    }
+    body.go .side-l { opacity: 1; }
+    .scroll-txt {
+      font-size: .6rem; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+    .scroll-ico {
+      width: 22px; height: 36px;
+      border: 1.5px solid rgba(255,255,255,.3);
+      border-radius: 14px; position: relative;
+    }
+    .scroll-dot {
+      width: 3px; height: 5px; background: var(--orange);
+      border-radius: 4px;
+      position: absolute; top: 7px; left: 50%; transform: translateX(-50%);
+      animation: sWheel 1.5s infinite ease-in-out;
+    }
+    @keyframes sWheel {
+      0%,100% { top: 7px; opacity: 0; }
+      20% { opacity: 1; }
+      80% { top: 20px; opacity: 0; }
+    }
+    .pg-num {
+      font-family: 'Bebas Neue', cursive;
+      font-size: .8rem; letter-spacing: .1em;
+      color: rgba(255,255,255,.25);
+      margin-top: 6px;
+    }
+
+    /* ── Right: Social ── */
+    .side-r {
+      position: absolute; bottom: 30px; right: 52px; z-index: 10;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      opacity: 0; transition: opacity .7s 2.3s ease;
+    }
+    body.go .side-r { opacity: 1; }
+    .sc {
+      color: rgba(255,255,255,.45); text-decoration: none;
+      transition: color .25s, transform .25s;
+    }
+    .sc:hover { color: #fff; transform: translateY(-2px); }
+    .sc svg { width: 15px; height: 15px; }
+
+    /* ════════ RESPONSIVE ════════ */
+    @media (max-width: 1100px) {
+      .hdr { padding: 22px 36px; }
+      .nav-mid { gap: 26px; }
+      .side-l { left: 32px; }
+      .side-r { right: 32px; }
+    }
+    @media (max-width: 991px) {
+      html, body { overflow-y: auto; }
+      .nav-mid { display: none; }
+      .hdr { padding: 18px 24px; }
+      .ham { display: flex; }
+      .side-l, .side-r { display: none; }
+      #hero { height: auto; min-height: 100vh; }
+      .center-block { position: relative; padding: 130px 20px 30px; }
+      .bottom { position: relative; padding-bottom: 30px; }
+      .stats { flex-wrap: wrap; gap: 24px 0; }
+      .st { flex: 0 0 50%; }
+      .st:nth-child(2)::after { display: none; }
+    }
+    @media (max-width: 600px) {
+      .hdr { padding: 14px 16px; }
+      .logo-name { font-size: 1.4rem; }
+      .logo-sub { font-size: .55rem; display: none; }
+      .btn-q { padding: 8px 16px; font-size: .62rem; }
+      .ham { width: 36px; height: 36px; }
+      .tag { font-size: .6rem; letter-spacing: .22em; text-indent: .22em; }
+      .desc { font-size: .85rem; }
+      .btns { flex-direction: column; gap: 14px; width: 100%; max-width: 280px; }
+      .btn-exp { width: 100%; justify-content: center; }
+      .btn-reel { justify-content: center; }
+      .st { flex: 0 0 100%; }
+      .st::after { display: none !important; }
+      .st-v { font-size: 2rem; }
+      .trust { font-size: .5rem; letter-spacing: .2em; text-indent: .2em; }
+    }
+
+    /* ════════ TRUSTED BY SECTION ════════ */
+    #trusted {
+      padding: 40px 0;
+      background: #F5F2EE; /* Light background */
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+      overflow: hidden;
+    }
+    
+    .t-head {
+      font-size: .8rem; font-weight: 700;
+      letter-spacing: .4em; text-indent: .4em; text-transform: uppercase;
+      color: rgba(3,5,8,.5); margin-bottom: 30px;
+      display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+    }
+    
+    .t-head span { display: inline-block; }
+    
+    .t-logos-container {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .t-logos-track {
+      display: flex; gap: 80px; align-items: center;
+      padding: 0 40px;
+      animation: marquee 20s linear infinite;
+    }
+    
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); } /* Scrolls half because we duplicate the content */
+    }
+    
+    .t-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem; font-weight: 700; letter-spacing: .05em;
+      color: rgba(3,5,8,.25);
+      text-transform: uppercase;
+      transition: color .3s, transform .3s;
+      white-space: nowrap;
+    }
+    .t-logo:hover {
+      color: var(--orange); transform: scale(1.05);
+    }
+    
+    /* Scroll Reveal Animations */
+    .reveal-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-up.is-visible {
+      opacity: 1; transform: translateY(0);
+    }
+    
+    /* ════════ ABOUT US SECTION ════════ */
+    #about {
+      position: relative !important;
+      width: 100% !important;
+      background: #FFFFFF !important;
+      color: #222222 !important;
+      padding: 65px 52px 0 52px !important; /* Reduced bottom padding */
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+    }
+    
+    .about-container {
+      position: relative !important;
+      z-index: 10 !important;
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      width: 100% !important;
+    }
+    
+    .about-grid {
+      display: grid !important;
+      grid-template-columns: 1.1fr 0.9fr !important; /* Balanced columns */
+      gap: 60px !important;
+      align-items: center !important;
+      width: 100% !important;
+    }
+    
+    .about-content {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      text-align: left !important;
+    }
+    
+    .about-tag {
+      font-size: .8rem !important;
+      font-weight: 700 !important;
+      letter-spacing: .25em !important;
+      text-transform: uppercase !important;
+      color: #E8500A !important;
+      margin-bottom: 16px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+    }
+    
+    .about-hl {
+      font-family: 'Oswald', sans-serif !important;
+      font-size: clamp(2.2rem, 4vw, 3.2rem) !important;
+      font-weight: 700 !important;
+      letter-spacing: .01em !important;
+      line-height: 1.1 !important;
+      color: #111111 !important;
+      margin-bottom: 16px !important;
+      margin-top: 0 !important;
+      text-transform: uppercase !important;
+    }
+    
+    .about-words-track {
+      display: flex !important;
+      gap: 12px !important;
+      align-items: center !important;
+      flex-wrap: wrap !important;
+      margin-bottom: 22px !important;
+      font-family: 'Barlow Condensed', sans-serif !important;
+      font-size: clamp(1.2rem, 2.2vw, 1.6rem) !important;
+      font-weight: 900 !important;
+      letter-spacing: 0.04em !important;
+      text-transform: uppercase !important;
+    }
+    
+    .word-tag {
+      color: #E8500A !important; /* Memorable */
+      display: inline-block !important;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease !important;
+      cursor: default !important;
+    }
+    .word-tag:hover {
+      transform: scale(1.1) translateY(-2px) !important;
+      color: #FF6B1A !important;
+    }
+    
+    .word-tag:nth-of-type(2) { color: #8A2BE2 !important; } /* Unforgettable */
+    .word-tag:nth-of-type(2):hover { color: #A0522D !important; }
+    .word-tag:nth-of-type(3) { color: #E8500A !important; } /* Spectacular */
+    .word-tag:nth-of-type(4) { color: #E8500A !important; } /* Incredible */
+    
+    .word-dot {
+      color: #CCCCCC !important;
+      font-weight: 400 !important;
+      display: inline-block !important;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease !important;
+    }
+    .about-words-track:hover .word-dot {
+      transform: scale(1.2) rotate(180deg) !important;
+      color: #E8500A !important;
+    }
+    
+    .about-desc {
+      font-size: 1.02rem !important;
+      font-weight: 400 !important;
+      line-height: 1.7 !important;
+      color: #555555 !important;
+      margin-bottom: 30px !important;
+      margin-top: 0 !important;
+      max-width: 540px !important;
+    }
+    
+    .btn-story {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+      padding: 15px 34px !important;
+      border-radius: 30px !important;
+      border: 2px solid #E8500A !important;
+      background: transparent !important;
+      color: #E8500A !important;
+      font-family: 'Barlow', sans-serif !important;
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.1em !important;
+      text-transform: uppercase !important;
+      text-decoration: none !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      cursor: pointer !important;
+    }
+    
+    .btn-story:hover {
+      background: #E8500A !important;
+      color: #FFFFFF !important;
+      transform: translateY(-3px) !important;
+      box-shadow: 0 8px 20px rgba(232,80,10,0.15) !important;
+    }
+    
+    .btn-story svg {
+      transition: transform 0.3s ease !important;
+    }
+    .btn-story:hover svg {
+      transform: translate(2px, -2px) !important;
+    }
+    
+    /* Compact Skewed Video container */
+    .about-media-col {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      width: 100% !important;
+    }
+    
+    .about-media-wrapper {
+      position: relative !important;
+      width: 100% !important; /* Expanded to fill the column width fully */
+      height: 350px !important; /* Reduced from 460px for compact feel */
+      transform: skewX(-8deg) !important; /* Softer, elegant angle */
+      overflow: hidden !important;
+      border-radius: 16px !important;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.08) !important;
+      border: 5px solid #FFFFFF !important;
+      background: #FAFAFA !important;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease, border-color 0.6s ease !important;
+    }
+    
+    .about-media-wrapper:hover {
+      transform: skewX(-8deg) scale(1.03) translateY(-5px) !important;
+      box-shadow: 0 30px 60px rgba(232,80,10,0.12), 0 10px 25px rgba(0,0,0,0.04) !important;
+      border-color: #E8500A !important;
+    }
+    
+    .about-media-wrapper video {
+      position: absolute !important;
+      top: 0 !important;
+      left: -15% !important;
+      width: 130% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      transform: skewX(8deg) !important;
+      display: block !important;
+    }
+    
+    @media (max-width: 991px) {
+      #about {
+        padding: 60px 24px !important;
+      }
+      .about-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+      }
+      .about-media-col {
+        justify-content: center !important;
+      }
+      .about-media-wrapper {
+        width: 100% !important;
+        height: 280px !important;
+        transform: none !important;
+        border-radius: 12px !important;
+      }
+      .about-media-wrapper:hover {
+        transform: scale(1.01) translateY(-2px) !important;
+      }
+      .about-media-wrapper video {
+        left: 0 !important;
+        width: 100% !important;
+        transform: none !important;
+      }
+    }
+
+    /* ════════ SERVICES SECTION (STICKY HORIZONTAL SCROLL) ════════ */
+    .services-scroll-container {
+      position: relative !important;
+      width: 100% !important;
+      height: 750vh !important; 
+      background: #FAFAFA !important;
+      box-sizing: border-box !important;
+    }
+    
+    .services-sticky-wrapper {
+      position: sticky !important;
+      top: 0 !important;
+      height: 100vh !important;
+      width: 100% !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      padding: 0 80px !important;
+    }
+    
+    .services-container {
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 30px !important;
+    }
+    
+    .services-header {
+      text-align: left !important;
+      margin-bottom: 30px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 6px !important;
+    }
+    
+    .services-tag {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.15em !important;
+      text-transform: uppercase !important;
+      color: #ff5a00 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+    }
+    
+    .services-tag::before {
+      content: '' !important;
+      display: inline-block !important;
+      width: 6px !important;
+      height: 6px !important;
+      background: #ff5a00 !important;
+      border-radius: 50% !important;
+    }
+    
+    .services-hl {
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 1.8rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.02em !important;
+      line-height: 1.2 !important;
+      color: #222 !important;
+      margin: 0 !important;
+    }
+    
+    .services-subtitle {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.85rem !important;
+      font-weight: 400 !important;
+      color: #777 !important;
+      max-width: 450px !important;
+      line-height: 1.5 !important;
+      margin: 0 !important;
+    }
+    
+    .services-track-wrapper {
+      position: relative !important;
+      width: 100% !important;
+      overflow: visible !important;
+    }
+    
+    .services-track {
+      display: flex !important;
+      gap: 12px !important; /* Tight spacing matching services.html */
+      width: max-content !important;
+      will-change: transform !important;
+      transition: transform 0.1s linear !important;
+      padding: 20px 0 !important; /* Zero padding on desktop since JS centers exactly */
+      align-items: center !important;
+      height: 60vh !important;
+      min-height: 400px !important;
+    }
+    
+    .cinematic-panel {
+      position: relative !important;
+      width: 31vw !important; /* Premium width for 3 visible columns */
+      height: 420px !important; /* Attractive, immersive portrait proportion */
+      max-width: 480px !important;
+      min-width: 320px !important;
+      border-radius: 0 !important; /* Sharp corners */
+      overflow: hidden !important; 
+      background: #111 !important; 
+      flex-shrink: 0 !important;
+      transform: scale(1) !important;
+      padding: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-end !important;
+      cursor: pointer !important;
+      box-sizing: border-box !important;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    
+    @media (min-width: 769px) {
+      .cinematic-panel.is-hidden-side {
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+    }
+    
+    /* Background Image setup */
+    .cp-bg {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      background-size: cover !important; 
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      z-index: 1 !important;
+      border-radius: 0 !important;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    
+    .cinematic-panel:hover .cp-bg {
+      transform: scale(1.08) !important; 
+    }
+    
+    /* Sleek gradient overlay from solid black-tinted bottom to transparent top */
+    .cinematic-panel::after {
+      content: '' !important;
+      position: absolute !important;
+      inset: 0 !important;
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 40%, transparent 100%) !important;
+      z-index: 2 !important;
+      pointer-events: none !important;
+    }
+    
+    /* Inner overlay for layout grouping content tightly on the card */
+    .sc-content-overlay {
+      position: relative !important;
+      z-index: 3 !important;
+      padding: 28px 24px !important;
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      box-sizing: border-box !important;
+    }
+    
+    .sc-text-block {
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+    }
+    
+    /* Clean mixed-case typography */
+    .sc-title {
+      font-family: 'Barlow', sans-serif !important; 
+      font-size: 22px !important;
+      font-weight: 400 !important;
+      color: #ffffff !important;
+      margin: 0 !important;
+      line-height: 1.25 !important;
+      letter-spacing: -0.2px !important;
+      text-transform: none !important;
+    }
+    
+    @media (max-width: 991px) {
+      .services-sticky-wrapper {
+        padding: 0 !important;
+      }
+      .services-track {
+        padding: 20px 40vw !important;
+      }
+    }
+    
+    /* Responsive swipe layout for mobile */
+    @media (max-width: 768px) {
+      .services-track {
+        padding: 10px 5vw !important;
+        height: 420px !important;
+        gap: 16px !important;
+      }
+      .cinematic-panel {
+        width: 78vw !important;
+        height: 380px !important;
+        min-width: unset !important;
+      }
+      .services-track-wrapper {
+        -webkit-mask-image: none !important;
+        mask-image: none !important;
+      }
+      .cinematic-panel.is-clone {
+        display: none !important;
+      }
+      .sc-content-overlay {
+        padding: 14px 18px !important;
+      }
+    }
+    
+    /* ════ CALL TO ACTION SECTION ════ */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap');
+    
+    .cta-section {
+      position: relative !important;
+      padding: 65px 0 !important; /* Compact vertical sizing */
+      background: #011d3d !important; /* Premium deep blue backdrop */
+      overflow: hidden !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      z-index: 10 !important;
+    }
+    
+    .cta-container {
+      max-width: 1100px !important;
+      width: 90% !important;
+      margin: 0 auto !important;
+      position: relative !important;
+      z-index: 3 !important;
+    }
+    
+    .cta-card {
+      position: relative !important;
+      background: transparent !important; /* Clean flat layout matching screenshot */
+      text-align: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 16px !important; /* Smaller, tight gaps */
+      
+      /* Integrated reveal-up state transitions */
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 1s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    
+    .cta-card.is-visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Elegant Abstract Translucent Circles matching screenshot */
+    .cta-circle-bg-1 {
+      position: absolute !important;
+      top: -120px !important;
+      left: -150px !important;
+      width: 320px !important;
+      height: 320px !important;
+      border-radius: 50% !important;
+      background: rgba(255, 255, 255, 0.015) !important;
+      border: 1px solid rgba(255, 255, 255, 0.03) !important;
+      pointer-events: none !important;
+      z-index: 1 !important;
+    }
+    
+    .cta-circle-bg-2 {
+      position: absolute !important;
+      bottom: -150px !important;
+      right: -100px !important;
+      width: 420px !important;
+      height: 420px !important;
+      border-radius: 50% !important;
+      background: rgba(255, 255, 255, 0.01) !important;
+      border: 1px solid rgba(255, 255, 255, 0.02) !important;
+      pointer-events: none !important;
+      z-index: 1 !important;
+    }
+    
+    .cta-tag {
+      font-family: 'Outfit', 'Inter', sans-serif !important;
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.18em !important;
+      color: #ff5a00 !important;
+      text-transform: uppercase !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+    }
+    
+    .cta-tag::before,
+    .cta-tag::after {
+      content: '' !important;
+      width: 20px !important;
+      height: 1.5px !important;
+      background: #ff5a00 !important;
+      display: inline-block !important;
+    }
+    
+    .cta-title {
+      font-family: 'Outfit', 'Inter', sans-serif !important;
+      font-size: 2.6rem !important; /* Compact header matching screenshot */
+      font-weight: 600 !important;
+      line-height: 1.2 !important;
+      color: #ffffff !important;
+      max-width: 800px !important;
+      margin: 0 !important;
+      letter-spacing: -0.01em !important;
+    }
+    
+    /* Georgia/Playfair display Serif Italic word styled exactly like screenshot */
+    .cta-serif-orange {
+      font-family: 'Playfair Display', 'Georgia', serif !important;
+      font-style: italic !important;
+      font-weight: 600 !important;
+      color: #ff5a00 !important;
+      text-transform: none !important;
+    }
+    
+    .cta-desc {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.95rem !important; /* Smaller text matching screenshot */
+      font-weight: 400 !important;
+      line-height: 1.55 !important;
+      color: rgba(255, 255, 255, 0.6) !important;
+      max-width: 600px !important;
+      margin: 0 !important;
+    }
+    
+    .cta-actions {
+      display: flex !important;
+      gap: 16px !important;
+      margin-top: 8px !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      z-index: 5 !important;
+    }
+    
+    /* Rectangular styled buttons with 8px border-radius exactly like screenshot */
+    .btn-cta-primary {
+      font-family: 'Outfit', 'Inter', sans-serif !important;
+      font-size: 0.92rem !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      background: #ff5a00 !important;
+      padding: 14px 28px !important; /* Compact padding */
+      border-radius: 8px !important; /* Rectangular corners */
+      border: none !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      letter-spacing: 0.02em !important;
+      box-shadow: 0 4px 12px rgba(255, 90, 0, 0.25) !important;
+      transition: all 0.3s ease !important;
+      text-decoration: none !important;
+    }
+    
+    .btn-cta-primary:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 18px rgba(255, 90, 0, 0.4) !important;
+    }
+    
+    .btn-cta-primary .arrow {
+      transition: transform 0.3s ease !important;
+      font-size: 1.05rem !important;
+    }
+    
+    .btn-cta-primary:hover .arrow {
+      transform: translateX(4px) !important;
+    }
+    
+    /* Transparent rectangular outline button */
+    .btn-cta-secondary {
+      font-family: 'Outfit', 'Inter', sans-serif !important;
+      font-size: 0.92rem !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      background: transparent !important;
+      padding: 14px 28px !important;
+      border-radius: 8px !important; /* Rectangular corners */
+      border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      letter-spacing: 0.02em !important;
+      transition: all 0.3s ease !important;
+      text-decoration: none !important;
+    }
+    
+    .btn-cta-secondary:hover {
+      transform: translateY(-2px) !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+      border-color: rgba(255, 255, 255, 0.6) !important;
+    }
+    
+    @media (max-width: 768px) {
+      .cta-section {
+        padding: 50px 0 !important;
+      }
+      .cta-card {
+        gap: 14px !important;
+      }
+      .cta-title {
+        font-size: 1.8rem !important;
+      }
+      .cta-desc {
+        font-size: 0.9rem !important;
+      }
+      .cta-actions {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 10px !important;
+      }
+      .btn-cta-primary,
+      .btn-cta-secondary {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 12px 20px !important;
+      }
+    }
+    
+    /* ════ FEATURED PROJECTS ACCORDION ════ */
+    .sec-projects { height: 250vh; background: #0a0a0a; padding: 0; position: relative; }
+    .proj-sticky-wrap { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 52px; overflow: hidden; }
+    .proj-title { font-family: var(--fc, 'Barlow Condensed'); font-size: clamp(36px, 4vw, 56px); font-weight: 900; text-transform: uppercase; color: #fff; margin-bottom: 50px; text-align: center; letter-spacing: 1px; }
+    .proj-acc { display: flex; width: 100%; height: 65vh; min-height: 450px; gap: 16px; max-width: 1400px; margin: 0 auto; }
+    .proj-card { position: relative; flex: 1; border-radius: 16px; overflow: hidden; cursor: pointer; transition: flex 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .proj-card.active { flex: 5; box-shadow: 0 10px 40px rgba(232,80,10,0.2); }
+    .proj-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .proj-card.active .proj-img { transform: scale(1.05); }
+    .proj-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 50%, transparent 100%); transition: background 0.7s; }
+    .proj-card.active .proj-overlay { background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%); }
+    .proj-vert { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); font-size: 26px; font-weight: 800; color: white; writing-mode: vertical-rl; text-orientation: mixed; transform: translateX(-50%) rotate(180deg); opacity: 1; transition: opacity 0.4s; white-space: nowrap; font-family: var(--fn, 'Barlow'); letter-spacing: 2px; text-transform: uppercase; text-shadow: 0 4px 12px rgba(0,0,0,0.8); }
+    .proj-horiz { position: absolute; bottom: 40px; left: 40px; right: 40px; opacity: 0; transform: translateY(30px); transition: opacity 0.5s, transform 0.5s; pointer-events: none; }
+    .proj-card.active .proj-vert { opacity: 0; }
+    .proj-card.active .proj-horiz { opacity: 1; transform: translateY(0); transition-delay: 0.3s; pointer-events: auto; }
+    .ph-tag { font-size: 12px; font-weight: 800; letter-spacing: 3px; color: #E8500A; text-transform: uppercase; margin-bottom: 12px; display: block; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+    .ph-title { font-size: 42px; font-weight: 900; color: white; margin-bottom: 16px; line-height: 1.1; font-family: var(--fc, 'Barlow Condensed'); letter-spacing: 0px; text-transform: uppercase; text-shadow: 0 4px 16px rgba(0,0,0,0.8); }
+    .ph-desc { font-size: 16px; color: rgba(255,255,255,0.95); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-family: var(--fn, 'Barlow'); text-shadow: 0 2px 8px rgba(0,0,0,0.8); max-width: 500px; }
+
+    @media (max-width: 960px) {
+      .proj-acc { height: 450px; }
+      .ph-title { font-size: 28px; }
+      .proj-vert { font-size: 18px; }
+    }
+    @media (max-width: 768px) {
+      .sec-projects { height: auto; padding: 60px 24px; }
+      .proj-sticky-wrap { position: relative; height: auto; display: block; padding: 0; overflow: visible; }
+      .proj-acc { flex-direction: column; height: 800px; gap: 8px; }
+      .proj-card { flex: 1; }
+      .proj-card.active { flex: 3; }
+      .proj-vert { writing-mode: horizontal-tb; transform: none; bottom: 20px; left: 24px; text-align: left; width: auto; font-size: 16px; }
+      .proj-horiz { bottom: 20px; left: 24px; right: 24px; }
+      .ph-title { font-size: 24px; }
+      .ph-desc { font-size: 13px; -webkit-line-clamp: 2; }
+    }
+
+    /* ════ TESTIMONIALS SECTION ════ */
+    .testimonials-section {
+      background: #fafafa !important; /* Light background */
+      padding: 40px 0 !important; /* Make it smaller */
+      position: relative !important;
+      z-index: 10 !important;
+      font-family: 'Inter', sans-serif !important;
+      border-top: 1px solid rgba(0,0,0,0.05) !important;
+      border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+    }
+    .testi-wrapper {
+      max-width: 1000px !important;
+      width: 90% !important;
+      margin: 0 auto !important;
+      display: flex !important;
+      gap: 40px !important;
+      align-items: flex-start !important;
+    }
+    .testi-left {
+      flex: 0 0 25% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      padding-top: 10px !important;
+    }
+    .testi-title {
+      font-size: 2.2rem !important;
+      color: #111 !important;
+      line-height: 1.1 !important;
+      margin: 0 0 20px 0 !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.02em !important;
+    }
+    .testi-btn {
+      display: inline-block !important;
+      padding: 8px 20px !important;
+      border: 1px solid rgba(0, 0, 0, 0.2) !important;
+      color: #111 !important;
+      text-decoration: none !important;
+      font-size: 0.85rem !important;
+      transition: all 0.3s ease !important;
+      border-radius: 4px !important;
+    }
+    .testi-btn:hover {
+      background: #ff5a00 !important;
+      border-color: #ff5a00 !important;
+      color: #fff !important;
+    }
+    .testi-right {
+      flex: 1 !important;
+      position: relative !important;
+    }
+    .testi-slider-container {
+      width: 100% !important;
+      position: relative !important;
+    }
+    .testi-track {
+      display: grid !important;
+      width: 100% !important;
+    }
+    .testi-slide {
+      grid-area: 1/1 !important;
+      width: 100% !important;
+      display: flex !important;
+      gap: 30px !important;
+      pointer-events: none !important;
+      z-index: 1 !important;
+    }
+    .testi-slide.is-active {
+      pointer-events: auto !important;
+      z-index: 2 !important;
+    }
+    
+    /* Fade up effect */
+    .testi-slide .testi-img-col {
+      opacity: 0 !important;
+      transform: translate(-40px, 40px) !important; /* Fade up from side left down */
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .testi-slide .testi-content-col {
+      opacity: 0 !important;
+      transform: translateY(40px) !important;
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    
+    .testi-slide.is-active .testi-img-col {
+      opacity: 1 !important;
+      transform: translate(0, 0) !important;
+      transition-delay: 0.1s !important;
+    }
+    
+    .testi-slide.is-active .testi-content-col {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      transition-delay: 0.2s !important;
+    }
+    
+    .testi-img-col {
+      flex: 0 0 28% !important;
+      position: relative !important;
+    }
+    .testi-logo-box {
+      width: 100% !important;
+      aspect-ratio: 1/1 !important;
+      background: #ffee00 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      border-radius: 8px !important;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important;
+    }
+    .t-logo-text {
+      color: #000 !important;
+      font-weight: 800 !important;
+      font-size: 1.2rem !important;
+      line-height: 1.1 !important;
+    }
+    .t-logo-text small {
+      font-size: 0.8rem !important;
+      font-weight: 400 !important;
+    }
+    .testi-quote-icon {
+      position: absolute !important;
+      top: -15px !important;
+      left: -20px !important;
+      font-family: 'Playfair Display', serif !important;
+      font-size: 6rem !important;
+      color: rgba(0, 0, 0, 0.05) !important;
+      line-height: 1 !important;
+      z-index: 2 !important;
+    }
+    .testi-content-col {
+      flex: 1 !important;
+      padding-top: 5px !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    .testi-content-col h3 {
+      font-size: 1.6rem !important;
+      color: #111 !important;
+      margin: 0 0 6px 0 !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.02em !important;
+    }
+    .t-sub {
+      font-size: 0.7rem !important;
+      color: #ff5a00 !important;
+      letter-spacing: 0.1em !important;
+      margin: 0 0 15px 0 !important;
+      text-transform: uppercase !important;
+      font-weight: 700 !important;
+    }
+    .t-desc {
+      font-size: 0.9rem !important;
+      color: #444 !important;
+      line-height: 1.6 !important;
+      margin: 0 !important;
+    }
+    .testi-controls {
+      display: flex !important;
+      gap: 12px !important;
+      margin-top: 25px !important;
+      padding-left: calc(28% + 30px) !important;
+      position: relative !important;
+      z-index: 10 !important;
+    }
+    .t-btn {
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 50% !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      background: #fff !important;
+      color: #111 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+    }
+    .t-btn:hover {
+      border-color: #ff5a00 !important;
+      background: #ff5a00 !important;
+      color: #fff !important;
+    }
+    .t-btn svg {
+      width: 16px !important;
+      height: 16px !important;
+      stroke: currentColor !important;
+      stroke-width: 1.5 !important;
+      fill: none !important;
+    }
+    @media (max-width: 991px) {
+      .testi-wrapper {
+        flex-direction: column !important;
+        gap: 30px !important;
+      }
+      .testi-left {
+        flex: 1 !important;
+        width: 100% !important;
+      }
+      .testi-title {
+        font-size: 2.2rem !important;
+        margin-bottom: 15px !important;
+      }
+      .testi-slide {
+        flex-direction: column !important;
+        gap: 20px !important;
+      }
+      .testi-img-col {
+        width: 60% !important;
+      }
+      .testi-controls {
+        padding-left: 0 !important;
+        margin-top: 20px !important;
+      }
+      .testi-quote-icon {
+        left: -15px !important;
+        font-size: 5rem !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .testimonials-section {
+        padding: 40px 0 !important;
+      }
+      .testi-title {
+        font-size: 1.8rem !important;
+      }
+    }
+
+    /* Footer styles are loaded dynamically with footer.html */
+  </style>
+</head>
+<body>
+
+<!-- HEADER PLACEHOLDER -->
+<div id="header-container"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pre-panel t"></div>
+  <div class="pre-panel b"></div>
+  <div class="pre-content">
+    <div class="pre-brand"><b>ISHA</b> EVENTS</div>
+    <div class="pre-track"><div class="pre-fill" id="pf"></div></div>
+    <div class="pre-pct" id="pp">0%</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+
+  <!-- Background image — full brightness, the image itself has the right lighting -->
+  <img src="images/hero.png" alt="Isha Events cityscape" class="hero-bg" loading="eager">
+  <div class="hero-bottom-fade"></div>
+
+  <!-- LEFT SIDE -->
+  <div class="side-l">
+    <span class="scroll-txt">SCROLL TO EXPLORE</span>
+    <div class="scroll-ico"><span class="scroll-dot"></span></div>
+    <span class="pg-num">01</span>
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="side-r">
+    <a href="#" class="sc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.2 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.95 14.22 5.95C15.31 5.95 16.45 6.14 16.45 6.14V8.62H15.19C13.94 8.62 13.55 9.4 13.55 10.19V12.06H16.34L15.89 14.96H13.55V21.96C18.34 21.2 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg></a>
+    <a href="#" class="sc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12s.014 3.668.072 4.948c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    <a href="#" class="sc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+  </div>
+
+  <!-- CENTER CONTENT -->
+  <div class="center-block">
+    <div class="tag">ADVERTISING &nbsp;&bull;&nbsp; EVENTS &nbsp;&bull;&nbsp; ACTIVATIONS</div>
+
+    <h1 class="hl">
+      <span class="lm h1"><span>WE CREATE</span></span>
+      <span class="lm h2"><span>ATTENTION</span></span>
+      <span class="lm h3"><span>THAT &nbsp;MOVES &nbsp;PEOPLE</span></span>
+    </h1>
+
+    <p class="desc">
+      From LED van campaigns and tricycle advertising<br>
+      to product launches, store openings and corporate events,<br>
+      we create <em>powerful brand experiences</em><br>
+      that leave a lasting impact.
+    </p>
+
+    <div class="btns">
+      <a href="#services" class="btn-exp">
+        EXPLORE OUR SERVICES
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+      </a>
+      <button class="btn-reel" onclick="window.open('https://www.youtube.com','_blank')">
+        <span class="play-c"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="9 6 9 18 18 12"/></svg></span>
+        WATCH SHOWREEL
+      </button>
+    </div>
+  </div>
+
+  <!-- BOTTOM STATS -->
+  <div class="bottom">
+    <div class="stats">
+      <div class="st">
+        <div class="st-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6L8 10H5v4h3l4 4V6z"/><path d="M15.54 8.46a5 5 0 010 7.07"/><path d="M19.07 4.93a10 10 0 010 14.14"/></svg></div>
+        <div class="st-v">500+</div>
+        <div class="st-l">CAMPAIGNS DELIVERED</div>
+      </div>
+      <div class="st">
+        <div class="st-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="st-v">200+</div>
+        <div class="st-l">BRANDS TRUST US</div>
+      </div>
+      <div class="st">
+        <div class="st-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="st-v">1M+</div>
+        <div class="st-l">PEOPLE REACHED</div>
+      </div>
+      <div class="st">
+        <div class="st-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="st-v">120+</div>
+        <div class="st-l">CITIES COVERED</div>
+      </div>
+    </div>
+    <div class="trust">TRUSTED BY INDIA'S LEADING BRANDS</div>
+  </div>
+
+</section>
+
+<!-- ════ TRUSTED BY SECTION ════ -->
+<section id="trusted">
+  <div class="t-head">
+    <span class="reveal-up" style="transition-delay: 0.1s;">TRUSTED</span>
+    <span class="reveal-up" style="transition-delay: 0.2s;">BY</span>
+    <span class="reveal-up" style="transition-delay: 0.3s;">INDIA'S</span>
+    <span class="reveal-up" style="transition-delay: 0.4s;">LEADING</span>
+    <span class="reveal-up" style="transition-delay: 0.5s;">BRANDS</span>
+  </div>
+  
+  <div class="t-logos-container reveal-up" style="transition-delay: 0.6s;">
+    <div class="t-logos-track">
+      <!-- Original Set -->
+      <div class="t-logo">SONY</div>
+      <div class="t-logo">SAMSUNG</div>
+      <div class="t-logo">RELIANCE</div>
+      <div class="t-logo">TATA</div>
+      <div class="t-logo">AMAZON</div>
+      <div class="t-logo">GOOGLE</div>
+      <div class="t-logo">NIKE</div>
+      <div class="t-logo">APPLE</div>
+      
+      <!-- Duplicated Set for Infinite Marquee loop -->
+      <div class="t-logo">SONY</div>
+      <div class="t-logo">SAMSUNG</div>
+      <div class="t-logo">RELIANCE</div>
+      <div class="t-logo">TATA</div>
+      <div class="t-logo">AMAZON</div>
+      <div class="t-logo">GOOGLE</div>
+      <div class="t-logo">NIKE</div>
+      <div class="t-logo">APPLE</div>
+    </div>
+  </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ABOUT US SECTION ════ -->
+<section id="about">
+  <div class="about-container">
+    <div class="about-grid">
+      <!-- Left Column: Content -->
+      <div class="about-content reveal-up">
+        <div class="about-tag">← ABOUT US</div>
+        
+        <h2 class="about-hl">
+          Turning every event into
+        </h2>
+        
+        <div class="about-words-track">
+          <span class="word-tag">Memorable !</span>
+          <span class="word-dot">•</span>
+          <span class="word-tag">Unforgettable !</span>
+          <span class="word-dot">•</span>
+          <span class="word-tag">Spectacular !</span>
+          <span class="word-dot">•</span>
+          <span class="word-tag">Incredible !</span>
+        </div>
+        
+        <p class="about-desc">
+          At ISHA EVENTS, we believe every occasion deserves to be celebrated in the most memorable way. We are a passionate team of event planners, coordinators, and creative professionals who specialize in turning your ideas into unforgettable experiences.
+        </p>
+        
+        <a href="index.html#contact" class="btn-story">
+          DISCOVER OUR STORY
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+      
+      <!-- Right Column: Skewed video frame -->
+      <div class="about-media-col reveal-up" style="transition-delay: 0.2s;">
+        <div class="about-media-wrapper">
+          <video autoplay loop muted playsinline poster="images/hero.png">
+            <source src="images/i_the_video_add_that_we_do_all.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SERVICES SECTION (STICKY HORIZONTAL SCROLL) ════ -->
+<div class="services-scroll-container" id="services">
+  <div class="services-sticky-wrapper">
+    <div class="services-container">
+      <div class="services-header">
+        <div class="services-tag">WHAT WE DO</div>
+        <h2 class="services-hl">OUR SERVICES</h2>
+        <p class="services-subtitle">Scroll down to explore our exceptional brand activations and events.</p>
+      </div>
+      
+      <div class="services-track-wrapper">
+        <div class="services-track" id="services-track">
+          <!-- Panel 1: Mobile Advertising -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Mobile Advertising</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 2: Brand Launches -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Brand Launches</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 3: Experience Events -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Experience Events</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 4: Corporate Events -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Corporate Events</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 5: Employee Engagement -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('images/service-5-employee-engagement.jpg');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Employee Engagement</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 6: Lifestyle Events -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('images/service-6-lifestyle-events.jpg');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Lifestyle Events</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 7: Sports Events -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('images/service-7-sports-events.jpg');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Sports Events</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 8: OOH Billboards -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('images/service-8-ooh-billboards.jpg');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">OOH Billboards</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 9: No Parking Boards -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('images/service-9-no-parking-boards.jpg');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">No Parking Boards</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 10: Bus Shelters -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('images/service-10-bus-shelters.jpg');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Bus Shelters</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 11: Pamphlet Distribution -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('images/pomplete.png');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Pamphlet Distribution</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 12: Social Events -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('images/service-12-social-events.jpg');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Social Events</h3>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ TESTIMONIALS SECTION ════ -->
+<section class="testimonials-section">
+  <div class="testi-wrapper">
+    <!-- Left Column -->
+    <div class="testi-left">
+      <h2 class="testi-title">Client<br>Testimonials</h2>
+      <a href="gallery.html" class="testi-btn">See Our Work</a>
+    </div>
+    
+    <!-- Right Column: Slider -->
+    <div class="testi-right">
+      <div class="testi-slider-container">
+        <div class="testi-track" id="testiTrack">
+          <!-- Slide 1 -->
+          <div class="testi-slide">
+            <div class="testi-img-col">
+              <div class="testi-quote-icon">“</div>
+              <div class="testi-logo-box" style="background:#0b5ed7">
+                <div class="t-logo-text" style="color:#fff">TATA<br><small>MOTORS</small></div>
+              </div>
+            </div>
+            <div class="testi-content-col">
+              <h3>Tata Motors</h3>
+              <p class="t-sub">PRODUCT LAUNCH</p>
+              <p class="t-desc">Isha Events executed our new vehicle launch flawlessly. From the stage setup to the immersive lighting and sound, everything was perfectly aligned with our brand vision. The team is incredibly professional and a joy to partner with. We are absolutely thrilled with the result and look forward to working together on future events.</p>
+            </div>
+          </div>
+          
+          <!-- Slide 2 -->
+          <div class="testi-slide">
+            <div class="testi-img-col">
+              <div class="testi-quote-icon">“</div>
+              <div class="testi-logo-box" style="background:#0033a0">
+                <div class="t-logo-text" style="color:#fff">RELIANCE<br><small>RETAIL</small></div>
+              </div>
+            </div>
+            <div class="testi-content-col">
+              <h3>Reliance Retail</h3>
+              <p class="t-sub">STORE OPENING</p>
+              <p class="t-desc">The team at Isha Events delivered an outstanding experience for our flagship store launch. Their attention to detail, impeccable operational logistics, and creative approach made the event a huge success, attracting unprecedented footfalls. Highly recommended for any brand looking for high-impact activation and management!</p>
+            </div>
+          </div>
+          
+          <!-- Slide 3 -->
+          <div class="testi-slide">
+            <div class="testi-img-col">
+              <div class="testi-quote-icon">“</div>
+              <div class="testi-logo-box" style="background:#e31837">
+                <div class="t-logo-text" style="color:#fff">COCA-COLA<br><small>INDIA</small></div>
+              </div>
+            </div>
+            <div class="testi-content-col">
+              <h3>Coca-Cola India</h3>
+              <p class="t-sub">BRAND ACTIVATION</p>
+              <p class="t-desc">We partnered with Isha Events for our nationwide sampling campaign using mobile LED vans and custom tricycles. The execution was brilliant, covering multiple cities seamlessly on schedule. Their strategic approach truly helped us connect with our target audience on a massive scale and boosted our brand visibility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testi-controls">
+        <button class="t-btn t-prev" id="tPrev"><svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+        <button class="t-btn t-next" id="tNext"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FEATURED PROJECTS SECTION ════ -->
+<section class="sec-projects" id="projects">
+  <div class="proj-sticky-wrap">
+    <h2 class="proj-title">Featured Projects</h2>
+    <div class="proj-acc">
+    <!-- Project 1 -->
+    <div class="proj-card active">
+      <img src="images/molile.png" alt="Mobile Van Campaigns" class="proj-img">
+      <div class="proj-overlay"></div>
+      <div class="proj-vert">LED Van Tours</div>
+      <div class="proj-horiz">
+        <span class="ph-tag">Multi-City Activation</span>
+        <h3 class="ph-title">LED Van Tours</h3>
+        <p class="ph-desc">We designed and deployed a fleet of high-impact LED vans across 50+ cities, reaching millions of target consumers directly in their neighborhoods with dynamic video content.</p>
+      </div>
+    </div>
+    
+    <!-- Project 2 -->
+    <div class="proj-card">
+      <img src="images/bicycle.png" alt="Tricycle Advertising" class="proj-img">
+      <div class="proj-overlay"></div>
+      <div class="proj-vert">Tricycle Promos</div>
+      <div class="proj-horiz">
+        <span class="ph-tag">Hyper-Local Marketing</span>
+        <h3 class="ph-title">Tricycle Promos</h3>
+        <p class="ph-desc">Eco-friendly and eye-catching tricycle campaigns designed to navigate narrow city lanes, ensuring maximum brand visibility and product sampling in high-footfall markets.</p>
+      </div>
+    </div>
+    
+    <!-- Project 3 -->
+    <div class="proj-card">
+      <img src="images/hero.png" alt="Stage Events" class="proj-img">
+      <div class="proj-overlay"></div>
+      <div class="proj-vert">Grand Launches</div>
+      <div class="proj-horiz">
+        <span class="ph-tag">Event Management</span>
+        <h3 class="ph-title">Grand Launches</h3>
+        <p class="ph-desc">From stage design to immersive lighting and sound, we craft unforgettable product launch experiences that capture audience attention and generate massive brand buzz.</p>
+      </div>
+    </div>
+    
+    <!-- Project 4 -->
+    <div class="proj-card">
+      <img src="images/pomplete.png" alt="Print & Distribution" class="proj-img">
+      <div class="proj-overlay"></div>
+      <div class="proj-vert">Print & BTL</div>
+      <div class="proj-horiz">
+        <span class="ph-tag">Direct Outreach</span>
+        <h3 class="ph-title">Print & BTL</h3>
+        <p class="ph-desc">Targeted pamphlet distribution and below-the-line (BTL) marketing strategies executed with precision to drive immediate local engagement and sales conversions.</p>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Projects Accordion logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const secProjects = document.getElementById('projects');
+    const pCards = document.querySelectorAll('.proj-card');
+    let isHovering = false;
+    
+    // Hover logic override
+    pCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        isHovering = true;
+        pCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      });
+      card.addEventListener('mouseleave', () => {
+        isHovering = false;
+      });
+    });
+
+    // Scroll sticky logic
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth <= 768) return; 
+      if (isHovering) return; // hover takes priority
+
+      const rect = secProjects.getBoundingClientRect();
+      const secHeight = rect.height; // e.g. 250vh
+      const winHeight = window.innerHeight;
+      
+      const maxScroll = secHeight - winHeight;
+      let progress = -rect.top / maxScroll;
+      
+      if (progress < 0) progress = 0;
+      if (progress > 1) progress = 1;
+      
+      let activeIndex = Math.floor(progress * 4);
+      if (activeIndex === 4) activeIndex = 3; 
+      
+      if (!pCards[activeIndex].classList.contains('active')) {
+        pCards.forEach(c => c.classList.remove('active'));
+        pCards[activeIndex].classList.add('active');
+      }
+    });
+  });
+
+  // Slider logic for testimonials (Fade-up)
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('testiTrack');
+    const prevBtn = document.getElementById('tPrev');
+    const nextBtn = document.getElementById('tNext');
+    if (!track) return;
+    
+    let currentIndex = 0;
+    const slides = track.querySelectorAll('.testi-slide');
+    const totalSlides = slides.length;
+    let autoPlayInterval;
+    
+    slides[0].classList.add('is-active');
+    
+    function showSlide(index) {
+      slides[currentIndex].classList.remove('is-active');
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      currentIndex = index;
+      slides[currentIndex].classList.add('is-active');
+    }
+    
+    function nextSlide() { showSlide(currentIndex + 1); }
+    function prevSlide() { showSlide(currentIndex - 1); }
+    
+    prevBtn.addEventListener('click', () => { prevSlide(); resetInterval(); });
+    nextBtn.addEventListener('click', () => { nextSlide(); resetInterval(); });
+    
+    function resetInterval() {
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = setInterval(nextSlide, 5000); // 5s loop
+    }
+    resetInterval();
+  });
+</script>
+
+<!-- ════ CALL TO ACTION SECTION ════ -->
+<section class="cta-section">
+  <!-- Translucent Background Circles exactly like screenshot -->
+  <div class="cta-circle-bg-1"></div>
+  <div class="cta-circle-bg-2"></div>
+  
+  <div class="cta-container">
+    <div class="cta-card reveal-up">
+      <span class="cta-tag">READY TO START?</span>
+      <h2 class="cta-title">Looking for <span class="cta-serif-orange">Extraordinary</span> Event Solutions?</h2>
+      <p class="cta-desc">
+        We help brands create high-impact activations and unforgettable corporate events. Let's make your next campaign extraordinary — starting today.
+      </p>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn-cta-primary">
+          Contact Us Now <span class="arrow">→</span>
+        </a>
+        <a href="#services" class="btn-cta-secondary">
+          Explore Services
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER PLACEHOLDER -->
+<div id="footer-container"></div>
+
+<script>
+(function(){
+  const bar=document.getElementById('pf'), txt=document.getElementById('pp');
+  const res=[...document.images,...document.querySelectorAll('link[rel="stylesheet"]')];
+  let d=0,t=res.length||1,c=0,g=0;
+  
+  function tick(){
+    c+=(g-c)*.12;
+    if(bar)bar.style.width=c+'%';
+    if(txt)txt.textContent=Math.round(c)+'%';
+    if(c<99.5)requestAnimationFrame(tick);
+    else{
+      if(bar)bar.style.width='100%';
+      if(txt)txt.textContent='100%';
+      setTimeout(()=>document.body.classList.add('go'),350);
+    }
+  }
+  requestAnimationFrame(tick);
+  
+  function inc(){d++;g=(d/t)*100;}
+  
+  // Register fallback timers first
+  setTimeout(()=>g=100,2000);
+  window.addEventListener('load',()=>g=100);
+  
+  res.forEach(e=>{
+    try {
+      if(e.complete || (e.sheet && e.sheet.cssRules)) {
+        inc();
+      } else {
+        e.onload=inc;
+        e.onerror=inc;
+      }
+    } catch(err) {
+      e.onload=inc;
+      e.onerror=inc;
+    }
+  });
+})();
+
+// Load Header component script
+const headerScript = document.createElement('script');
+headerScript.src = 'header.js?v=' + new Date().getTime();
+document.body.appendChild(headerScript);
+
+const footerScript = document.createElement('script');
+footerScript.src = 'footer.js?v=' + new Date().getTime();
+document.body.appendChild(footerScript);
+
+// Scroll Reveal Observer & Pinned Horizontal Scroll
+function initScrollRevealAndHorizontalScroll() {
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.2
+  };
+  
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  document.querySelectorAll('.reveal-up').forEach(el => {
+    observer.observe(el);
+  });
+  
+  // Services Pinned Horizontal Scroll & Cinematic Focus
+  const scrollContainer = document.querySelector('.services-scroll-container');
+  const trackWrapper = document.querySelector('.services-track-wrapper');
+  const track = document.getElementById('services-track');
+  
+  if (scrollContainer && track) {
+    const originalPanels = Array.from(track.querySelectorAll('.cinematic-panel'));
+    
+    // Create infinite loop effect visually by adding clones if we have 12 panels
+    if (originalPanels.length === 12) {
+      // Clone 11 and 12 to the front
+      const c11 = originalPanels[10].cloneNode(true);
+      const c12 = originalPanels[11].cloneNode(true);
+      c11.classList.add('is-clone');
+      c12.classList.add('is-clone');
+      track.insertBefore(c12, originalPanels[0]);
+      track.insertBefore(c11, c12);
+      
+      // Clone 1 and 2 to the back
+      const c1 = originalPanels[0].cloneNode(true);
+      const c2 = originalPanels[1].cloneNode(true);
+      c1.classList.add('is-clone');
+      c2.classList.add('is-clone');
+      track.appendChild(c1);
+      track.appendChild(c2);
+    }
+
+    const updateActivePanel = () => {
+      const panels = track.querySelectorAll('.cinematic-panel');
+      if (!panels.length) return;
+      
+      const viewportCenter = window.innerWidth / 2;
+      let closestPanel = null;
+      let minDistance = Infinity;
+
+      panels.forEach(panel => {
+        const rect = panel.getBoundingClientRect();
+        const panelCenter = rect.left + (rect.width / 2);
+        const distance = Math.abs(viewportCenter - panelCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestPanel = panel;
+        }
+      });
+
+      const activeIndex = Array.from(panels).indexOf(closestPanel);
+      
+      panels.forEach((panel, index) => {
+        // Handle Active State
+        if (index === activeIndex) {
+          if (!panel.classList.contains('is-active')) panel.classList.add('is-active');
+          panel.classList.remove('is-hidden-side');
+        } else {
+          if (panel.classList.contains('is-active')) panel.classList.remove('is-active');
+          
+          // Handle Hidden Side State (keep 2 neighbors on each side visible to span 4-5 cards across the screen)
+          if (index >= activeIndex - 2 && index <= activeIndex + 2) {
+            panel.classList.remove('is-hidden-side');
+          } else {
+            if (!panel.classList.contains('is-hidden-side')) panel.classList.add('is-hidden-side');
+          }
+        }
+      });
+    };
+
+    const handleScroll = () => {
+      if (window.innerWidth <= 768) {
+        track.style.transform = 'none';
+        updateActivePanel();
+        return;
+      }
+      
+      const rect = scrollContainer.getBoundingClientRect();
+      const scrollTop = -rect.top;
+      const containerHeight = scrollContainer.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const maxScroll = containerHeight - viewportHeight;
+      
+      // Calculate layout mathematically
+      const panels = track.querySelectorAll('.cinematic-panel');
+      if (panels.length >= 16) {
+        const trackStyle = window.getComputedStyle(track);
+        const gap = parseFloat(trackStyle.gap) || 40;
+        const cardWidth = panels[0].offsetWidth; // 320px
+        const step = cardWidth + gap;
+        const viewportCenter = window.innerWidth / 2;
+        
+        // We want Card 1 (which is at index 2 because of 2 clones) to be centered at pct = 0.
+        // The center of Card 1 relative to track's left edge is: (2 * step) + (cardWidth / 2)
+        const initialOffset = (2 * step + (cardWidth / 2)) - viewportCenter;
+        
+        // We want Card 12 (at index 13) to be centered at pct = 1.
+        const finalOffset = (13 * step + (cardWidth / 2)) - viewportCenter;
+        const maxTranslate = finalOffset - initialOffset; 
+        
+        if (scrollTop >= 0 && scrollTop <= maxScroll) {
+          const pct = scrollTop / maxScroll;
+          const translateVal = initialOffset + (pct * maxTranslate);
+          track.style.transform = `translateX(-${translateVal}px)`;
+        } else if (scrollTop < 0) {
+          track.style.transform = `translateX(-${initialOffset}px)`;
+        } else {
+          track.style.transform = `translateX(-${finalOffset}px)`;
+        }
+      }
+      
+      // Update the active focused panel dynamically as we scroll
+      updateActivePanel();
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    if(trackWrapper) {
+      // For mobile native swipe scrolling
+      trackWrapper.addEventListener('scroll', updateActivePanel, { passive: true });
+    }
+    
+    // Trigger initial state alignment
+    setTimeout(() => {
+      handleScroll();
+      updateActivePanel();
+    }, 100);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initScrollRevealAndHorizontalScroll);
+} else {
+  initScrollRevealAndHorizontalScroll();
+}
+</script>
+</body>
+</html>

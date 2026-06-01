@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Isha Events</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #F05A1A;
+    --orange-light: #FF7340;
+    --orange-pale: #FFF0E8;
+    --ink: #1A1208;
+    --ink2: #3A3028;
+    --body-bg: #F7F4F0;
+    --section-alt: #FFFFFF;
+    --card: #FFFFFF;
+    --card-hover: #FFF8F4;
+    --border: #E8E2DA;
+    --grey: #8A8078;
+    --grey-light: #C8C0B8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--body-bg);
+    color: var(--ink);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── CURSOR ─────────────────────────────── */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--orange);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.2s;
+  }
+  .cursor.expand { width: 36px; height: 36px; background: rgba(240,90,26,0.18); border: 1.5px solid var(--orange); }
+
+  /* ─── HERO ────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 6vw 8vh;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&q=80') center/cover no-repeat;
+    transform: scale(1.08);
+    animation: heroZoom 18s ease forwards;
+  }
+  @keyframes heroZoom { to { transform: scale(1.0); } }
+
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(247,244,240,0.97) 0%, rgba(247,244,240,0.65) 45%, rgba(247,244,240,0.15) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 820px; }
+
+  .label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--orange);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  .label::before { content: ''; display: block; width: 28px; height: 2px; background: var(--orange); }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(4rem, 10vw, 9rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .hero h1 .line { overflow: hidden; display: block; }
+  .hero h1 .line span { display: block; transform: translateY(105%); }
+  .hero h1 .accent { color: var(--orange); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--ink2);
+    max-width: 420px;
+    line-height: 1.75;
+    margin-top: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s 1.2s ease, transform 0.8s 1.2s ease;
+  }
+  .hero-sub.visible { opacity: 1; transform: translateY(0); }
+
+  .hero-scroll {
+    position: absolute; bottom: 3rem; right: 6vw;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    z-index: 2; opacity: 0;
+    animation: fadeIn 1s 2s forwards;
+  }
+  .hero-scroll span {
+    writing-mode: vertical-rl; font-size: 0.63rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey);
+  }
+  .hero-scroll-line {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, var(--orange), transparent);
+    animation: scrollLine 2s 2s infinite;
+  }
+  @keyframes scrollLine {
+    0%  { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform-origin: bottom; }
+    100%{ transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ─── TICKER ──────────────────────────────── */
+  .ticker { background: var(--orange); padding: 0.85rem 0; overflow: hidden; white-space: nowrap; }
+  .ticker-inner { display: inline-flex; animation: tickerAnim 22s linear infinite; }
+  .ticker-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0 2.2rem; color: #fff;
+  }
+  .ticker-dot { color: rgba(255,255,255,0.4); }
+  @keyframes tickerAnim { to { transform: translateX(-50%); } }
+
+  /* ─── REVEAL ──────────────────────────────── */
+  section { padding: 8rem 6vw; }
+
+  .reveal { opacity:0; transform:translateY(40px); transition:opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-left { opacity:0; transform:translateX(-50px); transition:opacity 0.8s ease, transform 0.8s ease; }
+  .reveal-left.visible { opacity:1; transform:translateX(0); }
+  .reveal-right { opacity:0; transform:translateX(50px); transition:opacity 0.8s ease, transform 0.8s ease; }
+  .reveal-right.visible { opacity:1; transform:translateX(0); }
+
+  h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: clamp(2.5rem, 5vw, 5rem);
+    text-transform: uppercase; line-height: 0.95; letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  h2 .accent { color: var(--orange); }
+
+  /* ─── STORY ───────────────────────────────── */
+  .story { background: var(--section-alt); border-bottom: 1px solid var(--border); }
+
+  .story-grid {
+    display: grid; grid-template-columns: 1fr 1.1fr;
+    gap: 6rem; align-items: start; margin-top: 4rem;
+  }
+
+  .story-text p {
+    font-size: 1.05rem; line-height: 1.8; color: var(--grey);
+    margin-top: 1.5rem;
+  }
+  .story-text p + p { margin-top: 1rem; }
+
+  .timeline-photos {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 6px; margin-bottom: 1.5rem;
+  }
+  .timeline-photos img {
+    width: 100%; aspect-ratio: 1; object-fit: cover;
+    border-radius: 4px; filter: saturate(0.85);
+    transition: filter 0.3s, transform 0.3s;
+  }
+  .timeline-photos img:hover { filter: saturate(1.1); transform: scale(1.05); }
+
+  .timeline-row {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 6px; position: relative; padding-top: 1rem;
+  }
+  .timeline-row::before {
+    content:''; position:absolute; top:0; left:0; right:0;
+    height:2px; background: var(--border);
+  }
+  .timeline-item { padding-top: 0.8rem; }
+  .timeline-item .year {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--orange);
+  }
+  .timeline-item p { font-size: 0.72rem; line-height: 1.5; color: var(--grey); margin-top: 0.3rem; }
+
+  /* ─── VISION / MISSION ────────────────────── */
+  .vm { padding: 0; }
+  .vm-grid { display: grid; grid-template-columns: 1fr 1fr; }
+
+  .vm-panel {
+    position: relative; overflow: hidden;
+    padding: 7rem 6vw; min-height: 480px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .vm-panel-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transition: transform 0.6s ease;
+  }
+  .vm-panel:hover .vm-panel-bg { transform: scale(1.04); }
+  .vm-panel-overlay { position: absolute; inset: 0; background: rgba(247,244,240,0.88); }
+  .vm-panel.dark .vm-panel-overlay { background: rgba(26,18,8,0.78); }
+  .vm-content { position: relative; z-index: 2; }
+
+  .vm-panel .label { color: var(--orange); }
+  .vm-panel.dark .label { color: var(--orange); }
+  .vm-panel.dark h3 { color: #fff; }
+  .vm-panel.dark p { color: rgba(255,255,255,0.6); }
+
+  .vm-icon {
+    width: 44px; height: 44px;
+    border: 1.5px solid var(--orange);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .vm-icon svg { width: 20px; height: 20px; stroke: var(--orange); fill: none; stroke-width: 2; }
+
+  .vm-panel h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.8rem);
+    text-transform: uppercase; line-height: 1.1; margin-bottom: 1.2rem;
+    color: var(--ink);
+  }
+  .vm-panel p { font-size: 1rem; line-height: 1.75; color: var(--grey); max-width: 400px; }
+
+  /* ─── TEAM ────────────────────────────────── */
+  .team { background: var(--body-bg); }
+  .team-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 5rem; align-items: center; margin-top: 4rem;
+  }
+  .team-text p { font-size: 1.05rem; line-height: 1.8; color: var(--grey); margin-top: 1.5rem; }
+  .team-img-wrap { position: relative; border-radius: 6px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+  .team-img-wrap img { width: 100%; object-fit: cover; display: block; }
+  .team-tagline {
+    position: absolute; bottom: 2rem; right: 2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem; font-weight: 900; text-transform: uppercase;
+    line-height: 1; text-align: right; color: #fff;
+  }
+  .team-tagline .orange { color: var(--orange); }
+
+  /* ─── DIFFERENTIATORS ─────────────────────── */
+  .diff { background: var(--section-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .diff-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; margin-top: 2.5rem;
+    background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+  }
+  .diff-card {
+    background: var(--card); padding: 2.5rem 2rem;
+    transition: background 0.3s; cursor: default;
+  }
+  .diff-card:hover { background: var(--orange-pale); }
+  .diff-icon {
+    width: 40px; height: 40px;
+    border: 1.5px solid rgba(240,90,26,0.3); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem; transition: border-color 0.3s, background 0.3s;
+  }
+  .diff-card:hover .diff-icon { border-color: var(--orange); background: rgba(240,90,26,0.08); }
+  .diff-icon svg { width: 18px; height: 18px; stroke: var(--orange); fill: none; stroke-width: 2; }
+  .diff-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 0.6rem; color: var(--ink);
+  }
+  .diff-card p { font-size: 0.88rem; line-height: 1.7; color: var(--grey); }
+
+  .diff-photos {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; margin-top: 1px;
+    border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+  }
+  .diff-photos img {
+    width: 100%; aspect-ratio: 4/3; object-fit: cover;
+    filter: saturate(0.75) brightness(0.95);
+    transition: filter 0.3s; display: block;
+  }
+  .diff-photos img:hover { filter: saturate(1.1) brightness(1); }
+
+  /* ─── STATS ───────────────────────────────── */
+  .stats { background: var(--orange); padding: 6rem 6vw; }
+  .stats-inner {
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 4rem; align-items: center;
+  }
+  .stats-label-col { min-width: 180px; }
+  .stats-label-col .label { color: rgba(255,255,255,0.7); }
+  .stats-label-col .label::before { background: rgba(255,255,255,0.5); }
+  .stats-sublabel {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; color: rgba(255,255,255,0.5); margin-top: 0.4rem;
+  }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat-item {
+    padding: 2.5rem 2rem; border-left: 1px solid rgba(255,255,255,0.2);
+    position: relative; overflow: hidden;
+  }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem); font-weight: 900;
+    color: #fff; line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); margin-top: 0.4rem; font-weight: 600;
+  }
+  .stat-item::after {
+    content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+    background: rgba(255,255,255,0.5);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .stat-item:hover::after { transform: scaleX(1); }
+
+  /* ─── VALUES ──────────────────────────────── */
+  .values { background: var(--section-alt); }
+  .values-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: start; margin-top: 4rem;
+  }
+  .values-left p { color: var(--grey); font-size: 1.05rem; line-height: 1.8; margin-top: 1.5rem; }
+  .values-photos {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6px; margin-top: 2rem;
+    border-radius: 8px; overflow: hidden;
+  }
+  .values-photos img {
+    width: 100%; aspect-ratio: 1; object-fit: cover;
+    filter: saturate(0.8); transition: filter 0.3s; display: block;
+  }
+  .values-photos img:hover { filter: saturate(1.1); }
+
+  .values-cards {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+  }
+  .value-card {
+    background: var(--card); padding: 2.2rem 1.8rem;
+    transition: background 0.3s;
+  }
+  .value-card:hover { background: var(--orange-pale); }
+  .value-card .v-icon { font-size: 1.4rem; margin-bottom: 1rem; }
+  .value-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 0.5rem; color: var(--ink);
+  }
+  .value-card p { font-size: 0.85rem; line-height: 1.65; color: var(--grey); }
+
+  /* ─── CTA ─────────────────────────────────── */
+  .cta { position: relative; padding: 10rem 6vw; overflow: hidden; }
+  .cta-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80') center/cover no-repeat;
+  }
+  .cta-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(247,244,240,0.95) 35%, rgba(247,244,240,0.7) 100%);
+  }
+  .cta-content { position: relative; z-index: 2; max-width: 700px; }
+  .cta h2 { font-size: clamp(3rem, 7vw, 7rem); margin: 1rem 0 2rem; }
+  .cta p { font-size: 1.05rem; color: var(--grey); margin-bottom: 3rem; line-height: 1.7; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--orange); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 1rem 2.5rem; border: none; cursor: pointer;
+    text-decoration: none; border-radius: 2px;
+    transition: background 0.2s, transform 0.2s, gap 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(240,90,26,0.25);
+  }
+  .btn:hover { background: var(--orange-light); transform: translateY(-2px); gap: 18px; box-shadow: 0 8px 30px rgba(240,90,26,0.35); }
+  .btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+  /* ─── FOOTER ──────────────────────────────── */
+  footer {
+    background: var(--ink); padding: 2.5rem 6vw;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem; font-weight: 900; letter-spacing: 0.05em;
+    text-transform: uppercase; color: #fff;
+  }
+  .footer-logo span { color: var(--orange); }
+  footer p { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+
+  /* ─── UTILS ───────────────────────────────── */
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+  /* ─── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 900px) {
+    .story-grid, .team-grid, .values-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .diff-grid, .stats-grid, .values-cards { grid-template-columns: 1fr 1fr; }
+    .diff-photos, .timeline-photos, .timeline-row { grid-template-columns: repeat(3, 1fr); }
+    .vm-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .diff-grid, .values-cards { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .diff-photos { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="label">About Us</div>
+    <h1>
+      <span class="line"><span>About</span></span>
+      <span class="line"><span class="accent">Isha Events</span></span>
+    </h1>
+    <p class="hero-sub">We create real world brand experiences that get seen, remembered and talked about. Because your brand deserves attention.</p>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="tickerInner"></div>
+</div>
+
+<!-- STORY -->
+<section class="story">
+  <div class="label reveal">Our Story</div>
+  <div class="story-grid">
+    <div class="reveal-left" style="transition-delay:0.1s">
+      <h2>From A Small Idea To <span class="accent">Nationwide Impact</span></h2>
+      <div class="story-text">
+        <p>Isha Events began with a simple belief – that the right message, in the right place, can create extraordinary impact.</p>
+        <p>From local campaigns to large scale brand experiences, our journey has been built on creativity, commitment and a passion for helping brands connect with people.</p>
+      </div>
+    </div>
+    <div class="reveal-right" style="transition-delay:0.2s">
+      <div class="timeline-photos">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=300&q=70" alt="event">
+        <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=300&q=70" alt="event">
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=300&q=70" alt="event">
+        <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=300&q=70" alt="event">
+        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=300&q=70" alt="event">
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-item"><div class="year">2015</div><p>Started with local advertising campaigns</p></div>
+        <div class="timeline-item"><div class="year">2017</div><p>Expanded into brand activations and promotions</p></div>
+        <div class="timeline-item"><div class="year">2019</div><p>Introduced LED van advertising</p></div>
+        <div class="timeline-item"><div class="year">2022</div><p>Added corporate events and experiential marketing</p></div>
+        <div class="timeline-item"><div class="year">Today</div><p>Delivering impactful campaigns across India</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION / MISSION -->
+<section class="vm">
+  <div class="vm-grid">
+    <div class="vm-panel reveal-left">
+      <div class="vm-panel-bg" style="background-image:url('https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=900&q=75')"></div>
+      <div class="vm-panel-overlay"></div>
+      <div class="vm-content">
+        <div class="label">Our Vision</div>
+        <div class="vm-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/></svg>
+        </div>
+        <h3>To Become India's Most Trusted Brand Visibility Partner.</h3>
+        <p>A world where every brand, regardless of size, gets the visibility it truly deserves.</p>
+      </div>
+    </div>
+    <div class="vm-panel dark reveal-right">
+      <div class="vm-panel-bg" style="background-image:url('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=900&q=75')"></div>
+      <div class="vm-panel-overlay"></div>
+      <div class="vm-content">
+        <div class="label">Our Mission</div>
+        <div class="vm-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>To Create Powerful Real-World Brand Experiences.</h3>
+        <p>Through innovation, execution and integrity – we turn ideas into impact that drives results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team">
+  <div class="label reveal">Our Team</div>
+  <div class="team-grid">
+    <div class="team-text reveal-left" style="transition-delay:0.1s">
+      <h2>The People Behind <span class="accent">The Attention</span></h2>
+      <p>A diverse team of planners, creatives, strategists, technicians and executors working together to make every campaign a success.</p>
+    </div>
+    <div class="team-img-wrap reveal-right" style="transition-delay:0.2s">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=75" alt="Team">
+      <div class="team-tagline">
+        <span>Create</span>
+        <span class="orange">Attention</span>
+        <span>Drive</span>
+        <span class="orange">Impact</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<section class="diff">
+  <div class="label reveal">What Makes Us Different</div>
+  <div class="diff-grid reveal" style="transition-delay:0.1s">
+    <div class="diff-card">
+      <div class="diff-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/></svg></div>
+      <h4>Visibility</h4>
+      <p>We choose the right places so your brand gets noticed by the right people.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+      <h4>Execution</h4>
+      <p>We plan meticulously and execute flawlessly, every time.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <h4>Scale</h4>
+      <p>From one location to multiple cities, we deliver with the same impact.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h4>Reliability</h4>
+      <p>We are committed, transparent and dependable – always focused on results.</p>
+    </div>
+  </div>
+  <div class="diff-photos reveal" style="transition-delay:0.3s">
+    <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=500&q=70" alt="">
+    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=500&q=70" alt="">
+    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&q=70" alt="">
+    <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=500&q=70" alt="">
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stats-label-col reveal-left">
+      <div class="label">Our Impact</div>
+      <div class="stats-sublabel">In Numbers</div>
+    </div>
+    <div class="stats-grid reveal-right">
+      <div class="stat-item"><div class="stat-num" data-target="500" data-suffix="+">0+</div><div class="stat-label">Campaigns Delivered</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="1" data-suffix="M+">0M+</div><div class="stat-label">People Reached</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="120" data-suffix="+">0+</div><div class="stat-label">Cities Covered</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="200" data-suffix="+">0+</div><div class="stat-label">Brands Trust Us</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="values-grid">
+    <div class="reveal-left">
+      <div class="label">Our Culture</div>
+      <h2>Our <span class="accent">Values</span></h2>
+      <p class="values-left-p">The values we live by shape the experiences we create.</p>
+      <div class="values-photos">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=70" alt="">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=70" alt="">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&q=70" alt="">
+        <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&q=70" alt="">
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div class="values-cards">
+        <div class="value-card"><div class="v-icon">❤️</div><h4>Passion</h4><p>We love what we do and it shows in every experience we create.</p></div>
+        <div class="value-card"><div class="v-icon">💡</div><h4>Innovation</h4><p>We bring fresh ideas and innovative solutions to every challenge.</p></div>
+        <div class="value-card"><div class="v-icon">🤝</div><h4>Accountability</h4><p>We take ownership and are accountable for every commitment.</p></div>
+        <div class="value-card"><div class="v-icon">⭐</div><h4>Excellence</h4><p>We strive for the highest quality in every detail.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-content">
+    <div class="label reveal">Let's Connect</div>
+    <h2 class="reveal" style="transition-delay:0.1s">Let's Create Attention <span class="accent">Together</span></h2>
+    <p class="reveal" style="transition-delay:0.2s">Your brand has a story. We help the world see it.</p>
+    <a href="#" class="btn reveal" style="transition-delay:0.3s">
+      Start Your Campaign
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Isha <span>Events</span></div>
+  <p>© 2026 Isha Events. All rights reserved.</p>
+</footer>
+
+<script>
+/* CURSOR */
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+});
+document.querySelectorAll('a,button,.diff-card,.value-card,.vm-panel,.stat-item').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+});
+
+/* TICKER */
+const tickerItems = ['Brand Experiences','LED Van Advertising','Event Management','Brand Activations','Corporate Events','Experiential Marketing','Nationwide Campaigns'];
+const ticker = document.getElementById('tickerInner');
+const thtml = tickerItems.map(i => `<span class="ticker-item">${i}</span><span class="ticker-item ticker-dot">✦</span>`).join('');
+ticker.innerHTML = thtml + thtml;
+
+/* HERO ANIMATION */
+window.addEventListener('load', () => {
+  document.querySelectorAll('.hero h1 .line span').forEach((el, i) => {
+    el.style.transition = `transform 0.9s cubic-bezier(0.16,1,0.3,1) ${0.2 + i * 0.15}s`;
+    el.style.transform = 'translateY(0)';
+  });
+  setTimeout(() => document.querySelector('.hero-sub').classList.add('visible'), 800);
+});
+
+/* SCROLL REVEAL */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+/* STAGGER */
+document.querySelectorAll('.diff-card,.value-card,.stat-item,.timeline-item').forEach((el, i) => {
+  el.style.transitionDelay = `${i * 0.07}s`;
+});
+
+/* COUNTERS */
+function animateCounter(el) {
+  const num = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '+';
+  const dur = 1800; const t0 = performance.now();
+  function tick(now) {
+    const p = Math.min((now - t0) / dur, 1);
+    const v = Math.round((1 - Math.pow(1-p, 3)) * num);
+    el.textContent = v + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.querySelectorAll('[data-target]').forEach(animateCounter); } });
+}, { threshold: 0.4 }).observe(document.querySelector('.stats-grid'));
+
+/* PARALLAX */
+window.addEventListener('scroll', () => {
+  const bg = document.querySelector('.hero-bg');
+  if (bg) bg.style.transform = `scale(1) translateY(${window.scrollY * 0.3}px)`;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isha Events – We Create Experiences</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700;1,800;1,900&family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --or:#E8500A;
+  --or2:#ff6a25;
+  --bk:#111;
+  --gy:#666;
+  --gy2:#999;
+  --bd:#e8e8e8;
+  --bg:#F7F7F5;
+  --wh:#fff;
+  --fn:'Barlow',sans-serif;
+  --fc:'Barlow Condensed',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--fn);color:var(--bk);background:var(--wh);overflow-x:clip}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--or);border-radius:2px}
+
+
+
+/* ── NAV CSS MOVED TO HEADER.HTML ── */
+.btn-quote:hover::before{transform:translateX(120%) skewX(-15deg)}
+.btn-quote:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,80,10,.35)}
+.nav-menu{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.nav-menu span{display:block;width:22px;height:2px;background:var(--bk);border-radius:1px;transition:all .3s}
+
+/* ── HERO ── */
+.hero{min-height:auto;height:420px;padding-top:68px;display:grid;grid-template-columns:55% 45%;position:relative;background:var(--wh)}
+.hero-left{padding:36px 52px 32px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;background:var(--wh)}
+.hero-label{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:16px;opacity:0;transform:translateY(-16px);transition:opacity .6s .2s,transform .6s .2s cubic-bezier(.16,1,.3,1)}
+.hero-label.in{opacity:1;transform:none}
+.hero-label::before{content:'';width:24px;height:2px;background:var(--or)}
+
+/* Compact heading sizes */
+.hero-h1{font-family:var(--fn);font-size:clamp(22px,2.8vw,38px);font-weight:800;line-height:1.12;color:var(--bk);margin-bottom:0;letter-spacing:-0.5px}
+.hero-h1 .line{display:block;overflow:hidden}
+.hero-h1 .line span{display:block;transform:translateY(110%);transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.hero-h1 .line span.in{transform:translateY(0)}
+/* orange italic */
+.hero-h1-or{font-family:var(--fn);font-size:clamp(28px,3.4vw,48px);font-weight:900;font-style:italic;line-height:1.05;color:var(--or);margin-bottom:0;letter-spacing:-1px}
+.hero-h1-or .line{display:block;overflow:hidden}
+.hero-h1-or .line span{display:block;transform:translateY(110%);transition:transform .85s cubic-bezier(.16,1,.3,1)}
+.hero-h1-or .line span.in{transform:translateY(0)}
+
+.hero-underline{width:0;height:3px;background:var(--or);border-radius:2px;margin:8px 0 14px;transition:width .9s .9s cubic-bezier(.16,1,.3,1)}
+.hero-underline.in{width:60px}
+.hero-desc{font-size:13px;line-height:1.65;color:#555;max-width:340px;margin-bottom:22px;font-weight:400;opacity:0;transform:translateY(14px);transition:opacity .65s .85s,transform .65s .85s cubic-bezier(.16,1,.3,1)}
+.hero-desc.in{opacity:1;transform:none}
+.hero-ctas{display:flex;align-items:center;gap:14px;opacity:0;transform:translateY(14px);transition:opacity .65s 1s,transform .65s 1s cubic-bezier(.16,1,.3,1)}
+.hero-ctas.in{opacity:1;transform:none}
+.btn-primary{background:var(--or);color:white;padding:11px 22px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.6px;text-decoration:none;text-transform:uppercase;display:inline-flex;align-items:center;gap:9px;overflow:hidden;position:relative;transition:transform .2s,box-shadow .2s}
+.btn-primary::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.2);transform:translateX(-110%) skewX(-15deg);transition:transform .45s}
+.btn-primary:hover::before{transform:translateX(120%) skewX(-15deg)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(232,80,10,.38)}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;color:var(--bk);text-decoration:none;letter-spacing:.4px}
+.btn-ghost .play{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.btn-ghost:hover .play{border-color:var(--or);background:var(--or)}
+.btn-ghost:hover .play svg{fill:white}
+.btn-ghost .play svg{fill:var(--bk);transition:fill .3s}
+.hero-scroll{display:none}
+
+/* hero right — compact flush image */
+.hero-right{position:relative;overflow:hidden}
+.hero-right img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.8s cubic-bezier(.16,1,.3,1)}
+.hero-right img.in{transform:scale(1)}
+.hero-right::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(255,255,255,.15) 0%,transparent 30%);pointer-events:none}
+
+/* ── MARQUEE ── */
+.mband{background:var(--or);padding:13px 0;overflow:hidden;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
+.mband.in{opacity:1;transform:none}
+.mtrack{display:flex;white-space:nowrap;animation:mscroll 28s linear infinite}
+.mtrack:hover{animation-play-state:paused}
+.mitem{font-family:var(--fc);font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:white;padding:0 28px;display:flex;align-items:center;gap:14px;opacity:.92}
+.mitem::after{content:'★';font-size:8px;opacity:.6}
+@keyframes mscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .75s,transform .75s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rl{opacity:0;transform:translateX(-32px);transition:opacity .75s,transform .75s cubic-bezier(.16,1,.3,1)}
+.rl.in{opacity:1;transform:none}
+.rr{opacity:0;transform:translateX(32px);transition:opacity .75s,transform .75s cubic-bezier(.16,1,.3,1)}
+.rr.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.26s}.d4{transition-delay:.36s}.d5{transition-delay:.46s}.d6{transition-delay:.56s}
+
+/* ── SECTION COMMON ── */
+.s-lbl{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:10px}
+/* exact image style: OUR SERVICES = big bold Barlow condensed uppercase */
+.s-title{font-family:var(--fc);font-size:clamp(34px,4vw,52px);font-weight:900;text-transform:uppercase;line-height:1.05;letter-spacing:-1px;color:var(--bk)}
+.s-title .or{color:var(--or)}
+.s-div{width:0;height:3px;background:var(--or);border-radius:2px;margin:14px 0 16px;transition:width .85s .2s cubic-bezier(.16,1,.3,1)}
+.rv.in .s-div,.rl.in .s-div,.rr.in .s-div{width:44px}
+.s-desc{font-size:14px;color:var(--gy);line-height:1.7;max-width:440px}
+
+/* ── SERVICES ── */
+.sec-services{padding:96px 52px;background:#05070a}
+.srv-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;gap:24px}
+.s-title {color: white;}
+.s-desc {color: #aaa;}
+.view-all{display:inline-flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,0.2);padding:12px 22px;border-radius:0px;font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:white;text-decoration:none;white-space:nowrap;transition:all .3s}
+.view-all:hover{background:white;color:var(--bk);border-color:white}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.srv-card{position:relative;height:420px;background:#111;overflow:hidden;cursor:pointer;border-radius:0}
+.srv-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.srv-card:hover .srv-img{transform:scale(1.08)}
+.srv-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 40%, transparent 100%);z-index:1}
+.srv-body{position:absolute;bottom:0;left:0;width:100%;padding:28px 24px;z-index:2;display:flex;flex-direction:column;justify-content:flex-end}
+.srv-body h3{font-family:'Barlow',sans-serif;font-size:22px;font-weight:400;color:#fff;line-height:1.25;margin:0;letter-spacing:-0.2px}
+
+/* ── ABOUT ── */
+.sec-about{padding:96px 52px;background:var(--bg);display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-visual{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3}
+.about-visual img{width:100%;height:100%;object-fit:cover;display:block}
+.about-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.18);cursor:pointer;transition:background .3s}
+.about-play:hover{background:rgba(0,0,0,.3)}
+.play-btn{width:68px;height:68px;background:var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 14px rgba(232,80,10,.18);animation:playpulse 2.2s ease infinite}
+@keyframes playpulse{0%,100%{box-shadow:0 0 0 14px rgba(232,80,10,.18)}50%{box-shadow:0 0 0 26px rgba(232,80,10,.06)}}
+.about-pillars{display:flex;gap:0;margin-top:36px;background:white;border-radius:10px;border:1px solid var(--bd);overflow:hidden}
+.pillar{flex:1;padding:20px 18px;text-align:center;border-right:1px solid var(--bd)}
+.pillar:last-child{border-right:none}
+.pillar-ic{width:38px;height:38px;margin:0 auto 10px;background:rgba(232,80,10,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--or);font-size:16px}
+.pillar h4{font-family:var(--fn);font-size:12px;font-weight:800;letter-spacing:.3px;color:var(--bk)}
+
+/* ── CLIENTS ── */
+.sec-clients{padding:60px 52px;background:var(--wh);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.clients-label{text-align:center;font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gy2);margin-bottom:36px}
+.clients-track-wrap{overflow:hidden;position:relative}
+.clients-track-wrap::before,.clients-track-wrap::after{content:'';position:absolute;top:0;width:100px;height:100%;z-index:2}
+.clients-track-wrap::before{left:0;background:linear-gradient(to right,var(--wh),transparent)}
+.clients-track-wrap::after{right:0;background:linear-gradient(to left,var(--wh),transparent)}
+.clients-track{display:flex;gap:60px;align-items:center;width:max-content;animation:cscroll 22s linear infinite}
+.clients-track:hover{animation-play-state:paused}
+@keyframes cscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* logo text matching image style */
+.client-logo{font-family:var(--fc);font-size:19px;font-weight:900;letter-spacing:1px;color:#bbb;white-space:nowrap;transition:color .3s;text-transform:uppercase}
+.client-logo:hover{color:var(--bk)}
+
+/* ── STATS ── */
+.sec-stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--wh);border-bottom:1px solid var(--bd)}
+.stat-item{text-align:center;padding:52px 24px;border-right:1px solid var(--bd)}
+.stat-item:last-child{border-right:none}
+.stat-ic{width:52px;height:52px;margin:0 auto 16px;background:rgba(232,80,10,.07);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--or);font-size:20px}
+/* stat numbers: big Barlow condensed orange — exact match */
+.stat-num{font-family:var(--fc);font-size:clamp(44px,5vw,62px);font-weight:900;color:var(--or);line-height:1;letter-spacing:-1px}
+.stat-lbl{font-size:12px;font-weight:700;color:var(--gy);margin-top:6px;letter-spacing:.3px}
+
+/* ── CTA ── */
+.sec-cta{padding:88px 52px;background:linear-gradient(135deg,var(--bg) 0%,#fde8dc 100%);position:relative;overflow:hidden}
+.sec-cta::before{content:'';position:absolute;right:-120px;top:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(232,80,10,.1) 0%,transparent 70%);pointer-events:none}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;z-index:1}
+/* cta headline: exact image style — mix of bold black + orange italic */
+.cta-h2{font-family:var(--fn);font-size:clamp(28px,3.6vw,48px);font-weight:800;line-height:1.18;color:var(--bk);letter-spacing:-.8px}
+.cta-h2 .or-it{color:var(--or);font-style:italic}
+.cta-sub{font-size:14px;color:var(--gy);margin-top:8px}
+.btn-cta{background:var(--or);color:white;border:none;padding:17px 38px;border-radius:50px;font-size:15px;font-weight:700;letter-spacing:.4px;cursor:pointer;display:inline-flex;align-items:center;gap:12px;font-family:var(--fn);text-decoration:none;white-space:nowrap;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 28px rgba(232,80,10,.28);animation:ctapulse 2.5s ease infinite}
+@keyframes ctapulse{0%,100%{box-shadow:0 6px 28px rgba(232,80,10,.28)}50%{box-shadow:0 6px 40px rgba(232,80,10,.45)}}
+.btn-cta:hover{transform:scale(1.04)}
+
+
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:28px;right:28px;z-index:9999;background:var(--bk);color:white;padding:14px 22px;border-radius:8px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px;transform:translateY(64px) scale(.94);opacity:0;transition:all .35s cubic-bezier(.16,1,.3,1);border-left:3px solid var(--or)}
+.toast.show{transform:translateY(0) scale(1);opacity:1}
+.toast i{color:#4ade80}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1200px){nav{padding:0 28px}.hero-left{padding:60px 36px 48px}.sec-services,.sec-about,.sec-cta{padding:72px 36px}.sec-clients,.sec-stats{padding-left:36px;padding-right:36px}}
+@media(max-width:1024px){.hero{grid-template-columns:1fr;min-height:auto}.hero-right{height:60vw;min-height:300px}.hero-right::after{background:none}.sec-about{grid-template-columns:1fr;gap:40px}}
+@media(max-width:768px){.nav-ul,.nav-phone{display:none}.nav-menu{display:flex}.hero-left{padding:44px 24px}.srv-grid{grid-template-columns:1fr 1fr}.srv-hd{flex-direction:column;align-items:flex-start}.sec-stats{grid-template-columns:1fr 1fr}.stat-item{border-bottom:1px solid var(--bd)}.cta-inner{flex-direction:column;align-items:flex-start}.sec-services,.sec-about,.sec-clients,.sec-cta{padding:64px 24px}}
+@media(max-width:480px){.srv-grid{grid-template-columns:1fr}.sec-stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+
+
+<!-- HEADER PLACEHOLDER -->
+<div id="header-container"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-label" id="hlabel">India's Premier Event Company</div>
+    <h1 class="hero-h1">
+      <span class="line"><span id="t1">We don't just plan</span></span>
+      <span class="line"><span id="t2">events.</span></span>
+    </h1>
+    <div class="hero-h1-or">
+      <span class="line"><span id="t3">We create</span></span>
+      <span class="line"><span id="t4">experiences.</span></span>
+    </div>
+    <div class="hero-underline" id="hline"></div>
+    <p class="hero-desc" id="hdesc">From ideas to execution, we craft powerful brand experiences that connect, engage and leave a lasting impact.</p>
+    <div class="hero-ctas" id="hctas">
+      <a href="#services" class="btn-primary">Explore Our Services <i class="fas fa-arrow-right" style="font-size:11px"></i></a>
+      <a href="#" class="btn-ghost">
+        <span class="play"><svg width="12" height="14" viewBox="0 0 12 14"><path d="M1 1.5l10 6-10 6V1.5z"/></svg></span>
+        Watch Showreel
+      </a>
+    </div>
+    <div class="hero-scroll" id="hscroll">
+      <div class="scroll-dot"><i class="fas fa-chevron-down" style="font-size:9px;color:var(--gy2)"></i></div>
+      <span>Scroll Down</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img id="himg" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1400&q=85&fit=crop&auto=format" alt="Event Experience">
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mband" id="mb">
+  <div class="mtrack">
+    <span class="mitem">Product Launches</span><span class="mitem">Employee Engagement</span><span class="mitem">500+ Campaigns</span><span class="mitem">Festivals & Concerts</span><span class="mitem">Corporate Events</span><span class="mitem">120+ Cities</span><span class="mitem">Social Events</span><span class="mitem">Life Cycle Events</span><span class="mitem">1M+ People Reached</span><span class="mitem">Sports Events</span>
+    <span class="mitem">Product Launches</span><span class="mitem">Employee Engagement</span><span class="mitem">500+ Campaigns</span><span class="mitem">Festivals & Concerts</span><span class="mitem">Corporate Events</span><span class="mitem">120+ Cities</span><span class="mitem">Social Events</span><span class="mitem">Life Cycle Events</span><span class="mitem">1M+ People Reached</span><span class="mitem">Sports Events</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec-services" id="services">
+  <div class="srv-hd">
+    <div class="rl">
+      <div class="s-lbl">What We Do</div>
+      <h2 class="s-title">Our Services</h2>
+      <div class="s-div"></div>
+      <p class="s-desc">End-to-end event and activation solutions that bring your brand to life across every moment that matters.</p>
+    </div>
+    <a href="#" class="view-all rv d2">View All Services <i class="fas fa-arrow-right" style="font-size:11px"></i></a>
+  </div>
+  <div class="srv-grid">
+    <!-- Card 1 -->
+    <div class="srv-card rv d1">
+      <img class="srv-img" src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&q=80" alt="Product Launches" loading="lazy">
+      <div class="srv-overlay"></div>
+      <div class="srv-body">
+        <h3>Product<br>Launches</h3>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="srv-card rv d2">
+      <img class="srv-img" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" alt="Employee Engagement" loading="lazy">
+      <div class="srv-overlay"></div>
+      <div class="srv-body">
+        <h3>Employee<br>Engagement</h3>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="srv-card rv d3">
+      <img class="srv-img" src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&q=80" alt="Festivals & Concerts" loading="lazy">
+      <div class="srv-overlay"></div>
+      <div class="srv-body">
+        <h3>Festivals &<br>Concerts</h3>
+      </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="srv-card rv d4">
+      <img class="srv-img" src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&q=80" alt="Social Events" loading="lazy">
+      <div class="srv-overlay"></div>
+      <div class="srv-body">
+        <h3>Social<br>Events</h3>
+      </div>
+    </div>
+    <!-- Card 5 -->
+    <div class="srv-card rv d1">
+      <img class="srv-img" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80" alt="Life Cycle Events" loading="lazy">
+      <div class="srv-overlay"></div>
+      <div class="srv-body">
+        <h3>Life Cycle<br>Events</h3>
+      </div>
+    </div>
+    <!-- Card 6 -->
+    <div class="srv-card rv d2">
+      <img class="srv-img" src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&q=80" alt="Sports Events" loading="lazy">
+      <div class="srv-overlay"></div>
+      <div class="srv-body">
+        <h3>Sports<br>Events</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec-about" id="about">
+  <div class="about-visual rl">
+    <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=900&q=80" alt="Isha Events Experience">
+    <div class="about-play">
+      <div class="play-btn"><i class="fas fa-play" style="color:white;font-size:22px;margin-left:3px"></i></div>
+    </div>
+  </div>
+  <div class="rr">
+    <div class="s-lbl">Who We Are</div>
+    <h2 class="s-title">Crafting Experiences<br>That <span class="or">Move People</span></h2>
+    <div class="s-div"></div>
+    <p style="font-size:14px;color:var(--gy);line-height:1.8;margin-bottom:14px">Isha Events is a leading experiential marketing and event management company. We combine strategy, creativity and flawless execution to turn ideas into extraordinary experiences across every touchpoint.</p>
+    <div class="about-pillars">
+      <div class="pillar">
+        <div class="pillar-ic"><i class="fas fa-chart-line"></i></div>
+        <h4>Strategic<br>Approach</h4>
+      </div>
+      <div class="pillar">
+        <div class="pillar-ic"><i class="fas fa-paint-brush"></i></div>
+        <h4>Creative<br>Excellence</h4>
+      </div>
+      <div class="pillar">
+        <div class="pillar-ic"><i class="fas fa-check-double"></i></div>
+        <h4>Flawless<br>Execution</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<div class="sec-clients rv">
+  <div class="clients-label">Trusted By India's Leading Brands</div>
+  <div class="clients-track-wrap">
+    <div class="clients-track">
+      <span class="client-logo">TATA</span>
+      <span class="client-logo">Reliance</span>
+      <span class="client-logo">Mahindra</span>
+      <span class="client-logo">Coca-Cola</span>
+      <span class="client-logo">SAMSUNG</span>
+      <span class="client-logo">Hero</span>
+      <span class="client-logo">Nike</span>
+      <span class="client-logo">Adidas</span>
+      <span class="client-logo">Hyundai</span>
+      <span class="client-logo">Bajaj</span>
+      <span class="client-logo">TATA</span>
+      <span class="client-logo">Reliance</span>
+      <span class="client-logo">Mahindra</span>
+      <span class="client-logo">Coca-Cola</span>
+      <span class="client-logo">SAMSUNG</span>
+      <span class="client-logo">Hero</span>
+      <span class="client-logo">Nike</span>
+      <span class="client-logo">Adidas</span>
+      <span class="client-logo">Hyundai</span>
+      <span class="client-logo">Bajaj</span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="sec-stats">
+  <div class="stat-item rv d1">
+    <div class="stat-ic"><i class="fas fa-bullhorn"></i></div>
+    <div class="stat-num" data-target="500" data-suffix="+">0</div>
+    <div class="stat-lbl">Campaigns Delivered</div>
+  </div>
+  <div class="stat-item rv d2">
+    <div class="stat-ic"><i class="fas fa-shield-alt"></i></div>
+    <div class="stat-num" data-target="200" data-suffix="+">0</div>
+    <div class="stat-lbl">Brands Trust Us</div>
+  </div>
+  <div class="stat-item rv d3">
+    <div class="stat-ic"><i class="fas fa-user-friends"></i></div>
+    <div class="stat-num" data-target="1" data-suffix="M+">0</div>
+    <div class="stat-lbl">People Reached</div>
+  </div>
+  <div class="stat-item rv d4">
+    <div class="stat-ic"><i class="fas fa-map-marker-alt"></i></div>
+    <div class="stat-num" data-target="120" data-suffix="+">0</div>
+    <div class="stat-lbl">Cities Covered</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="sec-cta" id="contact">
+  <div class="cta-inner">
+    <div class="rl">
+      <h2 class="cta-h2">Ready to create your next<br><span class="or-it">unforgettable event?</span></h2>
+      <p class="cta-sub">Let's make it extraordinary together.</p>
+    </div>
+    <a href="#" class="btn-cta rr">Let's Talk <i class="fas fa-arrow-right" style="font-size:13px"></i></a>
+  </div>
+</section>
+
+<!-- FOOTER PLACEHOLDER -->
+<div id="footer-container"></div>
+
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i> Message sent! We'll get back to you soon.</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', boot);
+
+// ── BOOT ANIMATIONS ──
+function boot() {
+  setTimeout(() => document.getElementById('hlabel').classList.add('in'), 100);
+  setTimeout(() => document.getElementById('t1').classList.add('in'), 280);
+  setTimeout(() => document.getElementById('t2').classList.add('in'), 440);
+  setTimeout(() => document.getElementById('t3').classList.add('in'), 600);
+  setTimeout(() => document.getElementById('t4').classList.add('in'), 760);
+  setTimeout(() => document.getElementById('hline').classList.add('in'), 900);
+  setTimeout(() => document.getElementById('hdesc').classList.add('in'), 900);
+  setTimeout(() => document.getElementById('hctas').classList.add('in'), 1050);
+  setTimeout(() => document.getElementById('hscroll').classList.add('in'), 1200);
+  document.getElementById('himg').classList.add('in');
+  setTimeout(() => document.getElementById('mb').classList.add('in'), 1100);
+}
+
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv,.rl,.rr').forEach(el => obs.observe(el));
+
+// ── COUNTER ──
+function animCount(el) {
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '+';
+  let start = 0;
+  const dur = 1800;
+  const step = (ts) => {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(eased * target) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const cobs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting && !e.target.dataset.counted) { e.target.dataset.counted = '1'; animCount(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-num[data-target]').forEach(el => cobs.observe(el));
+
+// ── NAV HIDE ON SCROLL MOVED TO HEADER.JS ──
+
+
+
+// ── SERVICE CARD TILT ──
+document.querySelectorAll('.srv-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `translateY(-6px) perspective(500px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
+// ── SMOOTH SCROLL ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+
+<script src="header.js"></script>
+<script src="footer.js"></script>
+</body>
+</html>

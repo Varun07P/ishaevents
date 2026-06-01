@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery – ISHA EVENTS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="footer.css">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --orange: #FF5A00;
+      --dark: #111111;
+      --text-main: #222222;
+      --text-muted: #666666;
+      --bg-light: #FAFAFA;
+      --white: #FFFFFF;
+      --border: #EAEAEA;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      color: var(--text-main);
+      background-color: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+
+
+    /* ════════ PAGE TITLE SECTION ════════ */
+    .page-head {
+      padding: 128px 50px 60px; /* 68px header + 60px original top padding */
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    
+    .head-left { max-width: 500px; }
+    .breadcrumb {
+      font-size: .75rem; font-weight: 600; letter-spacing: .1em;
+      color: var(--text-muted); margin-bottom: 20px; text-transform: uppercase;
+    }
+    .breadcrumb span { color: var(--orange); }
+    
+    .head-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 4rem; font-weight: 700; line-height: 1.1;
+      text-transform: uppercase; color: var(--dark);
+    }
+    .head-title span { color: var(--orange); }
+
+    .head-mid {
+      flex: 1; max-width: 400px; padding-left: 40px;
+      border-left: 2px solid var(--border); margin-left: 40px; margin-bottom: 10px;
+      font-size: 1.1rem; line-height: 1.6; color: var(--text-muted); font-weight: 500;
+    }
+
+    .head-right { margin-bottom: 10px; }
+    .btn-play {
+      display: flex; align-items: center; gap: 16px;
+      background: none; border: none; cursor: pointer; text-align: left;
+    }
+    .play-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--bg-light); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--orange); padding-left: 4px; transition: transform .3s;
+    }
+    .btn-play:hover .play-icon { transform: scale(1.05); background: var(--white); box-shadow: 0 4px 15px rgba(0,0,0,.05); }
+    .play-text { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--dark); }
+    .play-sub { display: block; font-size: .8rem; font-weight: 500; color: var(--text-muted); text-transform: none; letter-spacing: 0; margin-top: 2px; }
+
+    /* ════════ GALLERY GRID ════════ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* Changed to 4 columns per user request */
+      gap: 10px;
+      padding: 0 50px 80px;
+    }
+
+    .g-item {
+      position: relative;
+      border-radius: 4px; overflow: hidden;
+      aspect-ratio: 16/10;
+      background: #EEE; cursor: pointer;
+    }
+    .g-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .g-item:hover img { transform: scale(1.05); }
+
+    .g-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 50%);
+      display: flex; align-items: flex-end; justify-content: space-between;
+      padding: 20px; color: var(--white);
+    }
+    .g-title {
+      font-size: .85rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+    }
+    .g-arrow {
+      width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
+      transition: transform .3s;
+    }
+    .g-item:hover .g-arrow { transform: translateX(5px); }
+
+    /* ════════ CTA SECTION ════════ */
+    .cta-sec {
+      background: var(--bg-light);
+      padding: 60px 50px; display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .cta-left { display: flex; align-items: center; gap: 30px; }
+    .cta-icon {
+      width: 60px; height: 60px; border-radius: 50%; background: var(--orange);
+      display: flex; align-items: center; justify-content: center; color: var(--white);
+    }
+    .cta-text h3 {
+      font-family: 'Oswald', sans-serif; font-size: 2rem; font-weight: 700; text-transform: uppercase; color: var(--dark);
+    }
+    .cta-text h3 span { color: var(--orange); }
+    .cta-mid { font-size: 1rem; color: var(--text-muted); max-width: 300px; }
+    .btn-cta {
+      background: var(--orange); color: var(--white); padding: 16px 40px; border-radius: 4px;
+      font-weight: 700; text-transform: uppercase; text-decoration: none; letter-spacing: .1em;
+      display: flex; align-items: center; gap: 10px; transition: background .3s; font-size: .85rem;
+    }
+    .btn-cta:hover { background: #E04D00; }
+
+    /* Footer styles are loaded dynamically with footer.html */
+
+    @media (max-width: 1200px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .page-head { flex-direction: column; align-items: flex-start; gap: 30px; }
+      .head-mid { border-left: none; padding-left: 0; margin-left: 0; max-width: 100%; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); padding: 0 24px 60px; }
+      .cta-sec { flex-direction: column; text-align: center; gap: 30px; padding: 40px 24px; }
+      .cta-left { flex-direction: column; }
+      .hdr { padding: 20px 24px; }
+      .nav-mid, .btn-q { display: none; }
+    }
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .head-title { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER PLACEHOLDER -->
+  <div id="header-container"></div>
+
+  <!-- PAGE TITLE -->
+  <section class="page-head">
+    <div class="head-left">
+      <div class="breadcrumb">HOME / <span>GALLERY</span></div>
+      <h1 class="head-title">MOMENTS THAT<br>CREATE <span>IMPACT.</span></h1>
+    </div>
+    <div class="head-mid">
+      A glimpse of the powerful experiences we've created for brands across cities.
+    </div>
+    <div class="head-right">
+      <button class="btn-play">
+        <div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="8 5 8 19 19 12"/></svg></div>
+        <div>
+          <span class="play-text">WATCH SHOWREEL</span>
+          <span class="play-sub">See our work in action</span>
+        </div>
+      </button>
+    </div>
+  </section>
+
+  <!-- GALLERY GRID -->
+  <section class="gallery-grid">
+    <!-- Unsplash placehodlers -->
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Led Van Campaign">
+      <div class="g-overlay">
+        <div class="g-title">LED VAN CAMPAIGN</div>
+        <div class="g-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80" alt="Product Launch">
+      <div class="g-overlay">
+        <div class="g-title">PRODUCT LAUNCH</div>
+        <div class="g-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=800&q=80" alt="Store Opening">
+      <div class="g-overlay">
+        <div class="g-title">STORE OPENING</div>
+        <div class="g-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80" alt="Corporate Event">
+      <div class="g-overlay">
+        <div class="g-title">CORPORATE EVENT</div>
+        <div class="g-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=800&q=80" alt="Tricycle Advertising">
+      <div class="g-overlay">
+        <div class="g-title">TRICYCLE ADVERTISING</div>
+        <div class="g-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80" alt="Live Concert">
+      <div class="g-overlay">
+        <div class="g-title">LIVE CONCERT</div>
+        <div class="g-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?w=800&q=80" alt="Exhibition">
+      <div class="g-overlay">
+        <div class="g-title">EXHIBITION</div>
+        <div class="g-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&q=80" alt="Metro Branding">
+      <div class="g-overlay">
+        <div class="g-title">METRO BRANDING</div>
+        <div class="g-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?w=800&q=80" alt="Mall Activation">
+      <div class="g-overlay">
+        <div class="g-title">MALL ACTIVATION</div>
+        <div class="g-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1620608560039-446cc26f9df4?w=800&q=80" alt="Outdoor Hoarding">
+      <div class="g-overlay">
+        <div class="g-title">OUTDOOR HOARDING</div>
+        <div class="g-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80" alt="Roadshow">
+      <div class="g-overlay">
+        <div class="g-title">ROADSHOW</div>
+        <div class="g-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&q=80" alt="Festival Event">
+      <div class="g-overlay">
+        <div class="g-title">FESTIVAL EVENT</div>
+        <div class="g-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-sec">
+    <div class="cta-left">
+      <div class="cta-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg></div>
+      <div class="cta-text">
+        <h3>READY TO CREATE YOUR NEXT<br><span>BIG IMPACT?</span></h3>
+      </div>
+    </div>
+    <div class="cta-mid">
+      Let's create powerful experiences that make your brand unforgettable.
+    </div>
+    <a href="#contact" class="btn-cta">
+      LET'S TALK <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </section>
+
+  <!-- FOOTER PLACEHOLDER -->
+  <div id="footer-container"></div>
+
+  <!-- COMPONENT LOADER SCRIPT -->
+  <script>
+    // Load Header
+    var hs = document.createElement('script');
+    hs.src = 'header.js?v=' + new Date().getTime();
+    document.body.appendChild(hs);
+    // Load Footer
+    var fs = document.createElement('script');
+    fs.src = 'footer.js?v=' + new Date().getTime();
+    document.body.appendChild(fs);
+  </script>
+</body>
+</html>
