@@ -328,7 +328,7 @@
       #hero { height: auto; min-height: 100vh; }
       .center-block { position: relative; padding: 130px 20px 30px; }
       .bottom { position: relative; padding-bottom: 30px; }
-      .stats { flex-wrap: wrap; gap: 24px 0; }
+      .stats { flex-wrap: wrap; gap: 20px 0; }
       .st { flex: 0 0 50%; }
       .st:nth-child(2)::after { display: none; }
     }
@@ -339,14 +339,27 @@
       .btn-q { padding: 8px 16px; font-size: .62rem; }
       .ham { width: 36px; height: 36px; }
       .tag { font-size: .6rem; letter-spacing: .22em; text-indent: .22em; }
+      .h2 { font-size: clamp(3rem, 14vw, 5rem); }
       .desc { font-size: .85rem; }
       .btns { flex-direction: column; gap: 14px; width: 100%; max-width: 280px; }
       .btn-exp { width: 100%; justify-content: center; }
       .btn-reel { justify-content: center; }
-      .st { flex: 0 0 100%; }
+      .stats { gap: 0; }
+      .st { flex: 0 0 50%; padding: 12px 10px; }
       .st::after { display: none !important; }
-      .st-v { font-size: 2rem; }
+      .st-v { font-size: 1.9rem; }
+      .st-l { font-size: .5rem; letter-spacing: .1em; }
+      .st-i svg { width: 14px; height: 14px; }
       .trust { font-size: .5rem; letter-spacing: .2em; text-indent: .2em; }
+    }
+    @media (max-width: 420px) {
+      .center-block { padding: 110px 16px 20px; }
+      .h1 { font-size: 1.6rem; }
+      .h2 { font-size: clamp(2.6rem, 16vw, 3.5rem); }
+      .h3 { font-size: .65rem; letter-spacing: .3em; }
+      .desc { font-size: .82rem; margin-bottom: 24px; }
+      .st { flex: 0 0 50%; padding: 10px 8px; }
+      .st-v { font-size: 1.7rem; }
     }
 
     /* ════════ TRUSTED BY SECTION ════════ */
@@ -1297,7 +1310,7 @@
         width: 100% !important;
       }
       .testi-title {
-        font-size: 2.2rem !important;
+        font-size: 2rem !important;
         margin-bottom: 15px !important;
       }
       .testi-slide {
@@ -1305,7 +1318,7 @@
         gap: 20px !important;
       }
       .testi-img-col {
-        width: 60% !important;
+        width: 55% !important;
       }
       .testi-controls {
         padding-left: 0 !important;
@@ -1321,10 +1334,83 @@
       .testimonials-section {
         padding: 40px 0 !important;
       }
+      .testi-wrapper {
+        width: 92% !important;
+        gap: 24px !important;
+      }
       .testi-title {
-        font-size: 1.8rem !important;
+        font-size: 1.7rem !important;
+      }
+      .testi-slide {
+        gap: 16px !important;
+      }
+      .testi-img-col {
+        width: 50% !important;
+      }
+      .testi-content-col h3 {
+        font-size: 1.3rem !important;
+      }
+      .t-desc {
+        font-size: 0.85rem !important;
       }
     }
+
+    @media (max-width: 480px) {
+      .testimonials-section {
+        padding: 32px 0 !important;
+      }
+      .testi-wrapper {
+        width: 94% !important;
+        gap: 20px !important;
+      }
+      .testi-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 12px !important;
+      }
+      .testi-btn {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 10px 16px !important;
+      }
+      .testi-slide {
+        gap: 14px !important;
+      }
+      .testi-img-col {
+        width: 70% !important;
+      }
+      .testi-logo-box {
+        aspect-ratio: 3/2 !important;
+      }
+      .testi-quote-icon {
+        font-size: 4rem !important;
+        top: -10px !important;
+        left: -8px !important;
+      }
+      .testi-content-col h3 {
+        font-size: 1.2rem !important;
+      }
+      .t-sub {
+        font-size: 0.65rem !important;
+        margin-bottom: 10px !important;
+      }
+      .t-desc {
+        font-size: 0.82rem !important;
+        line-height: 1.55 !important;
+      }
+      .testi-controls {
+        margin-top: 16px !important;
+        gap: 10px !important;
+      }
+      .t-btn {
+        width: 36px !important;
+        height: 36px !important;
+      }
+      .t-btn svg {
+        width: 14px !important;
+        height: 14px !important;
+      }
+    }
+
 
     /* Footer styles are loaded dynamically with footer.html */
   </style>

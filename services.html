@@ -20,8 +20,8 @@
   --fn:'Barlow',sans-serif;
   --fc:'Barlow Condensed',sans-serif;
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--fn);color:var(--bk);background:var(--wh);overflow-x:clip}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--fn);color:var(--bk);background:var(--wh);overflow-x:hidden}
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--or);border-radius:2px}
 
 
@@ -169,9 +169,10 @@ body{font-family:var(--fn);color:var(--bk);background:var(--wh);overflow-x:clip}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1200px){.hero-left{padding:60px 36px 48px}.sec-services,.sec-about,.sec-cta{padding:72px 36px}.sec-clients,.sec-stats{padding-left:36px;padding-right:36px}}
-@media(max-width:1024px){.hero{grid-template-columns:1fr;min-height:auto}.hero-right{height:60vw;min-height:300px}.hero-right::after{background:none}.sec-about{grid-template-columns:1fr;gap:40px}}
-@media(max-width:768px){.hero-left{padding:44px 24px}.srv-grid{grid-template-columns:1fr 1fr}.srv-hd{flex-direction:column;align-items:flex-start}.sec-stats{grid-template-columns:1fr 1fr}.stat-item{border-bottom:1px solid var(--bd)}.cta-inner{flex-direction:column;align-items:flex-start}.sec-services,.sec-about,.sec-clients,.sec-cta{padding:64px 24px}}
-@media(max-width:480px){.srv-grid{grid-template-columns:1fr}.sec-stats{grid-template-columns:1fr 1fr}}
+@media(max-width:1024px){.hero{grid-template-columns:1fr;min-height:auto;height:auto}.hero-left{padding:100px 36px 48px}.hero-right{display:none}.sec-about{grid-template-columns:1fr;gap:40px}}
+@media(max-width:768px){.hero-left{padding:90px 24px 40px}.srv-grid{grid-template-columns:1fr 1fr}.srv-hd{flex-direction:column;align-items:flex-start}.sec-stats{grid-template-columns:1fr 1fr}.stat-item{border-bottom:1px solid var(--bd)}.cta-inner{flex-direction:column;align-items:flex-start}.sec-services,.sec-about,.sec-clients,.sec-cta{padding:64px 24px}}
+@media(max-width:600px){.hero-left{padding:82px 20px 36px}.hero-ctas{flex-direction:column;align-items:flex-start;gap:12px}.btn-primary,.btn-ghost{width:auto}}
+@media(max-width:480px){.srv-grid{grid-template-columns:1fr}.sec-stats{grid-template-columns:1fr 1fr}.hero-left{padding:76px 16px 28px}}
 </style>
 </head>
 <body>
