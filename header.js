@@ -96,6 +96,33 @@ fetch('header.html?v=' + new Date().getTime())
         nav.classList.remove('scrolled');
       }
     }, { passive: true });
+
+    // Handle Mobile Drawer Toggle
+    var menu = document.getElementById('navMenu');
+    var drawer = document.getElementById('nav-drawer');
+    if (menu && drawer) {
+      menu.addEventListener('click', function() {
+        var isOpen = drawer.classList.toggle('open');
+        menu.classList.toggle('open', isOpen);
+      });
+
+      // Close drawer on link click
+      drawer.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          drawer.classList.remove('open');
+          menu.classList.remove('open');
+        });
+      });
+
+      // Close drawer on outside click
+      document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) && !drawer.contains(e.target)) {
+          drawer.classList.remove('open');
+          menu.classList.remove('open');
+        }
+      });
+    }
+
   })
   .catch(function(err) {
     console.error('header.js:', err);

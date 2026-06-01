@@ -223,31 +223,3 @@
   </div>
 </div>
 
-<script>
-(function() {
-  var menu = document.getElementById('navMenu');
-  var drawer = document.getElementById('nav-drawer');
-  if (!menu || !drawer) return;
-
-  menu.addEventListener('click', function() {
-    var isOpen = drawer.classList.toggle('open');
-    menu.classList.toggle('open', isOpen);
-  });
-
-  // Close drawer on link click
-  drawer.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      drawer.classList.remove('open');
-      menu.classList.remove('open');
-    });
-  });
-
-  // Close drawer on outside click
-  document.addEventListener('click', function(e) {
-    if (!document.getElementById('nav').contains(e.target) && !drawer.contains(e.target)) {
-      drawer.classList.remove('open');
-      menu.classList.remove('open');
-    }
-  });
-})();
-</script>

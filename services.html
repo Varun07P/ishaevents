@@ -26,11 +26,7 @@ body{font-family:var(--fn);color:var(--bk);background:var(--wh);overflow-x:clip}
 
 
 
-/* ── NAV CSS MOVED TO HEADER.HTML ── */
-.btn-quote:hover::before{transform:translateX(120%) skewX(-15deg)}
-.btn-quote:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,80,10,.35)}
-.nav-menu{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
-.nav-menu span{display:block;width:22px;height:2px;background:var(--bk);border-radius:1px;transition:all .3s}
+/* ── NAV CSS HANDLED BY HEADER.HTML ── */
 
 /* ── HERO ── */
 .hero{min-height:auto;height:420px;padding-top:68px;display:grid;grid-template-columns:55% 45%;position:relative;background:var(--wh)}
@@ -172,9 +168,9 @@ body{font-family:var(--fn);color:var(--bk);background:var(--wh);overflow-x:clip}
 .toast i{color:#4ade80}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1200px){nav{padding:0 28px}.hero-left{padding:60px 36px 48px}.sec-services,.sec-about,.sec-cta{padding:72px 36px}.sec-clients,.sec-stats{padding-left:36px;padding-right:36px}}
+@media(max-width:1200px){.hero-left{padding:60px 36px 48px}.sec-services,.sec-about,.sec-cta{padding:72px 36px}.sec-clients,.sec-stats{padding-left:36px;padding-right:36px}}
 @media(max-width:1024px){.hero{grid-template-columns:1fr;min-height:auto}.hero-right{height:60vw;min-height:300px}.hero-right::after{background:none}.sec-about{grid-template-columns:1fr;gap:40px}}
-@media(max-width:768px){.nav-ul,.nav-phone{display:none}.nav-menu{display:flex}.hero-left{padding:44px 24px}.srv-grid{grid-template-columns:1fr 1fr}.srv-hd{flex-direction:column;align-items:flex-start}.sec-stats{grid-template-columns:1fr 1fr}.stat-item{border-bottom:1px solid var(--bd)}.cta-inner{flex-direction:column;align-items:flex-start}.sec-services,.sec-about,.sec-clients,.sec-cta{padding:64px 24px}}
+@media(max-width:768px){.hero-left{padding:44px 24px}.srv-grid{grid-template-columns:1fr 1fr}.srv-hd{flex-direction:column;align-items:flex-start}.sec-stats{grid-template-columns:1fr 1fr}.stat-item{border-bottom:1px solid var(--bd)}.cta-inner{flex-direction:column;align-items:flex-start}.sec-services,.sec-about,.sec-clients,.sec-cta{padding:64px 24px}}
 @media(max-width:480px){.srv-grid{grid-template-columns:1fr}.sec-stats{grid-template-columns:1fr 1fr}}
 </style>
 </head>
