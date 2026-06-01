@@ -619,7 +619,7 @@
     .services-scroll-container {
       position: relative !important;
       width: 100% !important;
-      height: 750vh !important; 
+      height: 300vh !important; 
       background: #FAFAFA !important;
       box-sizing: border-box !important;
     }
@@ -810,6 +810,14 @@
     
     /* Responsive swipe layout for mobile */
     @media (max-width: 768px) {
+      .services-scroll-container {
+        height: auto !important;
+      }
+      .services-sticky-wrapper {
+        position: relative !important;
+        height: auto !important;
+        padding: 40px 0 !important;
+      }
       .services-track {
         padding: 10px 5vw !important;
         height: 420px !important;
@@ -819,8 +827,11 @@
         width: 78vw !important;
         height: 380px !important;
         min-width: unset !important;
+        scroll-snap-align: center !important;
       }
       .services-track-wrapper {
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
         -webkit-mask-image: none !important;
         mask-image: none !important;
       }
@@ -1549,86 +1560,7 @@
                 </div>
               </div>
           </div>
-          
-          <!-- Panel 5: Employee Engagement -->
-          <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('images/service-5-employee-engagement.jpg');"></div>
-            <div class="sc-content-overlay">
-              <div class="sc-text-block">
-                <h3 class="sc-title">Employee Engagement</h3>
-                </div>
-              </div>
-          </div>
-          
-          <!-- Panel 6: Lifestyle Events -->
-          <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('images/service-6-lifestyle-events.jpg');"></div>
-            <div class="sc-content-overlay">
-              <div class="sc-text-block">
-                <h3 class="sc-title">Lifestyle Events</h3>
-                </div>
-              </div>
-          </div>
-          
-          <!-- Panel 7: Sports Events -->
-          <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('images/service-7-sports-events.jpg');"></div>
-            <div class="sc-content-overlay">
-              <div class="sc-text-block">
-                <h3 class="sc-title">Sports Events</h3>
-                </div>
-              </div>
-          </div>
-          
-          <!-- Panel 8: OOH Billboards -->
-          <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('images/service-8-ooh-billboards.jpg');"></div>
-            <div class="sc-content-overlay">
-              <div class="sc-text-block">
-                <h3 class="sc-title">OOH Billboards</h3>
-                </div>
-              </div>
-          </div>
-          
-          <!-- Panel 9: No Parking Boards -->
-          <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('images/service-9-no-parking-boards.jpg');"></div>
-            <div class="sc-content-overlay">
-              <div class="sc-text-block">
-                <h3 class="sc-title">No Parking Boards</h3>
-                </div>
-              </div>
-          </div>
-          
-          <!-- Panel 10: Bus Shelters -->
-          <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('images/service-10-bus-shelters.jpg');"></div>
-            <div class="sc-content-overlay">
-              <div class="sc-text-block">
-                <h3 class="sc-title">Bus Shelters</h3>
-                </div>
-              </div>
-          </div>
-          
-          <!-- Panel 11: Pamphlet Distribution -->
-          <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('images/pomplete.png');"></div>
-            <div class="sc-content-overlay">
-              <div class="sc-text-block">
-                <h3 class="sc-title">Pamphlet Distribution</h3>
-                </div>
-              </div>
-          </div>
-          
-          <!-- Panel 12: Social Events -->
-          <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('images/service-12-social-events.jpg');"></div>
-            <div class="sc-content-overlay">
-              <div class="sc-text-block">
-                <h3 class="sc-title">Social Events</h3>
-                </div>
-              </div>
-          </div>
+
         </div>
       </div>
     </div>
@@ -1944,31 +1876,9 @@ function initScrollRevealAndHorizontalScroll() {
   const track = document.getElementById('services-track');
   
   if (scrollContainer && track) {
-    const originalPanels = Array.from(track.querySelectorAll('.cinematic-panel'));
-    
-    // Create infinite loop effect visually by adding clones if we have 12 panels
-    if (originalPanels.length === 12) {
-      // Clone 11 and 12 to the front
-      const c11 = originalPanels[10].cloneNode(true);
-      const c12 = originalPanels[11].cloneNode(true);
-      c11.classList.add('is-clone');
-      c12.classList.add('is-clone');
-      track.insertBefore(c12, originalPanels[0]);
-      track.insertBefore(c11, c12);
-      
-      // Clone 1 and 2 to the back
-      const c1 = originalPanels[0].cloneNode(true);
-      const c2 = originalPanels[1].cloneNode(true);
-      c1.classList.add('is-clone');
-      c2.classList.add('is-clone');
-      track.appendChild(c1);
-      track.appendChild(c2);
-    }
-
     const updateActivePanel = () => {
       const panels = track.querySelectorAll('.cinematic-panel');
       if (!panels.length) return;
-      
       const viewportCenter = window.innerWidth / 2;
       let closestPanel = null;
       let minDistance = Infinity;
@@ -1986,18 +1896,19 @@ function initScrollRevealAndHorizontalScroll() {
       const activeIndex = Array.from(panels).indexOf(closestPanel);
       
       panels.forEach((panel, index) => {
-        // Handle Active State
         if (index === activeIndex) {
-          if (!panel.classList.contains('is-active')) panel.classList.add('is-active');
+          panel.classList.add('is-active');
           panel.classList.remove('is-hidden-side');
         } else {
-          if (panel.classList.contains('is-active')) panel.classList.remove('is-active');
-          
-          // Handle Hidden Side State (keep 2 neighbors on each side visible to span 4-5 cards across the screen)
-          if (index >= activeIndex - 2 && index <= activeIndex + 2) {
+          panel.classList.remove('is-active');
+          if (window.innerWidth <= 768) {
             panel.classList.remove('is-hidden-side');
           } else {
-            if (!panel.classList.contains('is-hidden-side')) panel.classList.add('is-hidden-side');
+            if (index >= activeIndex - 1 && index <= activeIndex + 1) {
+              panel.classList.remove('is-hidden-side');
+            } else {
+              panel.classList.add('is-hidden-side');
+            }
           }
         }
       });
@@ -2012,39 +1923,22 @@ function initScrollRevealAndHorizontalScroll() {
       
       const rect = scrollContainer.getBoundingClientRect();
       const scrollTop = -rect.top;
-      const containerHeight = scrollContainer.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      const maxScroll = containerHeight - viewportHeight;
+      const maxScroll = scrollContainer.offsetHeight - window.innerHeight;
       
-      // Calculate layout mathematically
-      const panels = track.querySelectorAll('.cinematic-panel');
-      if (panels.length >= 16) {
-        const trackStyle = window.getComputedStyle(track);
-        const gap = parseFloat(trackStyle.gap) || 40;
-        const cardWidth = panels[0].offsetWidth; // 320px
-        const step = cardWidth + gap;
-        const viewportCenter = window.innerWidth / 2;
-        
-        // We want Card 1 (which is at index 2 because of 2 clones) to be centered at pct = 0.
-        // The center of Card 1 relative to track's left edge is: (2 * step) + (cardWidth / 2)
-        const initialOffset = (2 * step + (cardWidth / 2)) - viewportCenter;
-        
-        // We want Card 12 (at index 13) to be centered at pct = 1.
-        const finalOffset = (13 * step + (cardWidth / 2)) - viewportCenter;
-        const maxTranslate = finalOffset - initialOffset; 
-        
-        if (scrollTop >= 0 && scrollTop <= maxScroll) {
-          const pct = scrollTop / maxScroll;
-          const translateVal = initialOffset + (pct * maxTranslate);
-          track.style.transform = `translateX(-${translateVal}px)`;
-        } else if (scrollTop < 0) {
-          track.style.transform = `translateX(-${initialOffset}px)`;
-        } else {
-          track.style.transform = `translateX(-${finalOffset}px)`;
-        }
+      const trackWidth = track.scrollWidth;
+      const containerWidth = trackWrapper.offsetWidth;
+      const maxTranslate = Math.max(0, trackWidth - containerWidth);
+      
+      if (scrollTop >= 0 && scrollTop <= maxScroll) {
+        const pct = scrollTop / maxScroll;
+        const translateVal = pct * maxTranslate;
+        track.style.transform = `translateX(-${translateVal}px)`;
+      } else if (scrollTop < 0) {
+        track.style.transform = `translateX(0px)`;
+      } else {
+        track.style.transform = `translateX(-${maxTranslate}px)`;
       }
       
-      // Update the active focused panel dynamically as we scroll
       updateActivePanel();
     };
     
