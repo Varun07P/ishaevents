@@ -813,7 +813,7 @@
       content: '' !important;
       position: absolute !important;
       inset: 0 !important;
-      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 40%, transparent 100%) !important;
+      background: none !important; /* Removed black background as requested */
       z-index: 2 !important;
       pointer-events: none !important;
     }
@@ -847,6 +847,7 @@
       line-height: 1.25 !important;
       letter-spacing: -0.2px !important;
       text-transform: none !important;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 4px 16px rgba(0,0,0,0.4) !important; /* Added shadow for legibility */
     }
     
     @media (max-width: 991px) {
@@ -1697,49 +1698,19 @@
       
       <div class="services-track-wrapper">
         <div class="services-track" id="services-track">
-          <!-- Panel 1: Mobile Advertising -->
+          <!-- Panel 1: Launches -->
           <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="cp-bg" style="background-image: url('images/pomplete.png');"></div>
             <div class="sc-content-overlay">
               <div class="sc-text-block">
-                <h3 class="sc-title">Mobile Advertising</h3>
+                <h3 class="sc-title">Launches</h3>
                 </div>
               </div>
           </div>
           
-          <!-- Panel 2: Brand Launches -->
+          <!-- Panel 2: Employee Engagement -->
           <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80');"></div>
-            <div class="sc-content-overlay">
-              <div class="sc-text-block">
-                <h3 class="sc-title">Brand Launches</h3>
-                </div>
-              </div>
-          </div>
-          
-          <!-- Panel 3: Experience Events -->
-          <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80');"></div>
-            <div class="sc-content-overlay">
-              <div class="sc-text-block">
-                <h3 class="sc-title">Experience Events</h3>
-                </div>
-              </div>
-          </div>
-          
-          <!-- Panel 4: Corporate Events -->
-          <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80');"></div>
-            <div class="sc-content-overlay">
-              <div class="sc-text-block">
-                <h3 class="sc-title">Corporate Events</h3>
-                </div>
-              </div>
-          </div>
-          
-          <!-- Panel 5: Employee Engagement -->
-          <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="cp-bg" style="background-image: url('images/employee.png');"></div>
             <div class="sc-content-overlay">
               <div class="sc-text-block">
                 <h3 class="sc-title">Employee Engagement</h3>
@@ -1747,9 +1718,29 @@
               </div>
           </div>
           
-          <!-- Panel 6: Lifestyle Events -->
+          <!-- Panel 3: Festivals & Concerts -->
           <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('https://images.unsplash.com/photo-1516997184200-a42e584551df?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="cp-bg" style="background-image: url('images/events.png');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Festivals & Concerts</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 4: Social Events -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('images/social.png');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Social Events</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 5: Lifestyle Events -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('images/life.png');"></div>
             <div class="sc-content-overlay">
               <div class="sc-text-block">
                 <h3 class="sc-title">Lifestyle Events</h3>
@@ -1757,9 +1748,9 @@
               </div>
           </div>
           
-          <!-- Panel 7: Sports Events -->
+          <!-- Panel 6: Sports Events -->
           <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="cp-bg" style="background-image: url('images/sports.png');"></div>
             <div class="sc-content-overlay">
               <div class="sc-text-block">
                 <h3 class="sc-title">Sports Events</h3>
@@ -1767,12 +1758,22 @@
               </div>
           </div>
           
-          <!-- Panel 8: Outdoor Advertising -->
+          <!-- Panel 7: Outdoor Advertising -->
           <div class="cinematic-panel">
-            <div class="cp-bg" style="background-image: url('https://images.unsplash.com/photo-1559132575-cf07283624fb?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="cp-bg" style="background-image: url('images/outdoor.png');"></div>
             <div class="sc-content-overlay">
               <div class="sc-text-block">
                 <h3 class="sc-title">Outdoor Advertising</h3>
+                </div>
+              </div>
+          </div>
+          
+          <!-- Panel 8: Mobile Advertising -->
+          <div class="cinematic-panel">
+            <div class="cp-bg" style="background-image: url('images/molile.png');"></div>
+            <div class="sc-content-overlay">
+              <div class="sc-text-block">
+                <h3 class="sc-title">Mobile Advertising</h3>
                 </div>
               </div>
           </div>
