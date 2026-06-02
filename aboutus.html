@@ -88,8 +88,8 @@
   .hero h1 {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
-    font-size: clamp(4rem, 10vw, 9rem);
-    line-height: 0.9;
+    font-size: clamp(3.2rem, 7vw, 6.5rem);
+    line-height: 0.95;
     text-transform: uppercase;
     letter-spacing: -0.02em;
     color: var(--ink);
@@ -146,7 +146,7 @@
   @keyframes tickerAnim { to { transform: translateX(-50%); } }
 
   /* ─── REVEAL ──────────────────────────────── */
-  section { padding: 8rem 6vw; }
+  section { padding: 3.5rem 5vw; }
 
   .reveal { opacity:0; transform:translateY(40px); transition:opacity 0.8s ease, transform 0.8s ease; }
   .reveal.visible { opacity:1; transform:translateY(0); }
@@ -157,8 +157,8 @@
 
   h2 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900; font-size: clamp(2.5rem, 5vw, 5rem);
-    text-transform: uppercase; line-height: 0.95; letter-spacing: -0.01em;
+    font-weight: 900; font-size: clamp(2.2rem, 4vw, 4rem);
+    text-transform: uppercase; line-height: 1.05; letter-spacing: -0.01em;
     color: var(--ink);
   }
   h2 .accent { color: var(--orange); }
@@ -168,14 +168,14 @@
 
   .story-grid {
     display: grid; grid-template-columns: 1fr 1.1fr;
-    gap: 6rem; align-items: start; margin-top: 4rem;
+    gap: 2.5rem; align-items: start; margin-top: 2rem;
   }
 
   .story-text p {
     font-size: 1.05rem; line-height: 1.8; color: var(--grey);
-    margin-top: 1.5rem;
+    margin-top: 0.8rem;
   }
-  .story-text p + p { margin-top: 1rem; }
+  .story-text p + p { margin-top: 0.8rem; }
 
   .timeline-photos {
     display: grid; grid-template-columns: repeat(5, 1fr);
@@ -209,7 +209,7 @@
 
   .vm-panel {
     position: relative; overflow: hidden;
-    padding: 7rem 6vw; min-height: 480px;
+    padding: 3rem 4vw; min-height: 300px;
     display: flex; flex-direction: column; justify-content: center;
   }
   .vm-panel-bg {
@@ -244,15 +244,27 @@
   }
   .vm-panel p { font-size: 1rem; line-height: 1.75; color: var(--grey); max-width: 400px; }
 
-  /* ─── TEAM ────────────────────────────────── */
+  /* ─── TEAM ─────────────────────────────────── */
   .team { background: var(--body-bg); }
   .team-grid {
-    display: grid; grid-template-columns: 1fr 1.4fr;
-    gap: 5rem; align-items: center; margin-top: 4rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2.5rem; align-items: start; margin-top: 2rem;
   }
-  .team-text p { font-size: 1.05rem; line-height: 1.8; color: var(--grey); margin-top: 1.5rem; }
-  .team-img-wrap { position: relative; border-radius: 6px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
-  .team-img-wrap img { width: 100%; object-fit: cover; display: block; }
+  .team-text {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    gap: 0;
+  }
+  .team-text .label { margin-bottom: 0.5rem; }
+  .team-text h2 { margin-bottom: 0.5rem; }
+  .team-text p { font-size: 1rem; line-height: 1.7; color: var(--grey); margin: 0; }
+  .team-img-wrap {
+    position: relative; border-radius: 6px; overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    max-height: 320px;
+  }
+  .team-img-wrap img { width: 100%; height: 320px; object-fit: cover; display: block; }
   .team-tagline {
     position: absolute; bottom: 2rem; right: 2rem;
     font-family: 'Barlow Condensed', sans-serif;
@@ -265,11 +277,11 @@
   .diff { background: var(--section-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .diff-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 1px; margin-top: 2.5rem;
+    gap: 1px; margin-top: 1.5rem;
     background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
   }
   .diff-card {
-    background: var(--card); padding: 2.5rem 2rem;
+    background: var(--card); padding: 1.5rem 1.2rem;
     transition: background 0.3s; cursor: default;
   }
   .diff-card:hover { background: var(--orange-pale); }
@@ -301,10 +313,10 @@
   .diff-photos img:hover { filter: saturate(1.1) brightness(1); }
 
   /* ─── STATS ───────────────────────────────── */
-  .stats { background: var(--orange); padding: 6rem 6vw; }
+  .stats { background: var(--orange); padding: 3.5rem 5vw; }
   .stats-inner {
     display: grid; grid-template-columns: auto 1fr;
-    gap: 4rem; align-items: center;
+    gap: 2rem; align-items: center;
   }
   .stats-label-col { min-width: 180px; }
   .stats-label-col .label { color: rgba(255,255,255,0.7); }
@@ -337,55 +349,28 @@
   }
   .stat-item:hover::after { transform: scaleX(1); }
 
-  /* ─── VALUES ──────────────────────────────── */
-  .values { background: var(--section-alt); }
-  .values-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 6rem; align-items: start; margin-top: 4rem;
-  }
-  .values-left p { color: var(--grey); font-size: 1.05rem; line-height: 1.8; margin-top: 1.5rem; }
-  .values-photos {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 6px; margin-top: 2rem;
-    border-radius: 8px; overflow: hidden;
-  }
-  .values-photos img {
-    width: 100%; aspect-ratio: 1; object-fit: cover;
-    filter: saturate(0.8); transition: filter 0.3s; display: block;
-  }
-  .values-photos img:hover { filter: saturate(1.1); }
 
-  .values-cards {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1px; background: var(--border);
-    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
-  }
-  .value-card {
-    background: var(--card); padding: 2.2rem 1.8rem;
-    transition: background 0.3s;
-  }
-  .value-card:hover { background: var(--orange-pale); }
-  .value-card .v-icon { font-size: 1.4rem; margin-bottom: 1rem; }
-  .value-card h4 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.05em; margin-bottom: 0.5rem; color: var(--ink);
-  }
-  .value-card p { font-size: 0.85rem; line-height: 1.65; color: var(--grey); }
 
   /* ─── CTA ─────────────────────────────────── */
-  .cta { position: relative; padding: 10rem 6vw; overflow: hidden; }
+  .cta { padding: 0; display: flex; justify-content: center; background: var(--ink); }
+  .cta-inner {
+    position: relative; overflow: hidden;
+    background: var(--ink);
+    padding: 4rem 6vw;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    width: 100%;
+  }
   .cta-bg {
     position: absolute; inset: 0;
-    background: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80') center/cover no-repeat;
+    background: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1000&q=80') center/cover no-repeat;
+    opacity: 0.15; mix-blend-mode: luminosity;
   }
-  .cta-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(247,244,240,0.95) 35%, rgba(247,244,240,0.7) 100%);
-  }
-  .cta-content { position: relative; z-index: 2; max-width: 700px; }
-  .cta h2 { font-size: clamp(3rem, 7vw, 7rem); margin: 1rem 0 2rem; }
-  .cta p { font-size: 1.05rem; color: var(--grey); margin-bottom: 3rem; line-height: 1.7; }
+  .cta-content { position: relative; z-index: 2; max-width: 480px; }
+  .cta-content .label { color: var(--orange); margin-bottom: 0.5rem; }
+  .cta-content .label::before { background: var(--orange); }
+  .cta-content h2 { font-size: clamp(2rem, 3.5vw, 2.6rem); margin: 0 0 0.5rem 0; color: #fff; }
+  .cta-content p { font-size: 0.95rem; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.6; }
+  .cta-action { position: relative; z-index: 2; flex-shrink: 0; }
 
   .btn {
     display: inline-flex; align-items: center; gap: 12px;
@@ -400,35 +385,35 @@
   .btn:hover { background: var(--orange-light); transform: translateY(-2px); gap: 18px; box-shadow: 0 8px 30px rgba(240,90,26,0.35); }
   .btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; }
 
-  /* ─── FOOTER ──────────────────────────────── */
-  footer {
-    background: var(--ink); padding: 2.5rem 6vw;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem; font-weight: 900; letter-spacing: 0.05em;
-    text-transform: uppercase; color: #fff;
-  }
-  .footer-logo span { color: var(--orange); }
-  footer p { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+
 
   /* ─── UTILS ───────────────────────────────── */
   @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
   /* ─── RESPONSIVE ──────────────────────────── */
   @media (max-width: 900px) {
-    .story-grid, .team-grid, .values-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .diff-grid, .stats-grid, .values-cards { grid-template-columns: 1fr 1fr; }
+    section { padding: 2.5rem 5vw; }
+    .stats { padding: 2.5rem 5vw; }
+    .cta { padding: 0; }
+    .cta-inner { flex-direction: column; align-items: flex-start; padding: 3rem 5vw; gap: 1.5rem; }
+    .cta-action { width: 100%; }
+    .cta-action .btn { justify-content: center; width: 100%; }
+    .vm-panel { min-height: 240px; padding: 2rem 5vw; }
+    .story-grid, .team-grid { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+    .diff-grid, .stats-grid { grid-template-columns: 1fr 1fr; }
     .diff-photos, .timeline-photos, .timeline-row { grid-template-columns: repeat(3, 1fr); }
     .vm-grid { grid-template-columns: 1fr; }
-    .stats-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .stats-inner { grid-template-columns: 1fr; gap: 1.5rem; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 540px) {
+    section { padding: 2rem 5vw; }
+    .stats { padding: 2rem 5vw; }
+    .cta { padding: 2rem 5vw; }
     .diff-grid, .values-cards { grid-template-columns: 1fr; }
     .stats-grid { grid-template-columns: 1fr 1fr; }
     .diff-photos { grid-template-columns: 1fr 1fr; }
+    .stat-item { padding: 1.5rem 1rem; }
   }
 </style>
 </head>
@@ -591,43 +576,23 @@
   </div>
 </section>
 
-<!-- VALUES -->
-<section class="values">
-  <div class="values-grid">
-    <div class="reveal-left">
-      <div class="label">Our Culture</div>
-      <h2>Our <span class="accent">Values</span></h2>
-      <p class="values-left-p">The values we live by shape the experiences we create.</p>
-      <div class="values-photos">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=70" alt="">
-        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=70" alt="">
-        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&q=70" alt="">
-        <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&q=70" alt="">
-      </div>
-    </div>
-    <div class="reveal-right">
-      <div class="values-cards">
-        <div class="value-card"><div class="v-icon">❤️</div><h4>Passion</h4><p>We love what we do and it shows in every experience we create.</p></div>
-        <div class="value-card"><div class="v-icon">💡</div><h4>Innovation</h4><p>We bring fresh ideas and innovative solutions to every challenge.</p></div>
-        <div class="value-card"><div class="v-icon">🤝</div><h4>Accountability</h4><p>We take ownership and are accountable for every commitment.</p></div>
-        <div class="value-card"><div class="v-icon">⭐</div><h4>Excellence</h4><p>We strive for the highest quality in every detail.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- CTA -->
 <section class="cta">
-  <div class="cta-bg"></div>
-  <div class="cta-overlay"></div>
-  <div class="cta-content">
-    <div class="label reveal">Let's Connect</div>
-    <h2 class="reveal" style="transition-delay:0.1s">Let's Create Attention <span class="accent">Together</span></h2>
-    <p class="reveal" style="transition-delay:0.2s">Your brand has a story. We help the world see it.</p>
-    <a href="#" class="btn reveal" style="transition-delay:0.3s">
-      Start Your Campaign
-      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
+  <div class="cta-inner reveal">
+    <div class="cta-bg"></div>
+    <div class="cta-content">
+      <div class="label">Let's Connect</div>
+      <h2>Let's Create Attention <span class="accent">Together</span></h2>
+      <p>Your brand has a story. We help the world see it.</p>
+    </div>
+    <div class="cta-action">
+      <a href="contact.html" class="btn">
+        Start Your Campaign
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 

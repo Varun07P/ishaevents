@@ -424,7 +424,7 @@
     }
 
     .t-logos-track {
-      display: flex; gap: 80px; align-items: center;
+      display: flex; gap: 24px; align-items: center;
       padding: 0 40px;
       animation: marquee 20s linear infinite;
     }
@@ -435,15 +435,23 @@
     }
     
     .t-logo {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2rem; font-weight: 700; letter-spacing: .05em;
-      color: rgba(3,5,8,.25);
-      text-transform: uppercase;
-      transition: color .3s, transform .3s;
-      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      height: 80px;
     }
-    .t-logo:hover {
-      color: var(--orange); transform: scale(1.05);
+    .t-logo img {
+      max-height: 64px;
+      max-width: 180px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      transition: transform 0.3s ease;
+    }
+    .t-logo:hover img {
+      transform: scale(1.08);
     }
     
     /* Scroll Reveal Animations */
@@ -1614,27 +1622,32 @@
   <div class="t-logos-container reveal-up" style="transition-delay: 0.6s;">
     <div class="t-logos-track">
       <!-- Original Set -->
-      <div class="t-logo">SONY</div>
-      <div class="t-logo">SAMSUNG</div>
-      <div class="t-logo">RELIANCE</div>
-      <div class="t-logo">TATA</div>
-      <div class="t-logo">AMAZON</div>
-      <div class="t-logo">GOOGLE</div>
-      <div class="t-logo">NIKE</div>
-      <div class="t-logo">APPLE</div>
+      <div class="t-logo"><img src="images/original-samsung-logo-10.png" alt="Samsung"></div>
+      <div class="t-logo"><img src="images/Nokia-Logo.jpg" alt="Nokia"></div>
+      <div class="t-logo"><img src="images/titan.png" alt="Titan"></div>
+      <div class="t-logo"><img src="images/piaggio-1.svg" alt="Piaggio"></div>
+      <div class="t-logo"><img src="images/vespalogo.jfif" alt="Vespa"></div>
+      <div class="t-logo"><img src="images/syngenta-logo-vector.svg" alt="Syngenta"></div>
+      <div class="t-logo"><img src="images/reliance-trends-logo.png" alt="Reliance Trends"></div>
+      <div class="t-logo"><img src="images/RELIANCE_FOOTPRINT.png" alt="Reliance Footprint"></div>
+      <div class="t-logo"><img src="images/Zee_Kannada_Logo.jpg" alt="Zee Kannada"></div>
+      <div class="t-logo"><img src="images/vishal-mega-mart-logo.avif" alt="Vishal Mega Mart"></div>
+      <div class="t-logo"><img src="images/Podar-International-School-Logo.png" alt="Podar International School"></div>
+      <div class="t-logo"><img src="images/Puravankara_Logo-01.jpg" alt="Puravankara"></div>
       
       <!-- Duplicated Set for Infinite Marquee loop -->
-      <div class="t-logo">SONY</div>
-      <div class="t-logo">SAMSUNG</div>
-      <div class="t-logo">RELIANCE</div>
-      <div class="t-logo">TATA</div>
-      <div class="t-logo">AMAZON</div>
-      <div class="t-logo">GOOGLE</div>
-      <div class="t-logo">NIKE</div>
-      <div class="t-logo">APPLE</div>
-    </div>
-  </div>
-      </div>
+      <div class="t-logo"><img src="images/original-samsung-logo-10.png" alt="Samsung"></div>
+      <div class="t-logo"><img src="images/Nokia-Logo.jpg" alt="Nokia"></div>
+      <div class="t-logo"><img src="images/titan.png" alt="Titan"></div>
+      <div class="t-logo"><img src="images/piaggio-1.svg" alt="Piaggio"></div>
+      <div class="t-logo"><img src="images/vespalogo.jfif" alt="Vespa"></div>
+      <div class="t-logo"><img src="images/syngenta-logo-vector.svg" alt="Syngenta"></div>
+      <div class="t-logo"><img src="images/reliance-trends-logo.png" alt="Reliance Trends"></div>
+      <div class="t-logo"><img src="images/RELIANCE_FOOTPRINT.png" alt="Reliance Footprint"></div>
+      <div class="t-logo"><img src="images/Zee_Kannada_Logo.jpg" alt="Zee Kannada"></div>
+      <div class="t-logo"><img src="images/vishal-mega-mart-logo.avif" alt="Vishal Mega Mart"></div>
+      <div class="t-logo"><img src="images/Podar-International-School-Logo.png" alt="Podar International School"></div>
+      <div class="t-logo"><img src="images/Puravankara_Logo-01.jpg" alt="Puravankara"></div>
     </div>
   </div>
 </section>
