@@ -16,29 +16,27 @@ body{font-family:var(--fn);color:var(--bk);background:var(--wh);overflow-x:hidde
 
 
 /* hero */
-.hero{min-height:auto;height:400px;padding-top:68px;display:grid;grid-template-columns:55% 45%;position:relative;overflow:hidden}
-.hl{padding:36px 52px 32px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
-.h-label{display:flex;align-items:center;gap:12px;font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:16px;opacity:0;transform:translateX(-28px);transition:opacity .6s .3s,transform .6s .3s cubic-bezier(.16,1,.3,1)}
+.hero{padding:140px 24px 80px;background:linear-gradient(135deg,var(--bg) 0%,#fce8da 100%);position:relative;overflow:hidden;text-align:center;display:flex;flex-direction:column;align-items:center}
+.hero::before{content:'';position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(232,80,10,0.08) 0%,transparent 70%);top:-200px;left:-200px;z-index:0;pointer-events:none}
+.hero::after{content:'';position:absolute;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(232,80,10,0.06) 0%,transparent 70%);bottom:-150px;right:-150px;z-index:0;pointer-events:none}
+.hl{display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;width:100%;max-width:800px;margin:0 auto}
+.h-label{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:20px;opacity:0;transform:translateY(16px);transition:opacity .6s .3s,transform .6s .3s cubic-bezier(.16,1,.3,1)}
 .h-label.in{opacity:1;transform:none}
-.h-label::after{content:'';flex:1;max-width:40px;height:2px;background:var(--or)}
-.h-title{font-family:var(--fc);font-size:clamp(30px,3.6vw,52px);font-weight:900;line-height:1;text-transform:uppercase;color:var(--bk);margin-bottom:12px;letter-spacing:-0.5px}
-.h-title .tl{display:block;overflow:hidden}
+.h-label::before,.h-label::after{content:'';width:32px;height:2px;background:var(--or);opacity:0.6}
+.h-title{font-family:var(--fc);font-size:clamp(40px,6vw,72px);font-weight:900;line-height:1;text-transform:uppercase;color:var(--bk);margin-bottom:20px;letter-spacing:-1px}
+.h-title .tl{display:block;overflow:hidden;padding-bottom:4px;margin-bottom:-4px}
 .h-title .ti{display:block;transform:translateY(115%);transition:transform .85s cubic-bezier(.16,1,.3,1)}
 .h-title .ti.in{transform:translateY(0)}
 .h-title .or{color:var(--or)}
-.h-desc{font-size:13px;line-height:1.65;color:#555;max-width:360px;margin-bottom:24px;opacity:0;transform:translateY(18px);transition:opacity .65s .75s,transform .65s .75s cubic-bezier(.16,1,.3,1)}
+.h-desc{font-size:16px;line-height:1.7;color:#555;max-width:540px;margin:0 auto 36px;opacity:0;transform:translateY(18px);transition:opacity .65s .75s,transform .65s .75s cubic-bezier(.16,1,.3,1)}
 .h-desc.in{opacity:1;transform:none}
-.h-stats{display:flex;gap:24px}
-.hst{display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(18px)}
+.h-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:40px}
+.hst{display:flex;align-items:center;gap:14px;opacity:0;transform:translateY(18px);text-align:left}
 .hst.in{opacity:1;transform:none}
-.hst-ic{width:38px;height:38px;border:1.5px solid #ddd;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--or);font-size:14px;transition:all .3s}
+.hst-ic{width:48px;height:48px;background:rgba(232,80,10,0.06);border:1.5px solid rgba(232,80,10,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--or);font-size:18px;transition:all .3s}
 .hst:hover .hst-ic{background:var(--or);color:white;border-color:var(--or);transform:scale(1.1) rotate(10deg)}
-.hst-n{font-size:18px;font-weight:800;line-height:1}
-.hst-l{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gy);margin-top:2px}
-.h-right{position:relative;overflow:hidden}
-.h-img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.6s cubic-bezier(.16,1,.3,1)}
-.h-img.in{transform:scale(1)}
-.h-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(255,255,255,.22),transparent 40%)}
+.hst-n{font-size:26px;font-weight:900;line-height:1;color:var(--bk);letter-spacing:-.5px;font-family:var(--fc)}
+.hst-l{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gy);margin-top:4px}
 
 /* marquee */
 .mband{background:var(--or);padding:13px 0;overflow:hidden;opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s}
@@ -115,10 +113,10 @@ body{font-family:var(--fn);color:var(--bk);background:var(--wh);overflow-x:hidde
 .toast.show{transform:translateY(0) scale(1);opacity:1}
 .toast i{color:#4ade80}
 
-@media(max-width:1024px){.hero{grid-template-columns:1fr;min-height:auto;height:auto}.hl{padding:100px 36px 48px}.h-right{display:none}.cw{grid-template-columns:1fr;padding:60px 24px;gap:48px}}
-@media(max-width:768px){.hl{padding:90px 24px 40px}.h-stats{flex-wrap:wrap;gap:18px}.fr{grid-template-columns:1fr}}
-@media(max-width:600px){.hl{padding:82px 20px 36px}.h-stats{gap:14px}.hst-n{font-size:15px}.msec{height:320px}.mcrd{top:16px;left:16px;min-width:unset;padding:14px 18px}}
-@media(max-width:420px){.hl{padding:76px 16px 28px}.cw{padding:48px 16px;gap:36px}}
+@media(max-width:1024px){.cw{grid-template-columns:1fr;padding:60px 24px;gap:48px}}
+@media(max-width:768px){.h-stats{flex-wrap:wrap;gap:18px}.fr{grid-template-columns:1fr}.hero{padding:120px 20px 60px}}
+@media(max-width:600px){.h-stats{gap:14px;flex-direction:column;align-items:flex-start}.hst-n{font-size:20px}.msec{height:320px}.mcrd{top:16px;left:16px;min-width:unset;padding:14px 18px}}
+@media(max-width:420px){.cw{padding:48px 16px;gap:36px}}
 </style>
 </head>
 <body>
@@ -141,10 +139,6 @@ body{font-family:var(--fn);color:var(--bk);background:var(--wh);overflow-x:hidde
       <div class="hst d2" id="s1"><div class="hst-ic"><i class="fas fa-map-marker-alt"></i></div><div><div class="hst-n" data-t="120" data-s="+">0+</div><div class="hst-l">Cities</div></div></div>
       <div class="hst d3" id="s2"><div class="hst-ic"><i class="fas fa-user-friends"></i></div><div><div class="hst-n" data-t="10" data-s="M+">0M+</div><div class="hst-l">People Reached</div></div></div>
     </div>
-  </div>
-  <div class="h-right">
-    <img class="h-img" id="hi" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1400&q=85&fit=crop&auto=format" alt="Event">
-    <div class="h-ov"></div>
   </div>
 </section>
 
@@ -177,9 +171,9 @@ body{font-family:var(--fn);color:var(--bk);background:var(--wh);overflow-x:hidde
     <div class="s-div"></div>
     <p class="s-dsc">We are always here to connect.</p>
     <div class="cits">
-      <div class="cit rv d1"><div class="cic"><i class="fas fa-phone-alt"></i></div><div><div class="ctit">Call Us</div><div class="cv2">+91 98765 43210</div></div></div>
-      <div class="cit rv d2"><div class="cic"><i class="far fa-envelope"></i></div><div><div class="ctit">Email Us</div><div class="cv2">hello@ishaevents.com</div></div></div>
-      <div class="cit rv d3"><div class="cic"><i class="fas fa-map-marker-alt"></i></div><div><div class="ctit">Visit Us</div><div class="cv2">Isha Events, 123, Creative Hub,<br>Baner Road, Pune - 411045</div></div></div>
+      <div class="cit rv d1"><div class="cic"><i class="fas fa-phone-alt"></i></div><div><div class="ctit">Call Us</div><div class="cv2">+91 91481 53246</div></div></div>
+      <div class="cit rv d2"><div class="cic"><i class="far fa-envelope"></i></div><div><div class="ctit">Email Us</div><div class="cv2">info@ishaevent.in</div></div></div>
+      <div class="cit rv d3"><div class="cic"><i class="fas fa-map-marker-alt"></i></div><div><div class="ctit">Visit Us</div><div class="cv2">Isha Events, indiranagar,Bangalore-karnataka</div></div></div>
       <div class="cit rv d4"><div class="cic"><i class="far fa-clock"></i></div><div><div class="ctit">Working Hours</div><div class="cv2">Mon - Sat: 10:00 AM - 7:00 PM</div></div></div>
     </div>
     <div class="srow rv d5">
@@ -190,14 +184,14 @@ body{font-family:var(--fn);color:var(--bk);background:var(--wh);overflow-x:hidde
 </div>
 </section>
 
-<div class="msec">
+<!-- <div class="msec">
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60498!2d73.7898!3d18.5593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9f815010335%3A0xb4cd2c6af3bd3d62!2sBaner%2C%20Pune!5e0!3m2!1sen!2sin!4v1" allowfullscreen="" loading="lazy" title="Map"></iframe>
   <div class="mcrd" id="mc">
     <div class="mct"><i class="fas fa-map-marker-alt"></i> ISHA EVENTS</div>
     <p>123, Creative Hub,<br>Baner Road, Pune - 411045,<br>Maharashtra, India</p>
     <a href="https://maps.google.com" target="_blank">View on Google Maps <i class="fas fa-arrow-right"></i></a>
   </div>
-</div>
+</div> -->
 
 <!-- FOOTER PLACEHOLDER -->
 <div id="footer-container"></div>
@@ -212,7 +206,6 @@ function boot(){
   setTimeout(()=>document.getElementById('t2').classList.add('in'),540);
   setTimeout(()=>document.getElementById('hd').classList.add('in'),730);
   setTimeout(()=>{['s0','s1','s2'].forEach((id,i)=>setTimeout(()=>{const el=document.getElementById(id);el.classList.add('in');cnt(el.querySelector('.hst-n'));},i*140));},950);
-  document.getElementById('hi').classList.add('in');
   setTimeout(()=>document.getElementById('mb').classList.add('in'),1100);
 }
 function cnt(el){
