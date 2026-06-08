@@ -10,8 +10,22 @@
 <style>
 /* RESET */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:'Barlow',sans-serif;color:#111;background:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+/* AFTER — fixed */
+html {
+  width: 100%; min-height: 100%;
+  background: var(--dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  width: 100%; min-height: 100%;
+  background: var(--dark);
+  font-family: 'Barlow', sans-serif;
+  color: var(--white);
+  position: relative;       
+  overflow-x: hidden;       
+  -webkit-font-smoothing: antialiased;
+}
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:#E8500A;border-radius:2px}
 img{max-width:100%;display:block}
 a{text-decoration:none}
@@ -53,12 +67,21 @@ a{text-decoration:none}
 ═══════════════════════════ */
 .hero{
   position:relative;
-  height:100svh;
-  min-height:560px;
-  max-height:960px;
+  height:65svh;
+  min-height:500px;
+  max-height:700px;
   display:flex;
-  align-items:flex-end;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
   overflow:hidden;
+}
+
+/* Hero Cycler */
+.hero-bg-cycler{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  z-index:0;
 }
 
 /* BG image — fills 100%, no darkening at init, transition from scale */
@@ -67,97 +90,105 @@ a{text-decoration:none}
   width:100%;height:100%;
   object-fit:cover;
   object-position:center 30%;
-  transform:scale(1.04);
-  transition:transform 2.4s var(--ease);
-  z-index:0;
+  transform:scale(1.06);
+  transition:opacity 0.9s ease-in-out, transform 6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity:0;
 }
+.hero-img.active{opacity:1; z-index:1;}
 .hero-img.loaded{transform:scale(1)}
 
-/* Gradient only at bottom so text is readable, top stays bright */
+/* Darken slightly to make centered text readable */
 .hero-grad{
-  position:absolute;inset:0;z-index:1;
-  background:linear-gradient(
-    to top,
-    rgba(0,0,0,.82) 0%,
-    rgba(0,0,0,.42) 40%,
-    rgba(0,0,0,.18) 75%,
-    rgba(0,0,0,.08) 100%
-  );
+  position:absolute;inset:0;z-index:2;
+  background:rgba(0,0,0,0.55);
 }
 
 .hero-content{
-  position:relative;z-index:2;
+  position:relative;z-index:3;
   width:100%;
-  padding:0 0 52px;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-.hero-badge{
-  display:inline-flex;align-items:center;gap:7px;
-  background:rgba(232,80,10,.14);
-  border:1px solid rgba(232,80,10,.35);
-  color:#fff;
-  padding:5px 13px;border-radius:40px;
-  font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
-  margin-bottom:14px;
-  opacity:0;transform:translateY(12px);
-  transition:opacity .45s .1s,transform .45s .1s var(--ease);
+.hero-text-blocks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
 }
-.hero-badge.in{opacity:1;transform:none}
-.hero-badge i{color:var(--or);font-size:7px}
-
-.hero-h1{
-  font-family:var(--fc);
-  font-weight:900;
-  font-size:clamp(42px,7.5vw,88px);
-  text-transform:uppercase;
-  color:#fff;
-  line-height:.93;
-  letter-spacing:-2px;
-  margin-bottom:18px;
+.big-text-hero {
+  font-family: var(--fc);
+  font-weight: 900;
+  font-size: clamp(40px, 8vw, 110px);
+  text-transform: uppercase;
+  color: white;
+  line-height: 1;
+  -webkit-text-stroke: 2px white;
+  -webkit-text-fill-color: white;
+  transition: -webkit-text-fill-color 0.4s ease, transform 0.8s cubic-bezier(.16,1,.3,1), opacity 0.8s ease;
+  cursor: default;
+  margin: 0 3px;
+  opacity: 0;
+  transform: translateY(30px);
 }
-.hero-h1 .ln{display:block;line-height:1.02}
-.hero-h1 .ln span{display:block}
-.hero-h1 .hl{color:#fff}
+.big-text-hero.in {
+  opacity: 1;
+  transform: none;
+}
+.big-text-hero:hover {
+  -webkit-text-fill-color: transparent;
+}
+.big-text-hero.space-word {
+  width: clamp(15px, 3vw, 40px);
+}
+@media(max-width: 991px) {
+  .big-text-hero { -webkit-text-stroke: 1px white; margin: 0 2px; }
+}
 
 .hero-desc{
-  font-size:clamp(13px,1.5vw,15px);
-  color:rgba(255,255,255,.7);
-  line-height:1.65;
-  max-width:500px;
-  margin-bottom:24px;
-  opacity:0;transform:translateY(12px);
-  transition:opacity .55s .72s,transform .55s .72s var(--ease);
+  font-size:clamp(13px,1.4vw,16px);
+  color:rgba(255,255,255,.9);
+  line-height:1.7;
+  max-width:650px;
+  margin:0 auto 34px;
+  opacity:0;transform:translateY(15px);
+  transition:opacity .6s .72s,transform .6s .72s var(--ease);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 .hero-desc.in{opacity:1;transform:none}
 
 .hero-btns{
-  display:flex;align-items:center;gap:10px;
-  opacity:0;transform:translateY(12px);
-  transition:opacity .55s .88s,transform .55s .88s var(--ease);
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  opacity:0;transform:translateY(15px);
+  transition:opacity .6s .85s,transform .6s .85s var(--ease);
 }
 .hero-btns.in{opacity:1;transform:none}
 
 .btn-solid{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--or);color:#fff;
-  padding:12px 22px;border-radius:6px;
-  font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
-  overflow:hidden;position:relative;
-  transition:transform .2s,box-shadow .2s;
+  padding:12px 26px;border-radius:40px;
+  font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  transition:transform .3s,box-shadow .3s;
 }
-.btn-solid::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-110%) skewX(-14deg);transition:transform .38s}
-.btn-solid:hover::before{transform:translateX(110%) skewX(-14deg)}
-.btn-solid:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,80,10,.38)}
+.btn-solid:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,80,10,.4)}
 
 .btn-outline{
   display:inline-flex;align-items:center;gap:8px;
-  border:1.5px solid rgba(255,255,255,.3);
-  color:#fff;background:transparent;
-  padding:11px 20px;border-radius:6px;
-  font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
-  transition:border-color .2s,background .2s;
+  border:1px solid rgba(255,255,255,0.3);
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(5px);
+  color:#fff;
+  padding:12px 26px;border-radius:40px;
+  font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  transition:all .3s;
 }
-.btn-outline:hover{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.08)}
+.btn-outline:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.8);transform:translateY(-2px)}
+
+
 
 /* Scroll hint line */
 .hero-scroll{
@@ -470,24 +501,34 @@ a{text-decoration:none}
 <div id="header-container"></div>
 
 <!-- HERO -->
-<section class="hero">
-  <img class="hero-img" id="himg"
-    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1800&q=85"
-    alt="Isha Events" loading="eager">
+<section class="hero" id="hero-sec">
+  <div class="hero-bg-cycler" id="hero-cycler">
+    <img class="hero-img active" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1800&q=85" alt="Isha Events 1" loading="eager">
+    <img class="hero-img" src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1800&q=85" alt="Isha Events 2" loading="eager">
+    <img class="hero-img" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1800&q=85" alt="Isha Events 3" loading="eager">
+    <img class="hero-img" src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1800&q=85" alt="Isha Events 4" loading="eager">
+    <img class="hero-img" src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1800&q=85" alt="Isha Events 5" loading="eager">
+  </div>
   <div class="hero-grad"></div>
 
   <div class="hero-content">
-    <div class="wrap">
-      <div class="hero-badge" id="hbadge">
-        <i class="fas fa-circle"></i> India's Leading Experiential Agency
+    <div class="wrap" style="padding:0">
+      <div class="hero-text-blocks" id="h1-text">
+        <div class="big-text-hero">O</div>
+        <div class="big-text-hero">U</div>
+        <div class="big-text-hero">R</div>
+        <div class="big-text-hero space-word"></div>
+        <div class="big-text-hero">S</div>
+        <div class="big-text-hero">E</div>
+        <div class="big-text-hero">R</div>
+        <div class="big-text-hero">V</div>
+        <div class="big-text-hero">I</div>
+        <div class="big-text-hero">C</div>
+        <div class="big-text-hero">E</div>
+        <div class="big-text-hero">S</div>
       </div>
-      <h1 class="hero-h1">
-        <span class="ln"><span id="t1">Exceptional <span class="hl">Experiences</span></span></span>
-        <span class="ln"><span id="t2">Flawlessly</span></span>
-        <span class="ln"><span id="t3">Executed</span></span>
-      </h1>
       <p class="hero-desc" id="hdesc">
-        From grand corporate events to bold product launches and live brand activations — Isha Events delivers end-to-end solutions across 120+ cities.
+        From visionary product launches to large-scale corporate festivals, Isha Events provides comprehensive, end-to-end event management. We handle strategy, creative design, and flawless execution to ensure every moment connects deeply with your audience.
       </p>
       <div class="hero-btns" id="hbtns">
         <a href="#services" class="btn-solid">Explore Services <i class="fas fa-arrow-down" style="font-size:10px"></i></a>
@@ -666,22 +707,51 @@ a{text-decoration:none}
 
 <script>
 window.addEventListener('DOMContentLoaded', () => {
+  /* Hero image cycler logic */
+  const heroSec = document.getElementById('hero-sec');
+  const cyclerImgs = document.querySelectorAll('#hero-cycler .hero-img');
+  
+  if (heroSec && cyclerImgs.length > 0) {
+    heroSec.addEventListener('mousemove', (e) => {
+      const rect = heroSec.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const width = rect.width;
+      
+      const numImgs = cyclerImgs.length;
+      const segment = width / numImgs;
+      let activeIndex = Math.floor(x / segment);
+      if (activeIndex >= numImgs) activeIndex = numImgs - 1;
+      if (activeIndex < 0) activeIndex = 0;
+      
+      cyclerImgs.forEach((img, idx) => {
+        if (idx === activeIndex) {
+          img.classList.add('active');
+        } else {
+          img.classList.remove('active');
+        }
+      });
+    });
+  }
+
   /* Hero image: add loaded class immediately so it begins de-scaling */
-  const img = document.getElementById('himg');
-  if (img.complete) img.classList.add('loaded');
-  else img.addEventListener('load', () => img.classList.add('loaded'));
+  const imgs = document.querySelectorAll('#hero-cycler .hero-img');
+  imgs.forEach(img => {
+    if (img.complete) img.classList.add('loaded');
+    else img.addEventListener('load', () => img.classList.add('loaded'));
+  });
 
   /* Hero text stagger */
   const delay = (id, ms) => setTimeout(() => {
     const el = document.getElementById(id);
     if (el) el.classList.add('in');
   }, ms);
-  delay('hbadge', 80);
-  delay('t1', 260);
-  delay('t2', 420);
-  delay('t3', 570);
-  delay('hdesc', 720);
-  delay('hbtns', 860);
+  
+  const letters = document.querySelectorAll('.big-text-hero');
+  letters.forEach((l, i) => {
+    setTimeout(() => l.classList.add('in'), 150 + (i * 50));
+  });
+  delay('hdesc', 750);
+  delay('hbtns', 850);
 });
 
 /* Scroll reveal */

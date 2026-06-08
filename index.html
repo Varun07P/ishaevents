@@ -969,11 +969,11 @@
     
     .cinematic-panel {
       position: relative !important;
-      width: 31vw !important; /* Premium width for 3 visible columns */
-      height: 420px !important; /* Attractive, immersive portrait proportion */
+      width: 31vw !important; 
+      height: 420px !important; 
       max-width: 480px !important;
       min-width: 320px !important;
-      border-radius: 0 !important; /* Sharp corners */
+      border-radius: 0 !important; 
       overflow: hidden !important; 
       background: #111 !important; 
       flex-shrink: 0 !important;
@@ -1270,7 +1270,7 @@
       color: #ffffff !important;
       background: transparent !important;
       padding: 14px 28px !important;
-      border-radius: 8px !important; /* Rectangular corners */
+      border-radius: 8px !important; 
       border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
       cursor: pointer !important;
       display: inline-flex !important;
@@ -1313,397 +1313,671 @@
       }
     }
     
-    /* ════ FEATURED PROJECTS ACCORDION ════ */
-    .sec-projects { height: 250vh; background: #0a0a0a; padding: 0; position: relative; }
-    .proj-sticky-wrap { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 52px; overflow: hidden; }
-    .proj-title { font-family: var(--fc, 'Barlow Condensed'); font-size: clamp(36px, 4vw, 56px); font-weight: 900; text-transform: uppercase; color: #fff; margin-bottom: 50px; text-align: center; letter-spacing: 1px; }
-    .proj-acc { display: flex; width: 100%; height: 65vh; min-height: 450px; gap: 16px; max-width: 1400px; margin: 0 auto; }
-    .proj-card { position: relative; flex: 1; border-radius: 16px; overflow: hidden; cursor: pointer; transition: flex 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-    .proj-card.active { flex: 5; box-shadow: 0 10px 40px rgba(232,80,10,0.2); }
-    .proj-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-    .proj-card.active .proj-img { transform: scale(1.05); }
-    .proj-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 50%, transparent 100%); transition: background 0.7s; }
-    .proj-card.active .proj-overlay { background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%); }
-    .proj-vert { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); font-size: 26px; font-weight: 800; color: white; writing-mode: vertical-rl; text-orientation: mixed; transform: translateX(-50%) rotate(180deg); opacity: 1; transition: opacity 0.4s; white-space: nowrap; font-family: var(--fn, 'Barlow'); letter-spacing: 2px; text-transform: uppercase; text-shadow: 0 4px 12px rgba(0,0,0,0.8); }
-    .proj-horiz { position: absolute; bottom: 40px; left: 40px; right: 40px; opacity: 0; transform: translateY(30px); transition: opacity 0.5s, transform 0.5s; pointer-events: none; }
-    .proj-card.active .proj-vert { opacity: 0; }
-    .proj-card.active .proj-horiz { opacity: 1; transform: translateY(0); transition-delay: 0.3s; pointer-events: auto; }
-    .ph-tag { font-size: 12px; font-weight: 800; letter-spacing: 3px; color: #E8500A; text-transform: uppercase; margin-bottom: 12px; display: block; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
-    .ph-title { font-size: 42px; font-weight: 900; color: white; margin-bottom: 16px; line-height: 1.1; font-family: var(--fc, 'Barlow Condensed'); letter-spacing: 0px; text-transform: uppercase; text-shadow: 0 4px 16px rgba(0,0,0,0.8); }
-    .ph-desc { font-size: 16px; color: rgba(255,255,255,0.95); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-family: var(--fn, 'Barlow'); text-shadow: 0 2px 8px rgba(0,0,0,0.8); max-width: 500px; }
-
-    @media (max-width: 960px) {
-      .proj-acc { height: 450px; }
-      .ph-title { font-size: 28px; }
-      .proj-vert { font-size: 18px; }
-    }
-    @media (max-width: 768px) {
-      .sec-projects { height: auto; padding: 60px 24px; }
-      .proj-sticky-wrap { position: relative; height: auto; display: block; padding: 0; overflow: visible; }
-      .proj-acc { flex-direction: column; height: 800px; gap: 8px; }
-      .proj-card { flex: 1; }
-      .proj-card.active { flex: 3; }
-      .proj-vert { writing-mode: horizontal-tb; transform: none; bottom: 20px; left: 24px; text-align: left; width: auto; font-size: 16px; }
-      .proj-horiz { bottom: 20px; left: 24px; right: 24px; }
-      .ph-title { font-size: 24px; }
-      .ph-desc { font-size: 13px; -webkit-line-clamp: 2; }
-    }
-
-    /* ════ TESTIMONIALS SECTION ════ */
-    .testimonials-section {
-      background: #fafafa !important;
-      padding: 60px 0 !important;
+    /* ════ FEATURED PROJECTS SHOWCASE — LIGHT THEME ════ */
+    .sec-projects {
+      background: #f7f4f0 !important;
+      padding: 50px 0 !important;
       position: relative !important;
-      z-index: 10 !important;
+      overflow: hidden !important;
       font-family: 'Barlow', sans-serif !important;
-      border-top: 1px solid rgba(0,0,0,0.05) !important;
-      border-bottom: 1px solid rgba(0,0,0,0.05) !important;
     }
-    .testi-wrapper {
-      max-width: 1000px !important;
+
+    /* Decorative background layers */
+    .sec-projects::before {
+      content: '' !important;
+      position: absolute !important;
+      inset: 0 !important;
+      background:
+        radial-gradient(ellipse 70% 60% at 5% 10%, rgba(232,73,15,0.055) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 50% at 95% 90%, rgba(255,140,60,0.045) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 35% at 50% 0%, rgba(255,180,100,0.04) 0%, transparent 55%) !important;
+      pointer-events: none !important;
+      z-index: 0 !important;
+    }
+    /* Subtle dot/noise grid overlay for paper texture */
+    .sec-projects::after {
+      content: '' !important;
+      position: absolute !important;
+      inset: 0 !important;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px) !important;
+      background-size: 28px 28px !important;
+      pointer-events: none !important;
+      z-index: 0 !important;
+      opacity: 0.55 !important;
+    }
+
+    .projects-container {
+      max-width: 1300px !important;
       width: 90% !important;
       margin: 0 auto !important;
       display: flex !important;
-      gap: 40px !important;
-      align-items: flex-start !important;
+      flex-direction: column !important;
+      gap: 24px !important;
+      position: relative !important;
+      z-index: 2 !important;
     }
-    .testi-left {
-      flex: 0 0 25% !important;
+
+    .projects-top {
       display: flex !important;
       flex-direction: column !important;
-      align-items: flex-start !important;
-      padding-top: 10px !important;
+      gap: 0 !important;
     }
-    .testi-title {
-      font-size: 2.2rem !important;
-      color: #111 !important;
+
+    .projects-tag {
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.22em !important;
+      color: #ff5a00 !important;
+      text-transform: uppercase !important;
+    }
+
+    .projects-main-title {
+      font-family: 'Oswald', sans-serif !important;
+      font-size: clamp(1.9rem, 3.8vw, 3.2rem) !important;
+      font-weight: 700 !important;
       line-height: 1.1 !important;
-      margin: 0 0 20px 0 !important;
-      font-weight: 600 !important;
-      letter-spacing: -0.02em !important;
+      color: #111111 !important;
+      margin: 0 !important;
+      text-transform: uppercase !important;
+      letter-spacing: -0.01em !important;
     }
-    .testi-btn {
+
+    /* 3-column desktop grid: content | tilted image | thumbnails */
+    .projects-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1.5fr 120px !important;
+      gap: 24px !important;
+      align-items: center !important;
+    }
+
+    .proj-left-col {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      min-height: auto !important;
+    }
+
+    .proj-content-wrapper {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.4s ease, transform 0.4s ease !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+    .proj-content-wrapper.fade-out {
+      opacity: 0 !important;
+      transform: translateY(12px) !important;
+    }
+
+    .proj-brand-header {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 4px !important;
+    }
+
+    .proj-brand-name {
+      font-family: 'Oswald', sans-serif !important;
+      font-size: clamp(2rem, 3.8vw, 3.2rem) !important;
+      font-weight: 700 !important;
+      color: #111111 !important;
+      margin: 0 !important;
+      line-height: 1 !important;
+      text-transform: uppercase !important;
+    }
+
+    .proj-brand-sub {
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.16em !important;
+      color: #ff5a00 !important;
+      text-transform: uppercase !important;
+    }
+
+    .proj-brand-desc {
+      font-size: clamp(0.82rem, 1.2vw, 0.94rem) !important;
+      color: #555555 !important;
+      line-height: 1.65 !important;
+      margin: 0 !important;
+      max-width: 360px !important;
+    }
+
+    .proj-view-btn {
       display: inline-flex !important;
       align-items: center !important;
       gap: 8px !important;
-      padding: 10px 22px !important;
-      border: 1.5px solid rgba(0, 0, 0, 0.15) !important;
-      color: #111 !important;
+      color: #111111 !important;
       text-decoration: none !important;
       font-size: 0.82rem !important;
-      font-weight: 600 !important;
-      transition: all 0.3s cubic-bezier(.16,1,.3,1) !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.06em !important;
+      text-transform: uppercase !important;
+      transition: all 0.3s ease !important;
+      width: fit-content !important;
+      border-bottom: 2px solid rgba(0,0,0,0.15) !important;
+      padding-bottom: 3px !important;
+    }
+    .proj-view-btn:hover {
+      color: #ff5a00 !important;
+      border-bottom-color: #ff5a00 !important;
+    }
+    .proj-view-btn svg { transition: transform 0.3s ease !important; }
+    .proj-view-btn:hover svg { transform: translate(3px,-3px) !important; }
+
+    /* Center: tilted image carousel */
+    .proj-center-col {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      overflow: hidden !important;
+      width: 100% !important;
+    }
+
+    .proj-image-tilt-container {
+      width: 100% !important;
+      overflow: hidden !important;
+      padding: 16px 0 !important;
+      position: relative !important;
+    }
+
+    .proj-image-track {
+      display: flex !important;
+      width: 400% !important;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .proj-slide {
+      width: 25% !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      padding: 0 10px !important;
+    }
+
+    .proj-image-frame {
+      width: 100% !important;
+      aspect-ratio: 16/10 !important;
+      background: #e8e4df !important;
+      border: 8px solid #ffffff !important;
+      box-shadow: 0 20px 56px rgba(0,0,0,0.14), 0 6px 20px rgba(0,0,0,0.08) !important;
+      transform: rotate(-3deg) skewY(-0.4deg) !important;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      overflow: hidden !important;
       border-radius: 6px !important;
     }
-    .testi-btn:hover {
-      background: #ff5a00 !important;
+    .proj-image-frame img {
+      width: 100% !important; height: 100% !important;
+      object-fit: cover !important;
+      transition: transform 1.2s cubic-bezier(0.16,1,0.3,1) !important;
+    }
+    .proj-slide.active .proj-image-frame {
+      transform: rotate(-3deg) skewY(-0.4deg) scale(1.02) !important;
+      box-shadow: 0 30px 70px rgba(255,90,0,0.14), 0 16px 40px rgba(0,0,0,0.12) !important;
+    }
+    .proj-image-tilt-container:hover .proj-slide.active .proj-image-frame {
+      transform: rotate(-1.5deg) scale(1.04) !important;
+      box-shadow: 0 36px 80px rgba(255,90,0,0.18), 0 18px 44px rgba(0,0,0,0.13) !important;
+    }
+    .proj-image-tilt-container:hover .proj-slide.active .proj-image-frame img {
+      transform: scale(1.04) !important;
+    }
+
+    /* Right: vertical thumbnails */
+    .proj-right-col {
+      display: flex !important;
+      justify-content: flex-end !important;
+      align-items: center !important;
+    }
+
+    .proj-thumbnails-stack {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 8px !important;
+    }
+
+    .proj-thumb-card {
+      width: 100px !important;
+      aspect-ratio: 16/10 !important;
+      border-radius: 6px !important;
+      overflow: hidden !important;
+      position: relative !important;
+      cursor: pointer !important;
+      border: 2px solid rgba(0,0,0,0.08) !important;
+      opacity: 0.5 !important;
+      filter: grayscale(35%) !important;
+      transition: all 0.3s ease !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+    }
+    .proj-thumb-card img {
+      width: 100% !important; height: 100% !important; object-fit: cover !important;
+    }
+    .proj-thumb-card .thumb-overlay {
+      position: absolute !important; inset: 0 !important;
+      background: rgba(255,255,255,0.35) !important; transition: all 0.3s ease !important;
+    }
+    .proj-thumb-card:hover {
+      opacity: 0.85 !important; filter: none !important; transform: translateX(-3px) !important;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1) !important;
+    }
+    .proj-thumb-card:hover .thumb-overlay { background: rgba(255,255,255,0.1) !important; }
+    .proj-thumb-card.active {
+      opacity: 1 !important; filter: none !important;
       border-color: #ff5a00 !important;
-      color: #fff !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 6px 16px rgba(255,90,0,.2) !important;
+      box-shadow: 0 0 0 3px rgba(255,90,0,0.2), 0 4px 16px rgba(255,90,0,0.15) !important;
+      transform: translateX(-6px) !important;
     }
-    .testi-right {
-      flex: 1 !important;
+    .proj-thumb-card.active .thumb-overlay { background: transparent !important; }
+
+
+    /* ── Tablet (≤ 1024px): 2-col, thumbs go below ── */
+    @media (max-width: 1024px) {
+      .sec-projects { padding: 40px 0 !important; }
+      .projects-container { gap: 20px !important; }
+      .projects-grid {
+        grid-template-columns: 1fr 1.4fr !important;
+        gap: 20px !important;
+      }
+      .proj-right-col {
+        grid-column: 1 / -1 !important;
+        justify-content: center !important;
+      }
+      .proj-thumbnails-stack {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+      }
+      .proj-thumb-card {
+        width: 90px !important;
+        transform: none !important;
+      }
+      .proj-thumb-card.active { transform: translateY(-4px) !important; }
+      .proj-thumb-card:hover { transform: translateY(-2px) !important; }
+      .proj-left-col { min-height: auto !important; }
+      .proj-brand-desc { max-width: 100% !important; }
+    }
+
+    /* ── Mobile (≤ 768px): full single column ── */
+    @media (max-width: 768px) {
+      .sec-projects { padding: 36px 0 !important; }
+      .projects-container { width: 90% !important; gap: 16px !important; }
+      .projects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+      .projects-main-title { font-size: clamp(1.5rem, 6vw, 2.2rem) !important; }
+      .proj-center-col { order: 1 !important; }
+      .proj-left-col { order: 2 !important; min-height: auto !important; }
+      .proj-right-col {
+        order: 3 !important;
+        grid-column: auto !important;
+        justify-content: center !important;
+      }
+      .proj-thumbnails-stack {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+      }
+      .proj-thumb-card {
+        width: 76px !important;
+        transform: none !important;
+      }
+      .proj-thumb-card.active {
+        transform: translateY(-3px) !important;
+        border-color: #ff5a00 !important;
+        box-shadow: 0 0 0 2px rgba(255,90,0,0.2) !important;
+      }
+      .proj-thumb-card:hover { transform: translateY(-1px) !important; }
+      .proj-image-frame {
+        transform: rotate(-2deg) skewY(-0.3deg) !important;
+        border-width: 6px !important;
+      }
+      .proj-slide.active .proj-image-frame {
+        transform: rotate(-2deg) skewY(-0.3deg) scale(1.02) !important;
+      }
+      .proj-brand-name { font-size: clamp(1.5rem, 7vw, 2.2rem) !important; }
+      .proj-brand-desc { font-size: 0.88rem !important; max-width: 100% !important; }
+      .proj-content-wrapper { gap: 16px !important; }
+    }
+
+    /* ── Tiny (≤ 480px) ── */
+    @media (max-width: 480px) {
+      .sec-projects { padding: 30px 0 !important; }
+      .projects-container { width: 92% !important; gap: 12px !important; }
+      .projects-main-title { font-size: clamp(1.3rem, 7vw, 1.9rem) !important; }
+      .proj-brand-name { font-size: clamp(1.3rem, 8vw, 1.8rem) !important; }
+      .proj-brand-sub { font-size: 0.65rem !important; }
+      .proj-brand-desc { font-size: 0.83rem !important; line-height: 1.6 !important; }
+      .proj-view-btn { font-size: 0.75rem !important; }
+      .proj-thumb-card { width: 64px !important; }
+      .proj-image-frame { border-width: 5px !important; }
+    }
+
+
+    /* ════ TESTIMONIALS SECTION (PREMIUM LIGHT CRAFTED) ════ */
+    .testimonials-section {
+      background: #fdfcfb !important;
+      padding: 50px 0 !important;
       position: relative !important;
+      z-index: 10 !important;
+      font-family: 'Barlow', sans-serif !important;
+      border-top: 1px solid rgba(0,0,0,0.03) !important;
+      border-bottom: 1px solid rgba(0,0,0,0.03) !important;
+      overflow: hidden !important;
     }
-    .testi-slider-container {
-      width: 100% !important;
-      position: relative !important;
+
+    .testi-bg-glow-1 {
+      position: absolute !important; top: -200px !important; left: -200px !important;
+      width: 500px !important; height: 500px !important; border-radius: 50% !important;
+      background: radial-gradient(circle, rgba(232, 73, 15, 0.03) 0%, transparent 70%) !important;
+      filter: blur(120px) !important; pointer-events: none !important; z-index: 1 !important;
     }
-    .testi-track {
+    .testi-bg-glow-2 {
+      position: absolute !important; bottom: -200px !important; right: -200px !important;
+      width: 600px !important; height: 600px !important; border-radius: 50% !important;
+      background: radial-gradient(circle, rgba(232, 73, 15, 0.02) 0%, transparent 70%) !important;
+      filter: blur(140px) !important; pointer-events: none !important; z-index: 1 !important;
+    }
+
+    /* Desktop: narrow heading column | wide card column */
+    .testi-wrapper {
+      max-width: 1200px !important;
+      width: 90% !important;
+      margin: 0 auto !important;
       display: grid !important;
-      width: 100% !important;
+      grid-template-columns: 280px 1fr !important;
+      gap: 32px !important;
+      align-items: center !important;
+      position: relative !important;
+      z-index: 2 !important;
     }
+
+    .testi-left {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 12px !important;
+    }
+
+    .testi-tag {
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.22em !important;
+      color: #ff5a00 !important;
+      text-transform: uppercase !important;
+    }
+
+    .testi-title {
+      font-family: 'Oswald', sans-serif !important;
+      font-size: clamp(1.8rem, 2.8vw, 2.6rem) !important;
+      color: #111111 !important;
+      line-height: 1.12 !important;
+      margin: 0 !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: -0.01em !important;
+    }
+
+    .testi-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      padding: 11px 20px !important;
+      background: transparent !important;
+      border: 1.5px solid rgba(0, 0, 0, 0.15) !important;
+      color: #111111 !important;
+      text-decoration: none !important;
+      font-size: 0.78rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.06em !important;
+      transition: all 0.3s cubic-bezier(.16,1,.3,1) !important;
+      border-radius: 8px !important;
+      text-transform: uppercase !important;
+    }
+    .testi-btn:hover {
+      background: #ff5a00 !important; border-color: #ff5a00 !important;
+      color: #ffffff !important; transform: translateY(-2px) !important;
+      box-shadow: 0 8px 20px rgba(255, 90, 0, 0.2) !important;
+    }
+    .testi-btn svg { transition: transform 0.3s ease !important; }
+    .testi-btn:hover svg { transform: translateX(4px) !important; }
+
+    .testi-right { position: relative !important; width: 100% !important; }
+    .testi-slider-container { width: 100% !important; position: relative !important; }
+    .testi-track { display: grid !important; width: 100% !important; }
+
+    /* Card: horizontal — logo LEFT, text RIGHT */
     .testi-slide {
       grid-area: 1/1 !important;
       width: 100% !important;
       display: flex !important;
-      gap: 30px !important;
+      flex-direction: row !important;
+      gap: 24px !important;
+      align-items: flex-start !important;
+      background: #ffffff !important;
+      border: 1px solid rgba(0,0,0,0.05) !important;
+      border-radius: 20px !important;
+      padding: 24px !important;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.05), 0 2px 12px rgba(0,0,0,0.03) !important;
       pointer-events: none !important;
+      opacity: 0 !important;
+      transform: translateY(24px) scale(0.98) !important;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
       z-index: 1 !important;
     }
     .testi-slide.is-active {
       pointer-events: auto !important;
+      opacity: 1 !important;
+      transform: translateY(0) scale(1) !important;
       z-index: 2 !important;
     }
-    
-    /* Fade up effect */
-    .testi-slide .testi-img-col {
-      opacity: 0 !important;
-      transform: translate(-30px, 30px) !important;
-      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    .testi-slide .testi-content-col {
-      opacity: 0 !important;
-      transform: translateY(30px) !important;
-      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    .testi-slide.is-active .testi-img-col {
-      opacity: 1 !important;
-      transform: translate(0, 0) !important;
-      transition-delay: 0.1s !important;
-    }
-    .testi-slide.is-active .testi-content-col {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-      transition-delay: 0.2s !important;
-    }
-    
+
+    /* Left badge column */
     .testi-img-col {
-      flex: 0 0 28% !important;
+      flex: 0 0 auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 0 !important;
       position: relative !important;
     }
+
     .testi-logo-box {
-      width: 100% !important;
-      aspect-ratio: 1/1 !important;
+      width: 88px !important;
+      height: 88px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
       text-align: center !important;
-      border-radius: 12px !important;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1) !important;
+      border-radius: 14px !important;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04) !important;
+      border: 1px solid rgba(0,0,0,0.06) !important;
       transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s ease !important;
+      flex-shrink: 0 !important;
     }
     .testi-slide.is-active .testi-logo-box:hover {
-      transform: scale(1.04) rotate(-1deg) !important;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.14) !important;
+      transform: scale(1.05) rotate(-2deg) !important;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
     }
+
     .t-logo-text {
-      color: #000 !important;
       font-weight: 800 !important;
-      font-size: 1.2rem !important;
+      font-family: 'Oswald', sans-serif !important;
+      font-size: 1.05rem !important;
       line-height: 1.1 !important;
+      letter-spacing: 0.5px !important;
+      text-transform: uppercase !important;
     }
     .t-logo-text small {
-      font-size: 0.8rem !important;
-      font-weight: 400 !important;
+      font-size: 0.62rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 1px !important;
+      display: block !important;
+      margin-top: 3px !important;
+      opacity: 0.75 !important;
     }
+
     .testi-quote-icon {
-      position: absolute !important;
-      top: -15px !important;
-      left: -20px !important;
-      font-family: 'Playfair Display', serif !important;
-      font-size: 6rem !important;
-      color: rgba(0, 0, 0, 0.05) !important;
+      font-family: 'Georgia', serif !important;
+      font-size: 5rem !important;
+      color: rgba(255, 90, 0, 0.07) !important;
       line-height: 1 !important;
-      z-index: 2 !important;
+      pointer-events: none !important;
+      margin-bottom: 8px !important;
+      align-self: flex-start !important;
     }
+
+    /* Right text column */
     .testi-content-col {
       flex: 1 !important;
-      padding-top: 5px !important;
+      min-width: 0 !important;
       display: flex !important;
       flex-direction: column !important;
+      gap: 10px !important;
     }
     .testi-content-col h3 {
-      font-size: 1.6rem !important;
-      color: #111 !important;
-      margin: 0 0 6px 0 !important;
-      font-weight: 600 !important;
-      letter-spacing: -0.02em !important;
+      font-family: 'Oswald', sans-serif !important;
+      font-size: clamp(1.25rem, 2.2vw, 1.6rem) !important;
+      color: #111111 !important;
+      margin: 0 !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.01em !important;
+      text-transform: uppercase !important;
+      line-height: 1.1 !important;
     }
     .t-sub {
-      font-size: 0.7rem !important;
+      font-size: 0.68rem !important;
       color: #ff5a00 !important;
-      letter-spacing: 0.1em !important;
-      margin: 0 0 15px 0 !important;
+      letter-spacing: 0.15em !important;
+      margin: 0 !important;
       text-transform: uppercase !important;
-      font-weight: 700 !important;
+      font-weight: 800 !important;
     }
     .t-desc {
-      font-size: 0.92rem !important;
-      color: #444 !important;
-      line-height: 1.65 !important;
+      font-size: clamp(0.88rem, 1.2vw, 1rem) !important;
+      color: #555555 !important;
+      line-height: 1.7 !important;
       margin: 0 !important;
+      font-style: italic !important;
+      font-weight: 400 !important;
     }
+
+    /* Nav */
     .testi-nav-row {
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
-      margin-top: 25px !important;
-      padding-left: calc(28% + 30px) !important;
+      margin-top: 16px !important;
       position: relative !important;
       z-index: 10 !important;
     }
-    .testi-controls {
-      display: flex !important;
-      gap: 10px !important;
-    }
-    .testi-dots {
-      display: flex !important;
-      gap: 6px !important;
-      align-items: center !important;
-    }
+    .testi-controls { display: flex !important; gap: 10px !important; }
+    .testi-dots { display: flex !important; gap: 8px !important; align-items: center !important; }
     .testi-dot {
-      width: 8px !important; height: 8px !important;
-      border-radius: 50% !important;
-      background: rgba(0,0,0,.12) !important;
-      transition: all .35s cubic-bezier(.16,1,.3,1) !important;
-      cursor: pointer !important;
+      width: 8px !important; height: 8px !important; border-radius: 50% !important;
+      background: rgba(0,0,0,0.1) !important;
+      transition: all .35s cubic-bezier(.16,1,.3,1) !important; cursor: pointer !important;
     }
     .testi-dot.active {
-      width: 24px !important;
-      border-radius: 4px !important;
-      background: #ff5a00 !important;
+      width: 26px !important; border-radius: 4px !important; background: #ff5a00 !important;
     }
     .t-btn {
-      width: 38px !important;
-      height: 38px !important;
-      border-radius: 50% !important;
-      border: 1.5px solid rgba(0, 0, 0, 0.1) !important;
-      background: #fff !important;
-      color: #111 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      cursor: pointer !important;
+      width: 40px !important; height: 40px !important; border-radius: 50% !important;
+      border: 1.5px solid rgba(0,0,0,0.1) !important; background: transparent !important;
+      color: #111111 !important; display: flex !important; align-items: center !important;
+      justify-content: center !important; cursor: pointer !important;
       transition: all 0.3s cubic-bezier(.16,1,.3,1) !important;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
     }
     .t-btn:hover {
-      border-color: #ff5a00 !important;
-      background: #ff5a00 !important;
-      color: #fff !important;
-      transform: scale(1.08) !important;
+      border-color: #ff5a00 !important; background: #ff5a00 !important;
+      color: #ffffff !important; transform: scale(1.08) !important;
+      box-shadow: 0 4px 14px rgba(255,90,0,0.2) !important;
     }
     .t-btn:active { transform: scale(.95) !important; }
     .t-btn svg {
-      width: 15px !important;
-      height: 15px !important;
-      stroke: currentColor !important;
-      stroke-width: 1.5 !important;
-      fill: none !important;
-    }
-    @media (max-width: 991px) {
-      .testi-wrapper {
-        flex-direction: column !important;
-        gap: 24px !important;
-      }
-      .testi-left {
-        flex: 1 !important;
-        width: 100% !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-      }
-      .testi-title {
-        font-size: 1.8rem !important;
-        margin-bottom: 0 !important;
-      }
-      .testi-slide {
-        flex-direction: column !important;
-        gap: 18px !important;
-      }
-      .testi-img-col {
-        display: flex !important;
-        gap: 18px !important;
-        align-items: center !important;
-        width: 100% !important;
-      }
-      .testi-logo-box {
-        width: 80px !important;
-        height: 80px !important;
-        aspect-ratio: auto !important;
-        flex-shrink: 0 !important;
-        border-radius: 14px !important;
-      }
-      .testi-quote-icon { display: none !important; }
-      .testi-content-col h3 {
-        font-size: 1.2rem !important;
-        margin-bottom: 2px !important;
-      }
-      .t-sub { margin-bottom: 0 !important; }
-      .testi-content-col {
-        padding-top: 0 !important;
-      }
-      .testi-nav-row {
-        padding-left: 0 !important;
-        margin-top: 20px !important;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .testimonials-section {
-        padding: 48px 0 !important;
-      }
-      .testi-wrapper {
-        width: 92% !important;
-        gap: 20px !important;
-      }
-      .testi-slide {
-        background: #fff !important;
-        border-radius: 16px !important;
-        padding: 24px 20px !important;
-        box-shadow: 0 4px 20px rgba(0,0,0,.05) !important;
-        border: 1px solid rgba(0,0,0,.04) !important;
-        gap: 14px !important;
-      }
-      .testi-img-col {
-        width: 100% !important;
-      }
-      .t-logo-text { font-size: 0.9rem !important; }
-      .t-logo-text small { font-size: 0.65rem !important; }
-      .t-desc {
-        font-size: 0.85rem !important;
-        line-height: 1.6 !important;
-      }
+      width: 16px !important; height: 16px !important;
+      stroke: currentColor !important; stroke-width: 2 !important; fill: none !important;
     }
 
-    @media (max-width: 480px) {
-      .testimonials-section {
-        padding: 36px 0 !important;
-      }
+    /* ── Tablet (≤ 1100px): Slightly tighten grid ── */
+    @media (max-width: 1100px) {
       .testi-wrapper {
-        width: 94% !important;
-        gap: 16px !important;
+        grid-template-columns: 240px 1fr !important;
+        gap: 24px !important;
+        width: 92% !important;
+      }
+      .testi-slide { padding: 20px !important; gap: 18px !important; }
+      .testi-content-col h3 { font-size: 1.35rem !important; }
+    }
+
+    /* ── Stacked layout (≤ 900px) ── */
+    @media (max-width: 900px) {
+      .testimonials-section { padding: 40px 0 !important; }
+      .testi-wrapper {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        width: 92% !important;
       }
       .testi-left {
+        align-items: flex-start !important;
+        text-align: left !important;
+        gap: 10px !important;
+        padding-right: 0 !important;
+      }
+      .testi-title { font-size: 2.2rem !important; }
+      /* Keep card horizontal on tablet */
+      .testi-slide {
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        padding: 20px !important;
+        gap: 16px !important;
+      }
+      .testi-logo-box { width: 76px !important; height: 76px !important; }
+      .testi-quote-icon { font-size: 3.5rem !important; }
+    }
+
+    /* ── Mobile (≤ 640px): Stack card vertically ── */
+    @media (max-width: 640px) {
+      .testimonials-section { padding: 36px 0 !important; }
+      .testi-wrapper { width: 90% !important; gap: 16px !important; }
+      .testi-title { font-size: 1.9rem !important; }
+      .testi-btn { font-size: 0.72rem !important; padding: 10px 16px !important; }
+      .testi-slide {
         flex-direction: column !important;
         align-items: flex-start !important;
-        gap: 10px !important;
+        padding: 16px !important;
+        gap: 12px !important;
+        border-radius: 16px !important;
       }
-      .testi-title {
-        font-size: 1.4rem !important;
-      }
-      .testi-btn {
+      .testi-img-col {
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 14px !important;
         width: 100% !important;
-        text-align: center !important;
-        justify-content: center !important;
-        padding: 10px 16px !important;
       }
-      .testi-slide {
-        padding: 18px 16px !important;
-        border-radius: 14px !important;
+      .testi-quote-icon {
+        font-size: 2.8rem !important;
+        margin-bottom: 0 !important;
       }
-      .testi-logo-box {
-        width: 60px !important;
-        height: 60px !important;
-        border-radius: 12px !important;
-      }
-      .testi-content-col h3 {
-        font-size: 1.05rem !important;
-      }
-      .t-sub {
-        font-size: 0.6rem !important;
-      }
-      .t-desc {
-        font-size: 0.82rem !important;
-        line-height: 1.55 !important;
-        display: -webkit-box !important;
-        -webkit-line-clamp: 4 !important;
-        -webkit-box-orient: vertical !important;
-        overflow: hidden !important;
-      }
-      .testi-nav-row {
-        margin-top: 14px !important;
-      }
-      .t-btn {
-        width: 34px !important;
-        height: 34px !important;
-      }
-      .t-btn svg {
-        width: 13px !important;
-        height: 13px !important;
-      }
+      .testi-logo-box { width: 64px !important; height: 64px !important; border-radius: 10px !important; }
+      .t-logo-text { font-size: 0.9rem !important; }
+      .t-logo-text small { font-size: 0.56rem !important; }
+      .testi-content-col h3 { font-size: 1.2rem !important; }
+      .t-desc { font-size: 0.88rem !important; line-height: 1.65 !important; }
+      .testi-nav-row { margin-top: 14px !important; }
+      .t-btn { width: 36px !important; height: 36px !important; }
+    }
+
+    /* ── Tiny (≤ 400px) ── */
+    @media (max-width: 400px) {
+      .testi-title { font-size: 1.65rem !important; }
+      .testi-slide { padding: 14px 12px !important; }
+      .testi-logo-box { width: 56px !important; height: 56px !important; }
+      .testi-content-col h3 { font-size: 1.1rem !important; }
+      .t-desc { font-size: 0.82rem !important; }
     }
 
 
@@ -1995,64 +2269,76 @@
 
 <!-- ════ TESTIMONIALS SECTION ════ -->
 <section class="testimonials-section sr">
+  <div class="testi-bg-glow-1"></div>
+  <div class="testi-bg-glow-2"></div>
+
   <div class="testi-wrapper">
-    <!-- Left Column -->
+    <!-- Left: Heading column -->
     <div class="testi-left">
-      <h2 class="testi-title">Client<br>Testimonials</h2>
-      <a href="gallery.html" class="testi-btn">See Our Work →</a>
+      <div class="testi-tag">← TESTIMONIALS</div>
+      <h2 class="testi-title">Client<br>Feedback</h2>
+      <a href="gallery.html" class="testi-btn">
+        See Our Work
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
     </div>
-    
-    <!-- Right Column: Slider -->
+
+    <!-- Right: Slider column -->
     <div class="testi-right">
       <div class="testi-slider-container">
         <div class="testi-track" id="testiTrack">
-          <!-- Slide 1 -->
-          <div class="testi-slide">
+
+          <!-- Slide 1: Tata Motors -->
+          <div class="testi-slide is-active">
             <div class="testi-img-col">
               <div class="testi-quote-icon">“</div>
-              <div class="testi-logo-box" style="background:#0b5ed7">
-                <div class="t-logo-text" style="color:#fff">TATA<br><small>MOTORS</small></div>
+              <div class="testi-logo-box" style="background: linear-gradient(135deg, #f0f4fc, #e1ecfa); border: 1px solid rgba(11,94,215,0.15);">
+                <div class="t-logo-text" style="color: #0b5ed7;">TATA<br><small style="color: rgba(11,94,215,0.65);">MOTORS</small></div>
               </div>
             </div>
             <div class="testi-content-col">
               <h3>Tata Motors</h3>
               <p class="t-sub">PRODUCT LAUNCH</p>
-              <p class="t-desc">Isha Events executed our new vehicle launch flawlessly. From the stage setup to the immersive lighting and sound, everything was perfectly aligned with our brand vision. The team is incredibly professional and a joy to partner with. We are absolutely thrilled with the result and look forward to working together on future events.</p>
+              <p class="t-desc">“Isha Events executed our new vehicle launch flawlessly. From the stage setup to the immersive lighting and sound, everything was perfectly aligned with our brand vision. The team is incredibly professional and a joy to partner with. We are absolutely thrilled.”</p>
             </div>
           </div>
-          
-          <!-- Slide 2 -->
+
+          <!-- Slide 2: Reliance Retail -->
           <div class="testi-slide">
             <div class="testi-img-col">
               <div class="testi-quote-icon">“</div>
-              <div class="testi-logo-box" style="background:#0033a0">
-                <div class="t-logo-text" style="color:#fff">RELIANCE<br><small>RETAIL</small></div>
+              <div class="testi-logo-box" style="background: linear-gradient(135deg, #eff3fa, #e1e9f5); border: 1px solid rgba(0,51,160,0.12);">
+                <div class="t-logo-text" style="color: #0033a0;">RELIANCE<br><small style="color: rgba(0,51,160,0.65);">RETAIL</small></div>
               </div>
             </div>
             <div class="testi-content-col">
               <h3>Reliance Retail</h3>
               <p class="t-sub">STORE OPENING</p>
-              <p class="t-desc">The team at Isha Events delivered an outstanding experience for our flagship store launch. Their attention to detail, impeccable operational logistics, and creative approach made the event a huge success, attracting unprecedented footfalls. Highly recommended for any brand looking for high-impact activation and management!</p>
+              <p class="t-desc">“The team at Isha Events delivered an outstanding experience for our flagship store launch. Their attention to detail, impeccable operational logistics, and creative approach made the event a huge success, attracting unprecedented footfalls.”</p>
             </div>
           </div>
-          
-          <!-- Slide 3 -->
+
+          <!-- Slide 3: Coca-Cola India -->
           <div class="testi-slide">
             <div class="testi-img-col">
               <div class="testi-quote-icon">“</div>
-              <div class="testi-logo-box" style="background:#e31837">
-                <div class="t-logo-text" style="color:#fff">COCA-COLA<br><small>INDIA</small></div>
+              <div class="testi-logo-box" style="background: linear-gradient(135deg, #fdf0f1, #fae1e3); border: 1px solid rgba(227,24,55,0.12);">
+                <div class="t-logo-text" style="color: #e31837;">COCA-COLA<br><small style="color: rgba(227,24,55,0.65);">INDIA</small></div>
               </div>
             </div>
             <div class="testi-content-col">
               <h3>Coca-Cola India</h3>
               <p class="t-sub">BRAND ACTIVATION</p>
-              <p class="t-desc">We partnered with Isha Events for our nationwide sampling campaign using mobile LED vans and custom tricycles. The execution was brilliant, covering multiple cities seamlessly on schedule. Their strategic approach truly helped us connect with our target audience on a massive scale and boosted our brand visibility.</p>
+              <p class="t-desc">“We partnered with Isha Events for our nationwide sampling campaign using mobile LED vans and custom tricycles. The execution was brilliant, covering multiple cities seamlessly on schedule. Their strategic approach truly helped us connect with our target.”</p>
             </div>
           </div>
+
         </div>
       </div>
-      
+
       <div class="testi-nav-row">
         <div class="testi-dots" id="testiDots">
           <span class="testi-dot active" data-index="0"></span>
@@ -2060,8 +2346,15 @@
           <span class="testi-dot" data-index="2"></span>
         </div>
         <div class="testi-controls">
-          <button class="t-btn t-prev" id="tPrev"><svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
-          <button class="t-btn t-next" id="tNext"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          <button class="t-btn t-prev" id="tPrev">
+            <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          </button>
+          <button class="t-btn t-next" id="tNext">
+            <svg viewBox="0 0 24 24">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
@@ -2070,103 +2363,217 @@
 
 <!-- ════ FEATURED PROJECTS SECTION ════ -->
 <section class="sec-projects" id="projects">
-  <div class="proj-sticky-wrap">
-    <h2 class="proj-title">Featured Projects</h2>
-    <div class="proj-acc">
-    <!-- Project 1 -->
-    <div class="proj-card active">
-      <img src="images/molile.png" alt="Mobile Van Campaigns" class="proj-img">
-      <div class="proj-overlay"></div>
-      <div class="proj-vert">LED Van Tours</div>
-      <div class="proj-horiz">
-        <span class="ph-tag">Multi-City Activation</span>
-        <h3 class="ph-title">LED Van Tours</h3>
-        <p class="ph-desc">We designed and deployed a fleet of high-impact LED vans across 50+ cities, reaching millions of target consumers directly in their neighborhoods with dynamic video content.</p>
-      </div>
+  <div class="projects-container">
+    <div class="projects-top">
+      <h2 class="projects-main-title">Projects That Define<br>Our Craft</h2>
     </div>
     
-    <!-- Project 2 -->
-    <div class="proj-card">
-      <img src="images/bicycle.png" alt="Tricycle Advertising" class="proj-img">
-      <div class="proj-overlay"></div>
-      <div class="proj-vert">Tricycle Promos</div>
-      <div class="proj-horiz">
-        <span class="ph-tag">Hyper-Local Marketing</span>
-        <h3 class="ph-title">Tricycle Promos</h3>
-        <p class="ph-desc">Eco-friendly and eye-catching tricycle campaigns designed to navigate narrow city lanes, ensuring maximum brand visibility and product sampling in high-footfall markets.</p>
+    <div class="projects-grid">
+      <!-- Left Column: Content -->
+      <div class="proj-left-col">
+        <div class="proj-content-wrapper">
+          <div class="proj-brand-header">
+            <h3 class="proj-brand-name" id="activeProjBrand">Samsung</h3>
+            <span class="proj-brand-sub" id="activeProjSub">LED VAN ACTIVATION</span>
+          </div>
+          <p class="proj-brand-desc" id="activeProjDesc">
+            We deployed high-impact mobile LED display vans across major cities, creating massive local awareness and direct consumer interaction for Samsung's latest flagship launch.
+          </p>
+          <a href="gallery.html" class="proj-view-btn">
+            View Project
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    
-    <!-- Project 3 -->
-    <div class="proj-card">
-      <img src="images/grand.png" alt="Stage Events" class="proj-img">
-      <div class="proj-overlay"></div>
-      <div class="proj-vert">Grand Launches</div>
-      <div class="proj-horiz">
-        <span class="ph-tag">Event Management</span>
-        <h3 class="ph-title">Grand Launches</h3>
-        <p class="ph-desc">From stage design to immersive lighting and sound, we craft unforgettable product launch experiences that capture audience attention and generate massive brand buzz.</p>
+      
+      <!-- Center Column: Tilted Active Image Slider -->
+      <div class="proj-center-col">
+        <div class="proj-image-tilt-container">
+          <div class="proj-image-track" id="projImageTrack">
+            <!-- Slide 1 -->
+            <div class="proj-slide active" data-index="0">
+              <div class="proj-image-frame">
+                <img src="images/molile.png" alt="Samsung BTL Campaign">
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="proj-slide" data-index="1">
+              <div class="proj-image-frame">
+                <img src="images/bicycle.png" alt="Nokia Tricycle Campaign">
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="proj-slide" data-index="2">
+              <div class="proj-image-frame">
+                <img src="images/grand.png" alt="Titan Experiential Event">
+              </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="proj-slide" data-index="3">
+              <div class="proj-image-frame">
+                <img src="images/pomplete.png" alt="Reliance BTL Outreach">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    
-    <!-- Project 4 -->
-    <div class="proj-card">
-      <img src="images/pomplete.png" alt="Print & Distribution" class="proj-img">
-      <div class="proj-overlay"></div>
-      <div class="proj-vert">Print & BTL</div>
-      <div class="proj-horiz">
-        <span class="ph-tag">Direct Outreach</span>
-        <h3 class="ph-title">Print & BTL</h3>
-        <p class="ph-desc">Targeted pamphlet distribution and below-the-line (BTL) marketing strategies executed with precision to drive immediate local engagement and sales conversions.</p>
-      </div>
+      
+      <!-- Right Column: Vertical Thumbnails -->
+      <div class="proj-right-col">
+        <div class="proj-thumbnails-stack" id="projThumbnailsStack">
+          <!-- Thumbnail 1 (Active) -->
+          <div class="proj-thumb-card active" data-index="0">
+            <img src="images/molile.png" alt="Samsung Thumbnail">
+            <div class="thumb-overlay"></div>
+          </div>
+          <!-- Thumbnail 2 -->
+          <div class="proj-thumb-card" data-index="1">
+            <img src="images/bicycle.png" alt="Nokia Thumbnail">
+            <div class="thumb-overlay"></div>
+          </div>
+          <!-- Thumbnail 3 -->
+          <div class="proj-thumb-card" data-index="2">
+            <img src="images/grand.png" alt="Titan/Event Thumbnail">
+            <div class="thumb-overlay"></div>
+          </div>
+          <!-- Thumbnail 4 -->
+          <div class="proj-thumb-card" data-index="3">
+            <img src="images/pomplete.png" alt="Reliance Thumbnail">
+            <div class="thumb-overlay"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+
 <script>
-  // Projects Accordion logic
-  document.addEventListener('DOMContentLoaded', () => {
-    const secProjects = document.getElementById('projects');
-    const pCards = document.querySelectorAll('.proj-card');
-    let isHovering = false;
-    
-    // Hover logic override
-    pCards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        isHovering = true;
-        pCards.forEach(c => c.classList.remove('active'));
-        card.classList.add('active');
-      });
-      card.addEventListener('mouseleave', () => {
-        isHovering = false;
-      });
-    });
-
-    // Scroll sticky logic
-    window.addEventListener('scroll', () => {
-      if (window.innerWidth <= 768) return; 
-      if (isHovering) return; // hover takes priority
-
-      const rect = secProjects.getBoundingClientRect();
-      const secHeight = rect.height; // e.g. 250vh
-      const winHeight = window.innerHeight;
-      
-      const maxScroll = secHeight - winHeight;
-      let progress = -rect.top / maxScroll;
-      
-      if (progress < 0) progress = 0;
-      if (progress > 1) progress = 1;
-      
-      let activeIndex = Math.floor(progress * 4);
-      if (activeIndex === 4) activeIndex = 3; 
-      
-      if (!pCards[activeIndex].classList.contains('active')) {
-        pCards.forEach(c => c.classList.remove('active'));
-        pCards[activeIndex].classList.add('active');
+  // ── Projects Showcase slideshow logic ──
+  function initProjectsShowcase() {
+    const projectsData = [
+      {
+        name: "Samsung",
+        sub: "LED VAN ACTIVATION",
+        desc: "We deployed high-impact mobile LED display vans across major cities, creating massive local awareness and direct consumer interaction for Samsung's latest flagship launch.",
+        img: "images/molile.png",
+        link: "gallery.html"
+      },
+      {
+        name: "Nokia",
+        sub: "TRICYCLE ADVERTISING",
+        desc: "An eco-friendly, hyper-local marketing campaign utilizing custom branded tricycles to penetrate dense urban markets and distribute samples directly to consumers.",
+        img: "images/bicycle.png",
+        link: "gallery.html"
+      },
+      {
+        name: "Titan",
+        sub: "EXPERIENTIAL EVENT",
+        desc: "A spectacular experiential store launch event crafted with bespoke stage designs, dynamic lighting sequences, and highly immersive brand storytelling.",
+        img: "images/grand.png",
+        link: "gallery.html"
+      },
+      {
+        name: "Reliance",
+        sub: "BTL OUTREACH",
+        desc: "Bespoke printed collateral and high-precision below-the-line distribution campaigns designed to capture localized attention and drive store footfalls.",
+        img: "images/pomplete.png",
+        link: "gallery.html"
       }
+    ];
+
+    let currentProjIndex = 0;
+    let projInterval = null;
+    
+    const brandNameEl = document.getElementById('activeProjBrand');
+    const brandSubEl = document.getElementById('activeProjSub');
+    const brandDescEl = document.getElementById('activeProjDesc');
+    const imageTrack = document.getElementById('projImageTrack');
+    const contentWrapper = document.querySelector('.proj-content-wrapper');
+    const thumbCards = document.querySelectorAll('.proj-thumb-card');
+    const slides = document.querySelectorAll('.proj-slide');
+    
+    if (!brandNameEl || !imageTrack) return;
+
+    function transitionToProject(index) {
+      if (index === currentProjIndex) return;
+      
+      // 1. Fade out the text first
+      contentWrapper.classList.add('fade-out');
+      
+      // 2. Slide the track
+      imageTrack.style.transform = `translateX(-${index * 25}%)`;
+      
+      // Update active slide state classes
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === index);
+      });
+      
+      // Update active thumbnail borders immediately
+      thumbCards.forEach((c, idx) => {
+        c.classList.toggle('active', idx === index);
+      });
+      
+      // 3. Swap text content and fade back in
+      setTimeout(() => {
+        const proj = projectsData[index];
+        
+        // Update DOM elements
+        brandNameEl.textContent = proj.name;
+        brandSubEl.textContent = proj.sub;
+        brandDescEl.textContent = proj.desc;
+        
+        currentProjIndex = index;
+        
+        // Fade text back in
+        contentWrapper.classList.remove('fade-out');
+      }, 300); // match transition timing
+    }
+
+    function startProjShowcaseLoop() {
+      stopProjShowcaseLoop();
+      projInterval = setInterval(() => {
+        const nextIndex = (currentProjIndex + 1) % projectsData.length;
+        transitionToProject(nextIndex);
+      }, 3000);
+    }
+
+    function stopProjShowcaseLoop() {
+      if (projInterval) {
+        clearInterval(projInterval);
+        projInterval = null;
+      }
+    }
+
+    // Attach click listeners to thumbnails
+    thumbCards.forEach((card, index) => {
+      card.addEventListener('click', () => {
+        transitionToProject(index);
+        // Reset timer when clicked
+        startProjShowcaseLoop();
+      });
     });
-  });
+
+    // Start auto loop
+    startProjShowcaseLoop();
+    
+    // Pause auto loop on hover over the main showcase area
+    const showcaseArea = document.querySelector('.projects-grid');
+    if (showcaseArea) {
+      showcaseArea.addEventListener('mouseenter', stopProjShowcaseLoop);
+      showcaseArea.addEventListener('mouseleave', startProjShowcaseLoop);
+    }
+  }
+
+  // Safe DOM ready check
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProjectsShowcase);
+  } else {
+    initProjectsShowcase();
+  }
 
   // ── Hero Stat Count-Up Animation ──
   function animateCountUp() {
