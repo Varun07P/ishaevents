@@ -1981,6 +1981,150 @@
     }
 
 
+    /* ════ OUR PROCESS SECTION (WITH IMAGES) ════ */
+    .process-section {
+      background: #FFFFFF !important;
+      padding: 100px 0 !important;
+      font-family: 'Barlow', sans-serif !important;
+      border-top: 1px solid rgba(0,0,0,0.04) !important;
+    }
+
+    .process-container {
+      max-width: 1200px !important;
+      width: 90% !important;
+      margin: 0 auto !important;
+    }
+
+    .process-top {
+      text-align: center !important;
+      margin-bottom: 70px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 12px !important;
+    }
+
+    .process-tag {
+      font-size: 0.75rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.25em !important;
+      color: #ff5a00 !important;
+      text-transform: uppercase !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+    }
+
+    .process-tag::before, .process-tag::after {
+      content: '' !important;
+      width: 20px !important;
+      height: 1.5px !important;
+      background: #ff5a00 !important;
+      display: inline-block !important;
+    }
+
+    .process-hl {
+      font-family: 'Oswald', sans-serif !important;
+      font-size: clamp(2.2rem, 4vw, 3.2rem) !important;
+      color: #111111 !important;
+      margin: 0 !important;
+      text-transform: uppercase !important;
+      line-height: 1.1 !important;
+      letter-spacing: -0.01em !important;
+    }
+
+    .process-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 30px !important;
+    }
+
+    .process-step {
+      display: flex !important;
+      flex-direction: column !important;
+      position: relative !important;
+      group: hover !important;
+    }
+
+    .p-image-wrapper {
+      width: 100% !important;
+      aspect-ratio: 4/5 !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+      margin-bottom: 24px !important;
+      position: relative !important;
+      background: #f4f4f4 !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
+      transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+    }
+
+    .p-image-wrapper img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .process-step:hover .p-image-wrapper {
+      transform: translateY(-8px) !important;
+      box-shadow: 0 15px 40px rgba(255,90,0,0.12) !important;
+    }
+
+    .process-step:hover .p-image-wrapper img {
+      transform: scale(1.05) !important;
+    }
+
+    .p-step-num {
+      font-family: 'Oswald', sans-serif !important;
+      font-size: 4rem !important;
+      font-weight: 700 !important;
+      color: #FFFFFF !important;
+      -webkit-text-stroke: 1.5px #ff5a00 !important;
+      text-shadow: 0 8px 16px rgba(0,0,0,0.15) !important;
+      line-height: 1 !important;
+      margin-top: -45px !important;
+      margin-bottom: 5px !important;
+      margin-left: 10px !important;
+      position: relative !important;
+      z-index: 2 !important;
+      transition: all 0.4s ease !important;
+    }
+
+    .process-step:hover .p-step-num {
+      transform: scale(1.05) !important;
+    }
+
+    .p-title {
+      font-family: 'Oswald', sans-serif !important;
+      font-size: 1.3rem !important;
+      color: #111111 !important;
+      margin: 0 0 10px 0 !important;
+      text-transform: uppercase !important;
+      padding-left: 10px !important;
+    }
+
+    .p-desc {
+      font-size: 0.95rem !important;
+      color: #555555 !important;
+      line-height: 1.65 !important;
+      margin: 0 !important;
+      padding-left: 10px !important;
+    }
+
+    @media (max-width: 1024px) {
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 50px 30px !important;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .process-section { padding: 60px 0 !important; }
+      .process-top { margin-bottom: 40px !important; }
+      .process-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .p-image-wrapper { aspect-ratio: 16/10 !important; }
+    }
+
     /* Footer styles are loaded dynamically with footer.html */
   </style>
 </head>
@@ -2173,7 +2317,7 @@
 <div class="services-scroll-container" id="services">
   <div class="services-sticky-wrapper">
     <div class="services-container">
-      <div class="services-header">
+      <div class="services-header reveal-up">
         <div class="services-tag">WHAT WE DO</div>
         <h2 class="services-hl">OUR SERVICES</h2>
         <p class="services-subtitle">Scroll down to explore our exceptional brand activations and events.</p>
@@ -2268,13 +2412,13 @@
 </div>
 
 <!-- ════ TESTIMONIALS SECTION ════ -->
-<section class="testimonials-section sr">
+<section class="testimonials-section">
   <div class="testi-bg-glow-1"></div>
   <div class="testi-bg-glow-2"></div>
 
   <div class="testi-wrapper">
     <!-- Left: Heading column -->
-    <div class="testi-left">
+    <div class="testi-left sr-left">
       <div class="testi-tag">← TESTIMONIALS</div>
       <h2 class="testi-title">Client<br>Feedback</h2>
       <a href="gallery.html" class="testi-btn">
@@ -2287,7 +2431,7 @@
     </div>
 
     <!-- Right: Slider column -->
-    <div class="testi-right">
+    <div class="testi-right sr-right" style="transition-delay: 0.2s;">
       <div class="testi-slider-container">
         <div class="testi-track" id="testiTrack">
 
@@ -2364,13 +2508,13 @@
 <!-- ════ FEATURED PROJECTS SECTION ════ -->
 <section class="sec-projects" id="projects">
   <div class="projects-container">
-    <div class="projects-top">
+    <div class="projects-top reveal-up">
       <h2 class="projects-main-title">Projects That Define<br>Our Craft</h2>
     </div>
     
     <div class="projects-grid">
       <!-- Left Column: Content -->
-      <div class="proj-left-col">
+      <div class="proj-left-col sr-left">
         <div class="proj-content-wrapper">
           <div class="proj-brand-header">
             <h3 class="proj-brand-name" id="activeProjBrand">Samsung</h3>
@@ -2390,7 +2534,7 @@
       </div>
       
       <!-- Center Column: Tilted Active Image Slider -->
-      <div class="proj-center-col">
+      <div class="proj-center-col reveal-up" style="transition-delay: 0.2s;">
         <div class="proj-image-tilt-container">
           <div class="proj-image-track" id="projImageTrack">
             <!-- Slide 1 -->
@@ -2422,7 +2566,7 @@
       </div>
       
       <!-- Right Column: Vertical Thumbnails -->
-      <div class="proj-right-col">
+      <div class="proj-right-col sr-right" style="transition-delay: 0.4s;">
         <div class="proj-thumbnails-stack" id="projThumbnailsStack">
           <!-- Thumbnail 1 (Active) -->
           <div class="proj-thumb-card active" data-index="0">
@@ -2678,6 +2822,54 @@
     resetInterval();
   });
 </script>
+
+<!-- ════ OUR PROCESS SECTION ════ -->
+<section class="process-section" id="process">
+  <div class="process-container">
+    <div class="process-top reveal-up">
+      <div class="process-tag">HOW WE WORK</div>
+      <h2 class="process-hl">Our Proven Process</h2>
+    </div>
+    <div class="process-grid">
+      <!-- Step 1 -->
+      <div class="process-step sr-left" style="transition-delay: 0.1s;">
+        <div class="p-image-wrapper">
+          <img src="images/social.png" alt="Discovery Phase">
+        </div>
+        <div class="p-step-num">01</div>
+        <h3 class="p-title">Discovery</h3>
+        <p class="p-desc">We collaborate with you to understand your brand, audience, and the core objectives of your campaign.</p>
+      </div>
+      <!-- Step 2 -->
+      <div class="process-step sr-left" style="transition-delay: 0.2s;">
+        <div class="p-image-wrapper">
+          <img src="images/events.png" alt="Strategy Phase">
+        </div>
+        <div class="p-step-num">02</div>
+        <h3 class="p-title">Strategy</h3>
+        <p class="p-desc">Our experts craft tailored, high-impact blueprints that guarantee engagement and maximum reach.</p>
+      </div>
+      <!-- Step 3 -->
+      <div class="process-step sr-left" style="transition-delay: 0.3s;">
+        <div class="p-image-wrapper">
+          <img src="images/outdoor.png" alt="Execution Phase">
+        </div>
+        <div class="p-step-num">03</div>
+        <h3 class="p-title">Execution</h3>
+        <p class="p-desc">We handle all logistics flawlessly—from setup to on-ground coordination—so everything runs smoothly.</p>
+      </div>
+      <!-- Step 4 -->
+      <div class="process-step sr-left" style="transition-delay: 0.4s;">
+        <div class="p-image-wrapper">
+          <img src="images/employee.png" alt="Impact Phase">
+        </div>
+        <div class="p-step-num">04</div>
+        <h3 class="p-title">Impact</h3>
+        <p class="p-desc">We deliver measurable outcomes, analyzing performance and ensuring your message leaves a lasting mark.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ════ CALL TO ACTION SECTION ════ -->
 <section class="cta-section sr">
