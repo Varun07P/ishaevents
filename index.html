@@ -35,25 +35,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ════════ PRELOADER ════════ */
-    #preloader {
-      position: fixed; inset: 0; z-index: 9999;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--dark);
-      transition: opacity .7s ease, visibility .7s ease;
-    }
-    .pre-content { display: flex; flex-direction: column; align-items: center; gap: 16px; z-index: 10; }
-    .pre-brand { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; letter-spacing: .3em; color: var(--white); }
-    .pre-brand b { color: var(--orange); }
-    .pre-track { width: 200px; height: 2px; background: rgba(255,255,255,.06); border-radius: 10px; overflow: hidden; }
-    .pre-fill { width: 0%; height: 100%; background: var(--orange); box-shadow: 0 0 8px var(--orange); transition: width .2s ease; }
-    .pre-pct { font-size: .65rem; letter-spacing: .15em; color: rgba(255,255,255,.3); }
-    .pre-panel { position: absolute; width: 100%; height: 50%; background: var(--dark); z-index: 5; transition: transform 1.1s cubic-bezier(.85,0,.15,1); }
-    .pre-panel.t { top: 0; }
-    .pre-panel.b { bottom: 0; }
-    body.go .pre-panel.t { transform: translateY(-100%); }
-    body.go .pre-panel.b { transform: translateY(100%); }
-    body.go #preloader { pointer-events: none; opacity: 0; visibility: hidden; }
+
 
     /* ════════ HERO ════════ */
     #hero {
@@ -2133,17 +2115,6 @@
 <!-- HEADER PLACEHOLDER -->
 <div id="header-container"></div>
 
-<!-- PRELOADER -->
-<div id="preloader">
-  <div class="pre-panel t"></div>
-  <div class="pre-panel b"></div>
-  <div class="pre-content">
-    <div class="pre-brand"><b>ISHA</b> EVENTS</div>
-    <div class="pre-track"><div class="pre-fill" id="pf"></div></div>
-    <div class="pre-pct" id="pp">0%</div>
-  </div>
-</div>
-
 <!-- HERO -->
 <section id="hero">
 
@@ -2226,14 +2197,14 @@
 <!-- ════ TRUSTED BY SECTION ════ -->
 <section id="trusted">
   <div class="t-head">
-    <span class="reveal-up" style="transition-delay: 0.1s;">TRUSTED</span>
-    <span class="reveal-up" style="transition-delay: 0.2s;">BY</span>
-    <span class="reveal-up" style="transition-delay: 0.3s;">INDIA'S</span>
-    <span class="reveal-up" style="transition-delay: 0.4s;">LEADING</span>
-    <span class="reveal-up" style="transition-delay: 0.5s;">BRANDS</span>
+    <span class="reveal-up" style="transition-delay: 0s;">TRUSTED</span>
+    <span class="reveal-up" style="transition-delay: 0.05s;">BY</span>
+    <span class="reveal-up" style="transition-delay: 0.1s;">INDIA'S</span>
+    <span class="reveal-up" style="transition-delay: 0.15s;">LEADING</span>
+    <span class="reveal-up" style="transition-delay: 0.2s;">BRANDS</span>
   </div>
   
-  <div class="t-logos-container reveal-up" style="transition-delay: 0.6s;">
+  <div class="t-logos-container reveal-up" style="transition-delay: 0.3s;">
     <div class="t-logos-track">
       <!-- Original Set -->
       <div class="t-logo"><img src="images/original-samsung-logo-10.png" alt="Samsung"></div>
@@ -2745,16 +2716,12 @@
     });
   }
   
-  // Trigger count-up when preloader finishes
-  const bodyObserver = new MutationObserver((mutations) => {
-    mutations.forEach(m => {
-      if (m.target === document.body && document.body.classList.contains('go')) {
-        setTimeout(animateCountUp, 2100); // match stat stagger delay
-        bodyObserver.disconnect();
-      }
-    });
-  });
-  bodyObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+  // Trigger count-up shortly after page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(animateCountUp, 1500));
+  } else {
+    setTimeout(animateCountUp, 1500);
+  }
 
   // ── Testimonials Slider with Dots + Swipe ──
   document.addEventListener('DOMContentLoaded', () => {
@@ -2900,45 +2867,6 @@
 <div id="footer-container"></div>
 
 <script>
-(function(){
-  const bar=document.getElementById('pf'), txt=document.getElementById('pp');
-  const res=[...document.images,...document.querySelectorAll('link[rel="stylesheet"]')];
-  let d=0,t=res.length||1,c=0,g=0;
-  
-  function tick(){
-    c+=(g-c)*.12;
-    if(bar)bar.style.width=c+'%';
-    if(txt)txt.textContent=Math.round(c)+'%';
-    if(c<99.5)requestAnimationFrame(tick);
-    else{
-      if(bar)bar.style.width='100%';
-      if(txt)txt.textContent='100%';
-      setTimeout(()=>document.body.classList.add('go'),350);
-    }
-  }
-  requestAnimationFrame(tick);
-  
-  function inc(){d++;g=(d/t)*100;}
-  
-  // Register fallback timers first
-  setTimeout(()=>g=100,2000);
-  window.addEventListener('load',()=>g=100);
-  
-  res.forEach(e=>{
-    try {
-      if(e.complete || (e.sheet && e.sheet.cssRules)) {
-        inc();
-      } else {
-        e.onload=inc;
-        e.onerror=inc;
-      }
-    } catch(err) {
-      e.onload=inc;
-      e.onerror=inc;
-    }
-  });
-})();
-
 // Load Header component script
 const headerScript = document.createElement('script');
 headerScript.src = 'header.js?v=' + new Date().getTime();
@@ -3062,6 +2990,11 @@ if (document.readyState === 'loading') {
 } else {
   initScrollRevealAndHorizontalScroll();
 }
+
+// Trigger initial hero animations shortly after load so browser can paint initial state first
+setTimeout(() => {
+  document.body.classList.add('go');
+}, 100);
 </script>
 </body>
 </html>
